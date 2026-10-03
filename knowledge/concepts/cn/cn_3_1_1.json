@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_1_1",
+  "subject": "computer_networks",
+  "name": "Datagrams",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_1_1_source",
+      "statement": "The idea behind datagrams is incredibly simple: You just include in every packet enough information to\nenable any switch to decide how to get it to its destination. That is, every packet contains the complete desti-\nnation address. Consider the example network illustrated in Figure 3.2, in which the hosts have addresses A,\nB, C, and so on. To decide how to forward a packet, a switch consults aforwarding table (sometimes called\na routing table), an example of which is depicted in Table 3.1. This particular table shows the forwarding\ninformation that switch 2 needs to forward datagrams in the example network. It is pretty easy to figure out\nsuch a table when you have a complete map of a simple network like that depicted here; we could imagine\na network operator configuring the tables statically. It is a lot harder to create the forwarding tables in large,\ncomplex networks with dynamically changing topologies and multiple paths between destinations. That\nharder problem is known as routing and is the topic of a later section. We can think of routing as a process\nthat takes place in the background so that, when a data packet turns up, we will have the right information\nin the forwarding table to be able to forward, or switch, the packet.\nFigure 3.2.: Datagram forwarding: an example network.\n106 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nTable 3.1.: Forwarding Table for Switch 2.\nDestination Port\nA 3\nB 0\nC 3\nD 3\nE 2\nF 1\nG 0\nH 0\nDatagram networks have the following characteristics:\n• A host can send a packet anywhere at any time, since any packet that turns up at a switch can be\nimmediately forwarded (assuming a correctly populated forwarding table). For this reason, datagram\nnetworks are often called connectionless; this contrasts with the connection-oriented networks de-\nscribed below, in which some connection state needs to be established before the first data packet is\nsent.\n• When a host sends a packet, it has no way of knowing if the network is capable of delivering it or if\nthe destination host is even up and running.\n• Each packet is forwarded independently of previous packets that might have been sent to the same\ndestination. Thus, two successive packets from host A to host B may follow completely different\npaths (perhaps because of a change in the forwarding table at some switch in the network).\n• A switch or link failure might not have any serious effect on communication if it is possible to find an\nalternate route around the failure and to update the forwarding table accordingly.\nThis last fact is particularly important to the history of datagram networks. One of the important design\ngoals of the Internet is robustness to failures, and history has shown it to be quite effective at meeting this\ngoal. Since datagram-based networks are the dominant technology discussed in this book, we postpone\nillustrative examples for the following sections, and move on to the two main alternatives.",
+      "source_section": "3.1.1",
+      "source_title": "Datagrams",
+      "source_pages": [
+        110,
+        111
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.1.1",
+    "section_title": "Datagrams",
+    "pages": [
+      110,
+      111
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

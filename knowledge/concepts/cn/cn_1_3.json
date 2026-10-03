@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_1_3",
+  "subject": "computer_networks",
+  "name": "Architecture",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_3_source",
+      "statement": "The previous section established a pretty substantial set of requirements for network design—a computer\nnetwork must provide general, cost-effective, fair, and robust connectivity among a large number of com-\nputers. As if this weren't enough, networks do not remain fixed at any single point in time but must evolve\nto accommodate changes in both the underlying technologies upon which they are based as well as changes\nin the demands placed on them by application programs. Furthermore, networks must be manageable by\nhumans of varying levels of skill. Designing a network to meet these requirements is no small task.\nTo help deal with this complexity, network designers have developed general blueprints—usually called\nnetwork architectures—that guide the design and implementation of networks. This section defines more\ncarefully what we mean by a network architecture by introducing the central ideas that are common to\nall network architectures. It also introduces two of the most widely referenced architectures—the OSI (or\n7-layer) architecture and the Internet architecture.\n1.3. Architecture 21\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "1.3",
+      "source_title": "Architecture",
+      "source_pages": [
+        25,
+        26
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.3",
+    "section_title": "Architecture",
+    "pages": [
+      25,
+      26
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

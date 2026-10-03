@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_5",
+  "subject": "computer_networks",
+  "name": "Example Systems",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_5_source",
+      "statement": "We have now seen many of the components required to provide one or two aspects of security. These com-\nponents include cryptographic algorithms, key predistribution mechanisms, and authentication protocols. In\nthis section, we examine some complete systems that use these components.\nThese systems can be roughly categorized by the protocol layer at which they operate. Systems that operate\nat the application layer include Pretty Good Privacy (PGP), which provides electronic mail security, and\nSecure Shell (SSH), a secure remote login facility. At the transport layer, there is the IETF's Transport\nLayer Security (TLS) standard and the older protocol from which it derives, Secure Socket Layer (SSL).\nThe IPsec (IP Security) protocols, as their name implies, operate at the IP (network) layer. 802.11i provides\nsecurity at the link layer of wireless networks. This section describes the salient features of each of these\napproaches.\n8.5. Example Systems 395\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.12.: Kerberos authentication.\n396 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nYou might reasonably wonder why security has to be provided at so many different layers. One reason is\nthat different threats require different defensive measures, and this often translates into securing a different\nprotocol layer. For example, if your main concern is with a person in the building next door snooping on\nyour traffic as it flows between your laptop and your 802.11 access point, then you probably want security\nat the link layer. However, if you want to be really sure you are connected to your bank's website and\npreventing all the data that you send to the bank from being read by curious employees of some Internet\nservice provider, then something that extends all the way from your machine to the bank's server—like the\ntransport layer—may be the right place to secure the traffic. As is often the case, there is no one-size-fits-all\nsolution.\nThe security systems described below have the ability to vary which cryptographic algorithms they use. The\nidea of making a security system algorithm independent is a very good one, because you never know when\nyour favorite cryptographic algorithm might be proved to be insufficiently strong for your purposes. It would\nbe nice if you could quickly change to a new algorithm without having to change the protocol specification\nor implementation. Note the analogy to being able to change keys without changing the algorithm; if one of\nyour cryptographic algorithms turns out to be flawed, it would be great if your entire security architecture\ndidn't need an immediate redesign.",
+      "source_section": "8.5",
+      "source_title": "Example Systems",
+      "source_pages": [
+        399,
+        400,
+        401
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.5",
+    "section_title": "Example Systems",
+    "pages": [
+      399,
+      400,
+      401
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_6_5",
+  "subject": "computer_networks",
+  "name": "Quality of Service",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_5_source",
+      "statement": "The promise of general-purpose packet-switched networks is that they support all kinds of applications and\ndata, including multimedia applications that transmit digitized audio and video streams. In the early days,\none obstacle to the fulfillment of this promise was the need for higher-bandwidth links. That is no longer\nan issue, but there is more to transmitting audio and video over a network than just providing sufficient\nbandwidth.\nParticipants in a telephone conversation, for example, expect to be able to converse in such a way that one\nperson can respond to something said by the other and be heard almost immediately. Thus, the timeliness\nof delivery can be very important. We refer to applications that are sensitive to the timeliness of data as\nreal-time applications. V oice and video applications tend to be the canonical examples, but there are others\nsuch as industrial control—you would like a command sent to a robot arm to reach it before the arm crashes\ninto something. Even file transfer applications can have timeliness constraints, such as a requirement that a\ndatabase update complete overnight before the business that needs the data resumes on the next day.\nThe distinguishing characteristic of real-time applications is that they need some sort of assurance from the\nnetwork that data is likely to arrive on time (for some definition of \"on time\"). Whereas a non-real-time\napplication can use an end-to-end retransmission strategy to make sure that data arrives correctly, such a\nstrategy cannot provide timeliness: Retransmission only adds to total latency if data arrives late. Timely\narrival must be provided by the network itself (the routers), not just at the network edges (the hosts). We\ntherefore conclude that the best-effort model, in which the network tries to deliver your data but makes no\npromises and leaves the cleanup operation to the edges, is not sufficient for real-time applications. What we\nneed is a new service model, in which applications that need higher assurances can ask the network for them.\n6.5. Quality of Service 323\nComputer Networks: A Systems Approach, Release Version 6.1\nThe network may then respond by providing an assurance that it will do better or perhaps by saying that it\ncannot promise anything better at the moment. Note that such a service model is a superset of the original\nmodel: Applications that are happy with best-effort service should be able to use the new service model;\ntheir requirements are just less stringent. This implies that the network will treat some packets differently\nfrom others—something that is not done in the best-effort model. A network that can provide these different\nlevels of service is often said to support quality of service (QoS).",
+      "source_section": "6.5",
+      "source_title": "Quality of Service",
+      "source_pages": [
+        327,
+        328
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.5",
+    "section_title": "Quality of Service",
+    "pages": [
+      327,
+      328
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

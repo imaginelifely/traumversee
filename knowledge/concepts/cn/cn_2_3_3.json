@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_2_3_3",
+  "subject": "computer_networks",
+  "name": "Clock-Based Framing (SONET)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_3_3_source",
+      "statement": "A third approach to framing is exemplified by the Synchronous Optical Network (SONET) standard. For\nlack of a widely accepted generic term, we refer to this approach simply as clock-based framing. SONET\nwas first proposed by Bell Communications Research (Bellcore), and then developed under the American\nNational Standards Institute (ANSI) for digital transmission over optical fiber; it has since been adopted by\nthe ITU-T. SONET has been for many years the dominant standard for long-distance transmission of data\nover optical networks.\nAn important point to make about SONET before we go any further is that the full specification is substan-\ntially larger than this book. Thus, the following discussion will necessarily cover only the high points of the\nstandard. Also, SONET addresses both the framing problem and the encoding problem. It also addresses\na problem that is very important for phone companies—the multiplexing of several low-speed links onto\none high-speed link. (In fact, much of SONET's design reflects the fact that phone companies have to be\nconcerned with multiplexing large numbers of the 64-kbps channels that traditionally are used for telephone\ncalls.) We begin with SONET's approach to framing and discuss the other issues following.\nAs with the previously discussed framing schemes, a SONET frame has some special information that tells\nthe receiver where the frame starts and ends; however, that is about as far as the similarities go. Notably,\nno bit stuffing is used, so that a frame's length does not depend on the data being sent. So the question to\nask is \"How does the receiver know where each frame starts and ends?\" We consider this question for the\nlowest-speed SONET link, which is known as STS-1 and runs at 51.84 Mbps. An STS-1 frame is shown\nin Figure 2.9. It is arranged as 9 rows of 90 bytes each, and the first 3 bytes of each row are overhead,\nwith the rest being available for data that is being transmitted over the link. The first 2 bytes of the frame\ncontain a special bit pattern, and it is these bytes that enable the receiver to determine where the frame starts.\nHowever, since bit stuffing is not used, there is no reason why this pattern will not occasionally turn up in the\npayload portion of the frame. To guard against this, the receiver looks for the special bit pattern consistently,\nhoping to see it appearing once every 810 bytes, since each frame is 9 × 90 = 810 bytes long. When the\nspecial pattern turns up in the right place enough times, the receiver concludes that it is in sync and can then\ninterpret the frame correctly.\n2.3. Framing 57\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.9.: A SONET STS-1 frame.\nOne of the things we are not describing due to the complexity of SONET is the detailed use of all the other\noverhead bytes. Part of this complexity can be attributed to the fact that SONET runs across the carrier's\noptical network, not just over a single link. (Recall that we are glossing over the fact that the carriers\nimplement a network, and we are instead focusing on the fact that we can lease a SONET link from them\nand then use this link to build our own packet-switched network.) Additional complexity comes from the\nfact that SONET provides a considerably richer set of services than just data transfer. For example, 64 kbps\nof a SONET link's capacity is set aside for a voice channel that is used for maintenance.\nThe overhead bytes of a SONET frame are encoded using NRZ, the simple encoding described in the pre-\nvious section where 1s are high and 0s are low. However, to ensure that there are plenty of transitions to\nallow the receiver to recover the sender's clock, the payload bytes arescrambled. This is done by calculating\nthe exclusive OR (XOR) of the data to be transmitted and by the use of a well-known bit pattern. The bit\npattern, which is 127 bits long, has plenty of transitions from 1 to 0, so that XORing it with the transmitted\ndata is likely to yield a signal with enough transitions to enable clock recovery.\nSONET supports the multiplexing of multiple low-speed links in the following way. A given SONET link\nruns at one of a finite set of possible rates, ranging from 51.84 Mbps (STS-1) to 39,813,120 Mbps (STS-\n768).1 Note that all of these rates are integer multiples of STS-1. The significance for framing is that a\nsingle SONET frame can contain subframes for multiple lower-rate channels. A second related feature is\nthat each frame is 125 μs long. This means that at STS-1 rates, a SONET frame is 810 bytes long, while\nat STS-3 rates, each SONET frame is 2430 bytes long. Notice the synergy between these two features: 3 ×\n810 = 2430, meaning that three STS-1 frames fit exactly in a single STS-3 frame.\nIntuitively, the STS-N frame can be thought of as consisting of N STS-1 frames, where the bytes from these\nframes are interleaved; that is, a byte from the first frame is transmitted, then a byte from the second frame\nis transmitted, and so on. The reason for interleaving the bytes from each STS-N frame is to ensure that the\nbytes in each STS-1 frame are evenly paced; that is, bytes show up at the receiver at a smooth 51 Mbps,\nrather than all bunched up during one particular 1/Nth of the 125-μs interval.\nAlthough it is accurate to view an STS-N signal as being used to multiplex N STS-1 frames, the payload\n1 STS stands for Synchronous Transport Signal, which is how SONET talks about frames. There is a parallel term— Optical\nCarrier (OC)—that is used to talk about the underlying optical signal that carries SONET frames. We say these two terms are\nparallel because STS-3 and OC-3, to use a concrete example, both imply a transmission rate of 155.52 Mbps. Since we're focused\non framing here, we will stick with STS, but it is more likely that you will hear someone refer to an optical link by its \"OC\" name.\n58 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.10.: Three STS-1 frames multiplexed onto one STS-3c frame.\nfrom these STS-1 frames can be linked together to form a larger STS-N payload; such a link is denoted STS-\nNc (for concatenated). One of the fields in the overhead is used for this purpose. Figure 2.10 schematically\ndepicts concatenation in the case of three STS-1 frames being concatenated into a single STS-3c frame. The\nsignificance of a SONET link being designated as STS-3c rather than STS-3 is that, in the former case, the\nuser of the link can view it as a single 155.25-Mbps pipe, whereas an STS-3 should really be viewed as three\n51.84-Mbps links that happen to share a fiber.\nFigure 2.11.: SONET frames out of phase.\nFinally, the preceding description of SONET is overly simplistic in that it assumes that the payload for each\nframe is completely contained within the frame. (Why wouldn't it be?) In fact, we should view the STS-1\nframe just described as simply a placeholder for the frame, where the actual payload mayfloat across frame\nboundaries. This situation is illustrated in Figure 2.11. Here we see both the STS-1 payload floating across\ntwo STS-1 frames and the payload shifted some number of bytes to the right and, therefore, wrapped around.\nOne of the fields in the frame overhead points to the beginning of the payload. The value of this capability\nis that it simplifies the task of synchronizing the clocks used throughout the carriers' networks, which is\nsomething that carriers spend a lot of their time worrying about.",
+      "source_section": "2.3.3",
+      "source_title": "Clock-Based Framing (SONET)",
+      "source_pages": [
+        61,
+        62,
+        63
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.3.3",
+    "section_title": "Clock-Based Framing (SONET)",
+    "pages": [
+      61,
+      62,
+      63
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

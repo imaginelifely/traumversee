@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_2_2",
+  "subject": "computer_networks",
+  "name": "Implementation",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_2_2_source",
+      "statement": "The code that implements the learning bridge algorithm is quite simple, and we sketch it here. Structure\nBridgeEntry defines a single entry in the bridge's forwarding table; these are stored in a Map structure\n(which supportsmapCreate,mapBind, andmapResolve operations) to enable entries to be efficiently\nlocated when packets arrive from sources already in the table. The constant MAX_TTL specifies how long\nan entry is kept in the table before it is discarded.\n#define BRIDGE_TAB_SIZE 1024 / * max size of bridging table */\n#define MAX_TTL 120 / * time (in seconds) before an entry is\n˓→flushed */\ntypedef struct {\nMacAddr destination; /* MAC address of a node */\nint ifnumber; /* interface to reach it */\nu_short TTL; /* time to live */\nBinding binding; /* binding in the Map */\n} BridgeEntry;\nint numEntries = 0;\nMap bridgeMap = mapCreate(BRIDGE_TAB_SIZE, sizeof(BridgeEntry));\nThe routine that updates the forwarding table when a new packet arrives is given by updateTable. The\narguments passed are the source media access control (MAC) address contained in the packet and the inter-\nface number on which it was received. Another routine, not shown here, is invoked at regular intervals, scans\nthe entries in the forwarding table, and decrements theTTL (time to live) field of each entry, discarding any\nentries whose TTL has reached 0. Note that the TTL is reset to MAX_TTL every time a packet arrives to\nrefresh an existing table entry and that the interface on which the destination can be reached is updated to\nreflect the most recently received packet.\nvoid\nupdateTable (MacAddr src, int inif)\n{\nBridgeEntry *b;\nif (mapResolve(bridgeMap, &src, (void **)&b) == FALSE )\n{\n/* this address is not in the table, so try to add it */\nif (numEntries < BRIDGE_TAB_SIZE)\n{\nb = NEW(BridgeEntry);\nb->binding = mapBind( bridgeMap, &src, b);\n/* use source address of packet as dest. address in table */\nb->destination = src;\nnumEntries++;\n}\nelse\n{\n/* can't fit this address in the table now, so give up */\nreturn;\n}\n(continues on next page)\n118 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\n(continued from previous page)\n}\n/* reset TTL and use most recent input interface */\nb->TTL = MAX_TTL;\nb->ifnumber = inif;\n}\nNote that this implementation adopts a simple strategy in the case where the bridge table has become full\nto capacity—it simply fails to add the new address. Recall that completeness of the bridge table is not\nnecessary for correct forwarding; it just optimizes performance. If there is some entry in the table that is\nnot currently being used, it will eventually time out and be removed, creating space for a new entry. An\nalternative approach would be to invoke some sort of cache replacement algorithm on finding the table full;\nfor example, we might locate and remove the entry with the smallest TTL to accommodate the new entry.",
+      "source_section": "3.2.2",
+      "source_title": "Implementation",
+      "source_pages": [
+        122,
+        123
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.2.2",
+    "section_title": "Implementation",
+    "pages": [
+      122,
+      123
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

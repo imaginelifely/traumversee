@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_2_1",
+  "subject": "computer_networks",
+  "name": "Principles of Ciphers",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_2_1_source",
+      "statement": "Encryption transforms a message in such a way that it becomes unintelligible to any party that does not\nhave the secret of how to reverse the transformation. The sender applies an encryption function to the\noriginal plaintext message, resulting in aciphertext message that is sent over the network, as shown in Figure\n8.1. The receiver applies a secret decryption function—the inverse of the encryption function—to recover\nthe original plaintext. The ciphertext transmitted across the network is unintelligible to any eavesdropper,\nassuming the eavesdropper doesn't know the decryption function. The transformation represented by an\nencryption function and its corresponding decryption function is called a cipher.\nCryptographers have been led to the principle, first stated in 1883, that encryption and decryption functions\nshould be parameterized by a key, and furthermore that the functions should be considered public knowl-\nedge—only the key need be secret. Thus, the ciphertext produced for a given plaintext message depends on\nboth the encryption function and the key. One reason for this principle is that if you depend on the cipher\nbeing kept secret, then you have to retire the cipher (not just the keys) when you believe it is no longer\nsecret. This means potentially frequent changes of cipher, which is problematic since it takes a lot of work\nto develop a new cipher. Also, one of the best ways to know that a cipher is secure is to use it for a long\ntime—if no one breaks it, it's probably secure. (Fortunately, there are plenty of people who will try to break\nciphers and who will let it be widely known when they have succeeded, so no news is generally good news.)\nThus, there is considerable cost and risk in deploying a new cipher. Finally, parameterizing a cipher with\nkeys provides us with what is in effect a very large family of ciphers; by switching keys, we essentially\nswitch ciphers, thereby limiting the amount of data that acryptanalyst (code-breaker) can use to try to break\nour key/cipher and the amount she can read if she succeeds.\nThe basic requirement for an encryption algorithm is that it turn plaintext into ciphertext in such a way that\nonly the intended recipient—the holder of the decryption key—can recover the plaintext. What this means\n8.2. Cryptographic Building Blocks 375\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.1.: Secret-key encryption and decryption.\nis that encrypted messages cannot be read by people who do not hold the key.\nIt is important to realize that when a potential attacker receives a piece of ciphertext, he may have more\ninformation at his disposal than just the ciphertext itself. For example, he may know that the plaintext was\nwritten in English, which means that the letter e occurs more often in the plaintext that any other letter; the\nfrequency of many other letters and common letter combinations can also be predicted. This information\ncan greatly simplify the task of finding the key. Similarly, he may know something about the likely contents\nof the message; for example, the word \"login\" is likely to occur at the start of a remote login session. This\nmay enable a known plaintext attack, which has a much higher chance of success than a ciphertext only\nattack. Even better is a chosen plaintext attack, which may be enabled by feeding some information to the\nsender that you know the sender is likely to transmit—such things have happened in wartime, for example.\nThe best cryptographic algorithms, therefore, can prevent the attacker from deducing the key even when\nthe individual knows both the plaintext and the ciphertext. This leaves the attacker with no choice but to\ntry all the possible keys—exhaustive, \"brute force\" search. If keys have n bits, then there are 2 n possible\nvalues for a key (each of the n bits could be either a zero or a one). An attacker could be so lucky as to try\nthe correct value immediately, or so unlucky as to try every incorrect value before finally trying the correct\nvalue of the key, having tried all 2 n possible values; the average number of guesses to discover the correct\nvalue is halfway between those extremes, 2n/2. This can be made computationally impractical by choosing a\nsufficiently large key space and by making the operation of checking a key reasonably costly. What makes\nthis difficult is that computing speeds keep increasing, making formerly infeasible computations feasible.\nFurthermore, although we are concentrating on the security of data as it moves through the network—that\nis, the data is sometimes vulnerable for only a short period of time—in general, security people have to\nconsider the vulnerability of data that needs to be stored in archives for tens of years. This argues for a\ngenerously large key size. On the other hand, larger keys make encryption and decryption slower.\nMost ciphers are block ciphers; they are defined to take as input a plaintext block of a certain fixed size,\ntypically 64 to 128 bits. Using a block cipher to encrypt each block independently—known as electronic\ncodebook (ECB) mode encryption—has the weakness that a given plaintext block value will always result\n376 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nin the same ciphertext block. Hence, recurring block values in the plaintext are recognizable as such in the\nciphertext, making it much easier for a cryptanalyst to break the cipher.\nTo prevent this, block ciphers are always augmented to make the ciphertext for a block vary depending on\ncontext. Ways in which a block cipher may be augmented are called modes of operation. A common mode\nof operation is cipher block chaining (CBC), in which each plaintext block is XORed with the previous\nblock's ciphertext before being encrypted. The result is that each block's ciphertext depends in part on the\npreceding blocks (i.e., on its context). Since the first plaintext block has no preceding block, it is XORed\nwith a random number. That random number, called an initialization vector (IV), is included with the series\nof ciphertext blocks so that the first ciphertext block can be decrypted. This mode is illustrated in Figure\n8.2. Another mode of operation is counter mode, in which successive values of a counter (e.g., 1, 2, 3, ... )\nare incorporated into the encryption of successive blocks of plaintext.\nFigure 8.2.: Cipher Block Chaining.",
+      "source_section": "8.2.1",
+      "source_title": "Principles of Ciphers",
+      "source_pages": [
+        379,
+        380,
+        381
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.2.1",
+    "section_title": "Principles of Ciphers",
+    "pages": [
+      379,
+      380,
+      381
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

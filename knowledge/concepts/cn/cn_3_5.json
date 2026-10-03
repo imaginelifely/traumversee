@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_5",
+  "subject": "computer_networks",
+  "name": "Implementation",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_5_source",
+      "statement": "So far, we have talked about what switches and routers must do without describing how they do it. There is a\nstraightforward way to build a switch or router: Buy a general-purpose processor and equip it with multiple\nnetwork interfaces. Such a device, running suitable software, can receive packets on one of its interfaces,\nperform any of the switching or forwarding functions described in this chapter, and send packets out another\n3.5. Implementation 169\nComputer Networks: A Systems Approach, Release Version 6.1\nof its interfaces. This so called software switch is not too far removed from the architecture of many com-\nmercial mid- to low-end network devices. 1 Implementations that deliver high-end performance typically\ntake advantage of additional hardware acceleration. We refer to these as hardware switches, although both\napproaches obviously include a combination of hardware and software.\nThis section gives an overview of both software-centric and hardware-centric designs, but it is worth noting\nthat on the question of switches versus routers, the distinction isn't such a big deal. It turns out that the\nimplementation of switches and routers have so much in common that a network administrator typically\nbuys a single forwarding box and then configures it to be an L2 switch, an L3 router, or some combination\nof the two. Since their internal designs are so similar, we'll use the word switch to cover both variants\nthroughout this section, avoiding the tedium of saying \"switch or router\" all the time. We'll call out the\ndifferences between the two when appropriate.",
+      "source_section": "3.5",
+      "source_title": "Implementation",
+      "source_pages": [
+        173,
+        174
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.5",
+    "section_title": "Implementation",
+    "pages": [
+      173,
+      174
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

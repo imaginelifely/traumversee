@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_4_1_1",
+  "subject": "computer_networks",
+  "name": "Routing Areas",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_1_1_source",
+      "statement": "As a first example of using hierarchy to scale up the routing system, we'll examine how link-state routing\nprotocols (such as OSPF and IS-IS) can be used to partition a routing domain into subdomains calledareas.\n(The terminology varies somewhat among protocols—we use the OSPF terminology here.) By adding\nthis extra level of hierarchy, we enable single domains to grow larger without overburdening the routing\nprotocols or resorting to the more complex interdomain routing protocols described later.\nAn area is a set of routers that are administratively configured to exchange link-state information with each\nother. There is one special area—the backbone area, also known as area 0. An example of a routing domain\ndivided into areas is shown in Figure 4.2 . Routers R1, R2, and R3 are members of the backbone area. They\nare also members of at least one nonbackbone area; R1 is actually a member of both area 1 and area 2.\nA router that is a member of both the backbone area and a nonbackbone area is an area border router (ABR).\nNote that these are distinct from the routers that are at the edge of an AS, which are referred to as AS border\nrouters for clarity.\nRouting within a single area is exactly as described in the previous chapter. All the routers in the area send\nlink-state advertisements to each other and thus develop a complete, consistent map of the area. However,\nthe link-state advertisements of routers that are not area border routers do not leave the area in which they\noriginated. This has the effect of making the flooding and route calculation processes considerably more\nscalable. For example, router R4 in area 3 will never see a link-state advertisement from router R8 in area 1.\nAs a consequence, it will know nothing about the detailed topology of areas other than its own.\nHow, then, does a router in one area determine the right next hop for a packet destined to a network in\nanother area? The answer to this becomes clear if we imagine the path of a packet that has to travel from\none nonbackbone area to another as being split into three parts. First, it travels from its source network to the\nbackbone area, then it crosses the backbone, then it travels from the backbone to the destination network.\nTo make this work, the area border routers summarize routing information that they have learned from\none area and make it available in their advertisements to other areas. For example, R1 receives link-state\nadvertisements from all the routers in area 1 and can thus determine the cost of reaching any network in area\n4.1. Global Internet 181\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.2.: A domain divided into areas.\n1. When R1 sends link-state advertisements into area 0, it advertises the costs of reaching the networks in\narea 1 much as if all those networks were directly connected to R1. This enables all the area 0 routers to\nlearn the cost to reach all networks in area 1. The area border routers then summarize this information and\nadvertise it into the nonbackbone areas. Thus, all routers learn how to reach all networks in the domain.\nNote that, in the case of area 2, there are two ABRs and that routers in area 2 will thus have to make a\nchoice as to which one they use to reach the backbone. This is easy enough, since both R1 and R2 will be\nadvertising costs to various networks, so it will become clear which is the better choice as the routers in\narea 2 run their shortest-path algorithm. For example, it is pretty clear that R1 is going to be a better choice\nthan R2 for destinations in area 1.\nWhen dividing a domain into areas, the network administrator makes a tradeoff between scalability and\noptimality of routing. The use of areas forces all packets traveling from one area to another to go via the\nbackbone area, even if a shorter path might have been available. For example, even if R4 and R5 were\ndirectly connected, packets would not flow between them because they are in different nonbackbone areas.\nIt turns out that the need for scalability is often more important than the need to use the absolute shortest\npath.\nKey Takeaway\nThis illustrates an important principle in network design. There is frequently a trade-off between scalability\nand some sort of optimality. When hierarchy is introduced, information is hidden from some nodes in\nthe network, hindering their ability to make perfect decisions. However, information hiding is essential\nto scaling a solution, since it saves all nodes from having global knowledge. It is invariably true in large\nnetworks that scalability is a more pressing design goal than selecting the optimal route. [Next]\nFinally, we note that there is a trick by which network administrators can more flexibly decide which routers\ngo in area 0. This trick uses the idea of a virtual link between routers. Such a virtual link is obtained by\n182 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nconfiguring a router that is not directly connected to area 0 to exchange backbone routing information with\na router that is. For example, a virtual link could be configured from R8 to R1, thus making R8 part of the\nbackbone. R8 would now participate in link-state advertisement flooding with the other routers in area 0.\nThe cost of the virtual link from R8 to R1 is determined by the exchange of routing information that takes\nplace in area 1. This technique can help to improve the optimality of routing.",
+      "source_section": "4.1.1",
+      "source_title": "Routing Areas",
+      "source_pages": [
+        185,
+        186,
+        187
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.1.1",
+    "section_title": "Routing Areas",
+    "pages": [
+      185,
+      186,
+      187
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

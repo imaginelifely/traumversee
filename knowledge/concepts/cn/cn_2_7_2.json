@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_2_7_2",
+  "subject": "computer_networks",
+  "name": "802.11/Wi-Fi",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_7_2_source",
+      "statement": "Most readers will have used a wireless network based on the IEEE 802.11 standards, often referred to as\nWi-Fi. Wi-Fi is technically a trademark, owned by a trade group called the Wi-Fi Alliance, which certifies\nproduct compliance with 802.11. Like Ethernet, 802.11 is designed for use in a limited geographical area\n(homes, office buildings, campuses), and its primary challenge is to mediate access to a shared communica-\ntion medium—in this case, signals propagating through space.\n86 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.25.: A wireless ad hoc or mesh network.\n2.7. Wireless Networks 87\nComputer Networks: A Systems Approach, Release Version 6.1\nPhysical Properties",
+      "source_section": "2.7.2",
+      "source_title": "802.11/Wi-Fi",
+      "source_pages": [
+        90,
+        91,
+        92
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.7.2",
+    "section_title": "802.11/Wi-Fi",
+    "pages": [
+      90,
+      91,
+      92
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

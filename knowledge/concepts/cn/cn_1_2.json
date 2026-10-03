@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_1_2",
+  "subject": "computer_networks",
+  "name": "Requirements",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_2_source",
+      "statement": "We have established an ambitious goal for ourselves: to understand how to build a computer network from\nthe ground up. Our approach to accomplishing this goal will be to start from first principles and then ask\nthe kinds of questions we would naturally ask if building an actual network. At each step, we will use\ntoday's protocols to illustrate various design choices available to us, but we will not accept these existing\nartifacts as gospel. Instead, we will be asking (and answering) the question of why networks are designed\nthe way they are. While it is tempting to settle for just understanding the way it's done today, it is important\nto recognize the underlying concepts because networks are constantly changing as technology evolves and\nnew applications are invented. It is our experience that once you understand the fundamental ideas, any new\nprotocol that you are confronted with will be relatively easy to digest.",
+      "source_section": "1.2",
+      "source_title": "Requirements",
+      "source_pages": [
+        13
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.2",
+    "section_title": "Requirements",
+    "pages": [
+      13
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

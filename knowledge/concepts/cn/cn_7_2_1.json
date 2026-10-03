@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_7_2_1",
+  "subject": "computer_networks",
+  "name": "Lossless Compression Techniques",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_7_2_1_source",
+      "statement": "In many ways, compression is inseparable from data encoding. When thinking about how to encode a piece\nof data in a set of bits, we might just as well think about how to encode the data in the smallest set of bits\npossible. For example, if you have a block of data that is made up of the 26 symbols A through Z, and if\nall of these symbols have an equal chance of occurring in the data block you are encoding, then encoding\neach symbol in 5 bits is the best you can do (since 2 5 = 32 is the lowest power of 2 above 26). If, however,\nthe symbol R occurs 50% of the time, then it would be a good idea to use fewer bits to encode the R than\nany of the other symbols. In general, if you know the relative probability that each symbol will occur in the\ndata, then you can assign a different number of bits to each possible symbol in a way that minimizes the\nnumber of bits it takes to encode a given block of data. This is the essential idea of Huffman codes, one of\nthe important early developments in data compression.\nRun Length Encoding\nRun length encoding (RLE) is a compression technique with a brute-force simplicity. The idea is to replace\nconsecutive occurrences of a given symbol with only one copy of the symbol, plus a count of how many\ntimes that symbol occurs—hence, the name run length. For example, the string AAABBCDDDD would be\nencoded as3A2B1C4D.\nRLE turns out to be useful for compressing some classes of images. It can be used in this context by com-\nparing adjacent pixel values and then encoding only the changes. For images that have large homogeneous\nregions, this technique is quite effective. For example, it is not uncommon that RLE can achieve compres-\nsion ratios on the order of 8-to-1 for scanned text images. RLE works well on such files because they often\ncontain a large amount of white space that can be removed. For those old enough to remember the technol-\nogy, RLE was the key compression algorithm used to transmit faxes. However, for images with even a small\ndegree of local variation, it is not uncommon for compression to actually increase the image byte size, since\nit takes 2 bytes to represent a single symbol when that symbol is not repeated.\nDifferential Pulse Code Modulation\nAnother simple lossless compression algorithm is Differential Pulse Code Modulation (DPCM). The idea\nhere is to first output a reference symbol and then, for each symbol in the data, to output the difference\nbetween that symbol and the reference symbol. For example, using symbol A as the reference symbol, the\nstringAAABBCDDDD would be encoded asA0001123333 because A is the same as the reference symbol,\nB has a difference of 1 from the reference symbol, and so on. Note that this simple example does not\nillustrate the real benefit of DPCM, which is that when the differences are small they can be encoded with\nfewer bits than the symbol itself. In this example, the range of differences, 0-3, can be represented with\n356 Chapter 7. End-to-End Data\nComputer Networks: A Systems Approach, Release Version 6.1\n2 bits each, rather than the 7 or 8 bits required by the full character. As soon as the difference becomes too\nlarge, a new reference symbol is selected.\nDPCM works better than RLE for most digital imagery, since it takes advantage of the fact that adjacent\npixels are usually similar. Due to this correlation, the dynamic range of the differences between the adjacent\npixel values can be significantly less than the dynamic range of the original image, and this range can\ntherefore be represented using fewer bits. Using DPCM, we have measured compression ratios of 1.5-to-1\non digital images. DPCM also works on audio, because adjacent samples of an audio waveform are likely\nto be close in value.\nA slightly different approach, called delta encoding, simply encodes a symbol as the difference from the\nprevious one. Thus, for example, AAABBCDDDD would be represented as A001011000. Note that delta\nencoding is likely to work well for encoding images where adjacent pixels are similar. It is also possible to\nperform RLE after delta encoding, since we might find long strings of 0s if there are many similar symbols\nnext to each other.\nDictionary-Based Methods\nThe final lossless compression method we consider is the dictionary-based approach, of which the Lempel-\nZiv (LZ) compression algorithm is the best known. The Unixcompress andgzip commands use variants\nof the LZ algorithm.\nThe idea of a dictionary-based compression algorithm is to build a dictionary (table) of variable-length\nstrings (think of them as common phrases) that you expect to find in the data and then to replace each of\nthese strings when it appears in the data with the corresponding index to the dictionary. For example, instead\nof working with individual characters in text data, you could treat each word as a string and output the index\nin the dictionary for that word. To further elaborate on this example, the word compression has the index\n4978 in one particular dictionary; it is the 4978th word in . To compress a body of text, each time the\nstring \"compression\" appears, it would be replaced by 4978. Since this particular dictionary has just over\n25,000 words in it, it would take 15 bits to encode the index, meaning that the string \"compression\" could be\nrepresented in 15 bits rather than the 77 bits required by 7-bit ASCII. This is a compression ratio of 5-to-1!\nAt another data point, we were able to get a 2-to-1 compression ratio when we applied the compress\ncommand to the source code for the protocols described in this book.\nOf course, this leaves the question of where the dictionary comes from. One option is to define a static\ndictionary, preferably one that is tailored for the data being compressed. A more general solution, and the\none used by LZ compression, is to adaptively define the dictionary based on the contents of the data being\ncompressed. In this case, however, the dictionary constructed during compression has to be sent along with\nthe data so that the decompression half of the algorithm can do its job. Exactly how you build an adaptive\ndictionary has been a subject of extensive research.",
+      "source_section": "7.2.1",
+      "source_title": "Lossless Compression Techniques",
+      "source_pages": [
+        360,
+        361
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "7.2.1",
+    "section_title": "Lossless Compression Techniques",
+    "pages": [
+      360,
+      361
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

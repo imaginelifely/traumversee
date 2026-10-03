@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_6_3_3",
+  "subject": "computer_networks",
+  "name": "Fast Retransmit and Fast Recovery",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_3_3_source",
+      "statement": "The mechanisms described so far were part of the original proposal to add congestion control to TCP. It\nwas soon discovered, however, that the coarse-grained implementation of TCP timeouts led to long periods\nof time during which the connection went dead while waiting for a timer to expire. Because of this, a new\nmechanism called fast retransmit was added to TCP. Fast retransmit is a heuristic that sometimes triggers\nthe retransmission of a dropped packet sooner than the regular timeout mechanism. The fast retransmit\nmechanism does not replace regular timeouts; it just enhances that facility.\nThe idea of fast retransmit is straightforward. Every time a data packet arrives at the receiving side, the\nreceiver responds with an acknowledgment, even if this sequence number has already been acknowledged.\nThus, when a packet arrives out of order—when TCP cannot yet acknowledge the data the packet contains\nbecause earlier data has not yet arrived—TCP resends the same acknowledgment it sent the last time. This\nsecond transmission of the same acknowledgment is called a duplicate ACK. When the sending side sees\na duplicate ACK, it knows that the other side must have received a packet out of order, which suggests\nthat an earlier packet might have been lost. Since it is also possible that the earlier packet has only been\ndelayed rather than lost, the sender waits until it sees some number of duplicate ACKs and then retransmits\nthe missing packet. In practice, TCP waits until it has seen three duplicate ACKs before retransmitting the\npacket.\nFigure 6.12 illustrates how duplicate ACKs lead to a fast retransmit. In this example, the destination receives\npackets 1 and 2, but packet 3 is lost in the network. Thus, the destination will send a duplicate ACK for\npacket 2 when packet 4 arrives, again when packet 5 arrives, and so on. (To simplify this example, we think\nin terms of packets 1, 2, 3, and so on, rather than worrying about the sequence numbers for each byte.) When\nthe sender sees the third duplicate ACK for packet 2—the one sent because the receiver had gotten packet\n6—it retransmits packet 3. Note that when the retransmitted copy of packet 3 arrives at the destination, the\nreceiver then sends a cumulative ACK for everything up to and including packet 6 back to the source.\nFigure 6.13 illustrates the behavior of a version of TCP with the fast retransmit mechanism. It is interesting\n308 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 6.12.: Fast retransmit based on duplicate ACKs.\nFigure 6.13.: Trace of TCP with fast retransmit. Colored line = CongestionWindow; solid bullet = timeout;\nhash marks = time when each packet is transmitted; vertical bars = time when a packet that was eventually\nretransmitted was first transmitted.\n6.3. TCP Congestion Control 309\nComputer Networks: A Systems Approach, Release Version 6.1\nto compare this trace with that given in Figure 6.11, where fast retransmit was not implemented—the long\nperiods during which the congestion window stays flat and no packets are sent has been eliminated. In\ngeneral, this technique is able to eliminate about half of the coarse-grained timeouts on a typical TCP\nconnection, resulting in roughly a 20% improvement in the throughput over what could otherwise have been\nachieved. Notice, however, that the fast retransmit strategy does not eliminate all coarse-grained timeouts.\nThis is because for a small window size there will not be enough packets in transit to cause enough duplicate\nACKs to be delivered. Given enough lost packets—for example, as happens during the initial slow start\nphase—the sliding window algorithm eventually blocks the sender until a timeout occurs. In practice, TCP's\nfast retransmit mechanism can detect up to three dropped packets per window.\nFinally, there is one last improvement we can make. When the fast retransmit mechanism signals congestion,\nrather than drop the congestion window all the way back to one packet and run slow start, it is possible to\nuse the ACKs that are still in the pipe to clock the sending of packets. This mechanism, which is called fast\nrecovery, effectively removes the slow start phase that happens between when fast retransmit detects a lost\npacket and additive increase begins. For example, fast recovery avoids the slow start period between 3.8\nand 4 seconds in Figure 6.13 and instead simply cuts the congestion window in half (from 22 KB to 11 KB)\nand resumes additive increase. In other words, slow start is only used at the beginning of a connection and\nwhenever a coarse-grained timeout occurs. At all other times, the congestion window is following a pure\nadditive increase/multiplicative decrease pattern.",
+      "source_section": "6.3.3",
+      "source_title": "Fast Retransmit and Fast Recovery",
+      "source_pages": [
+        312,
+        313,
+        314
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.3.3",
+    "section_title": "Fast Retransmit and Fast Recovery",
+    "pages": [
+      312,
+      313,
+      314
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

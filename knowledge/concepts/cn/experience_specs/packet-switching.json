@@ -1,0 +1,83 @@
+{
+  "experience_id": "exp_cn_packet_switching_001",
+  "concept_id": "cn_packet_switching",
+  "concept": "Packet Switching",
+
+  "learning_objective": {
+    "statement": "Understand how packet-switched networks use store-and-forward to move data through intermediate nodes.",
+    "source_section": "1.2.2"
+  },
+
+  "prerequisites": [
+    "cn_network",
+    "cn_node",
+    "cn_link",
+    "cn_connectivity"
+  ],
+
+  "experience": {
+    "type": "scenario",
+    "title": "Get the Message Across",
+    "scenario": "You need to send a message from one computer to another, but there is no direct physical link between them.",
+    "challenge": "Choose how the message should travel through the network.",
+    "learner_action": "Select the appropriate way for intermediate nodes to handle the packet."
+  },
+
+  "feedback": {
+    "correct": "The packet can be received, stored, and then forwarded toward its destination.",
+    "explanation": "Packet-switched networks typically use store-and-forward: an intermediate node receives a complete packet, stores it, and then forwards it.",
+    "source_section": "1.2.2"
+  },
+
+  "assessment": {
+    "type": "decision",
+    "question": "What should an intermediate node do with a packet in a store-and-forward packet-switched network?",
+
+    "options": [
+      {
+        "id": "option_1",
+        "text": "Immediately forward whatever arrives."
+      },
+      {
+        "id": "option_2",
+        "text": "Receive the complete packet, store it, then forward it."
+      },
+      {
+        "id": "option_3",
+        "text": "Drop the packet and request it again."
+      },
+      {
+        "id": "option_4",
+        "text": "Create a new physical link to the destination."
+      }
+    ],
+
+    "correct_answer": "option_2",
+    "expected_concept": "cn_store_forward"
+  },
+
+  "mastery_evidence": {
+    "concept": "cn_packet_switching",
+    "evidence_type": "decision",
+    "mastery_signal": "correctly identifies store-and-forward behavior"
+  },
+
+  "traceability": {
+    "source_verified": true,
+    "source": {
+      "book": "Computer Networks: A Systems Approach",
+      "release": "6.1",
+      "section": "1.2.2",
+      "section_title": "Scalable Connectivity",
+      "pages": [
+        15,
+        16
+      ]
+    },
+    "generated_fields": [
+      "experience",
+      "assessment",
+      "mastery_evidence"
+    ]
+  }
+}

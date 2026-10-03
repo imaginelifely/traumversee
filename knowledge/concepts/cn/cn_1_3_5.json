@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_1_3_5",
+  "subject": "computer_networks",
+  "name": "Internet Architecture",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_3_5_source",
+      "statement": "The Internet architecture, which is also sometimes called the TCP/IP architecture after its two main proto-\ncols, is depicted in Figure 1.14. An alternative representation is given in Figure 1.15. The Internet archi-\ntecture evolved out of experiences with an earlier packet-switched network called the ARPANET. Both the\nInternet and the ARPANET were funded by the Advanced Research Projects Agency (ARPA), one of the re-\nsearch and development funding agencies of the U.S. Department of Defense. The Internet and ARPANET\nwere around before the OSI architecture, and the experience gained from building them was a major influ-\nence on the OSI reference model.\nFigure 1.14.: Internet protocol graph.\nWhile the 7-layer OSI model can, with some imagination, be applied to the Internet, a simpler stack is\noften used instead. At the lowest level is a wide variety of network protocols, denoted NET 1, NET2, and\nso on. In practice, these protocols are implemented by a combination of hardware (e.g., a network adaptor)\nand software (e.g., a network device driver). For example, you might find Ethernet or wireless protocols\n(such as the 802.11 Wi-Fi standards) at this layer. (These protocols in turn may actually involve several\n1.3. Architecture 29\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 1.15.: Alternative view of the Internet architecture. The \"subnetwork\" layer was historically referred\nto as the \"network\" layer and is now often referred to as \"Layer 2\" (influenced by the OSI model).\nsublayers, but the Internet architecture does not presume anything about them.) The next layer consists\nof a single protocol—the Internet Protocol (IP). This is the protocol that supports the interconnection of\nmultiple networking technologies into a single, logical internetwork. The layer on top of IP contains two\nmain protocols—the Transmission Control Protocol (TCP) and the User Datagram Protocol (UDP). TCP\nand UDP provide alternative logical channels to application programs: TCP provides a reliable byte-stream\nchannel, and UDP provides an unreliable datagram delivery channel ( datagram may be thought of as a\nsynonym for message). In the language of the Internet, TCP and UDP are sometimes called end-to-end\nprotocols, although it is equally correct to refer to them as transport protocols.\nRunning above the transport layer is a range of application protocols, such as HTTP, FTP, Telnet (remote\nlogin), and the Simple Mail Transfer Protocol (SMTP), that enable the interoperation of popular applications.\nTo understand the difference between an application layer protocol and an application, think of all the\ndifferent World Wide Web browsers that are or have been available (e.g., Firefox, Chrome, Safari, Netscape,\nMosaic, Internet Explorer). There is a similarly large number of different implementations of web servers.\nThe reason that you can use any one of these application programs to access a particular site on the Web is\nthat they all conform to the same application layer protocol: HTTP. Confusingly, the same term sometimes\napplies to both an application and the application layer protocol that it uses (e.g., FTP is often used as the\nname of an application that implements the FTP protocol).\nMost people who work actively in the networking field are familiar with both the Internet architecture and the\n7-layer OSI architecture, and there is general agreement on how the layers map between architectures. The\nInternet's application layer is considered to be at layer 7, its transport layer is layer 4, the IP (internetworking\nor just network) layer is layer 3, and the link or subnet layer below IP is layer 2.\nIETF and Standardization\nAlthough we call it the \"Internet architecture\" rather than the \"IETF architecture,\" it's fair to say that\nthe IETF is the primary standardization body responsible for its definition, as well as the specification of\nmany of its protocols, such as TCP, UDP, IP, DNS, and BGP. But the Internet architecture also embraces\nmany protocols defined by other organizations, including IEEE's 802.11 ethernet and Wi-Fi standards,\nW3C's HTTP/HTML web specifications, 3GPP's 4G and 5G cellular networks standards, and ITU-T's\nH.232 video encoding standards, to name a few.\nIn addition to defining architectures and specifying protocols, there are yet other organizations that sup-\nport the larger goal of interoperability. One example is the IANA (Internet Assigned Numbers Authority),\n30 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\nwhich as its name impies, is responsible for handing out the unique identifiers needed to make the proto-\ncols work. IANA, in turn, is a department within the ICANN (Internt Corporation for Assigned Names\nand Numbers), a non-profit organization that's responsible for the overall stewardship of the Internet.\nThe Internet architecture has three features that are worth highlighting. First, as best illustrated by Figure\n1.15, the Internet architecture does not imply strict layering. The application is free to bypass the defined\ntransport layers and to directly use IP or one of the underlying networks. In fact, programmers are free to\ndefine new channel abstractions or applications that run on top of any of the existing protocols.\nSecond, if you look closely at the protocol graph in Figure 1.14, you will notice an hourglass shape—wide\nat the top, narrow in the middle, and wide at the bottom. This shape actually reflects the central philosophy\nof the architecture. That is, IP serves as the focal point for the architecture—it defines a common method\nfor exchanging packets among a wide collection of networks. Above IP there can be arbitrarily many\ntransport protocols, each offering a different channel abstraction to application programs. Thus, the issue of\ndelivering messages from host to host is completely separated from the issue of providing a useful process-\nto-process communication service. Below IP, the architecture allows for arbitrarily many different network\ntechnologies, ranging from Ethernet to wireless to single point-to-point links.\nA final attribute of the Internet architecture (or more accurately, of the IETF culture) is that in order for a\nnew protocol to be officially included in the architecture, there must be both a protocol specification and at\nleast one (and preferably two) representative implementations of the specification. The existence of working\nimplementations is required for standards to be adopted by the IETF. This cultural assumption of the design\ncommunity helps to ensure that the architecture's protocols can be efficiently implemented. Perhaps the\nvalue the Internet culture places on working software is best exemplified by a quote on T-shirts commonly\nworn at IETF meetings:\nWe reject kings, presidents, and voting. We believe in rough consensus and running code.\n(David Clark)\nKey Takeaway\nOf these three attributes of the Internet architecture, the hourglass design philosophy is important enough\nto bear repeating. The hourglass's narrow waist represents a minimal and carefully chosen set of global ca-\npabilities that allows both higher-level applications and lower-level communication technologies to coexist,\nshare capabilities, and evolve rapidly. The narrow-waisted model is critical to the Internet's ability to adapt\nto new user demands and changing technologies. [Next]",
+      "source_section": "1.3.5",
+      "source_title": "Internet Architecture",
+      "source_pages": [
+        33,
+        34,
+        35
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.3.5",
+    "section_title": "Internet Architecture",
+    "pages": [
+      33,
+      34,
+      35
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

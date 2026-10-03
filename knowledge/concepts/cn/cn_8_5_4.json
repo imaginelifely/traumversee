@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_5_4",
+  "subject": "computer_networks",
+  "name": "IP Security (IPsec)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_5_4_source",
+      "statement": "Probably the most ambitious of all the efforts to integrate security into the Internet happens at the IP layer.\nSupport for IPsec, as the architecture is called, is optional in IPv4 but mandatory in IPv6.\nIPsec is really a framework (as opposed to a single protocol or system) for providing all the security services\ndiscussed throughout this chapter. IPsec provides three degrees of freedom. First, it is highly modular,\nallowing users (or more likely, system administrators) to select from a variety of cryptographic algorithms\nand specialized security protocols. Second, IPsec allows users to select from a large menu of security\nproperties, including access control, integrity, authentication, originality, and confidentiality. Third, IPsec\ncan be used to protect narrow streams (e.g., packets belonging to a particular TCP connection being sent\nbetween a pair of hosts) or wide streams (e.g., all packets flowing between a pair of routers).\nWhen viewed from a high level, IPsec consists of two parts. The first part is a pair of protocols that im-\nplement the available security services. They are the Authentication Header (AH), which provides access\n8.5. Example Systems 405\nComputer Networks: A Systems Approach, Release Version 6.1\ncontrol, connectionless message integrity, authentication, and antireplay protection, and the Encapsulating\nSecurity Payload (ESP), which supports these same services, plus confidentiality. AH is rarely used so we\nfocus on ESP here. The second part is support for key management, which fits under an umbrella protocol\nknown as the Internet Security Association and Key Management Protocol (ISAKMP).\nThe abstraction that binds these two pieces together is the security association (SA). An SA is a simplex\n(one-way) connection with one or more of the available security properties. Securing a bidirectional com-\nmunication between a pair of hosts—corresponding to a TCP connection, for example—requires two SAs,\none in each direction. Although IP is a connectionless protocol, security depends on connection state in-\nformation such as keys and sequence numbers. When created, an SA is assigned an ID number called a\nsecurity parameters index (SPI) by the receiving machine. A combination of this SPI and the destination IP\naddresses uniquely identifies an SA. An ESP header includes the SPI so the receiving host can determine\nwhich SA an incoming packet belongs to and, hence, what algorithms and keys to apply to the packet.\nSAs are established, negotiated, modified, and deleted using ISAKMP. It defines packet formats for ex-\nchanging key generation and authentication data. These formats aren't terribly interesting because they\nprovide a framework only—the exact form of the keys and authentication data depends on the key gener-\nation technique, the cipher, and the authentication mechanism that is used. Moreover, ISAKMP does not\nspecify a particular key exchange protocol, although it does suggest the Internet Key Exchange (IKE) as one\npossibility, and IKE v2 is what is used in practice.\nESP is the protocol used to securely transport data over an established SA. In IPv4, the ESP header follows\nthe IP header; in IPv6, it is an extension header. Its format uses both a header and a trailer, as shown in\nFigure 8.17. The SPI field lets the receiving host identify the security association to which the packet\nbelongs. The SeqNum field protects against replay attacks. The packet'sPayloadData contains the data\ndescribed by the NextHdr field. If confidentiality is selected, then the data is encrypted using whatever\ncipher was associated with the SA. ThePadLength field records how much padding was added to the data;\npadding is sometimes necessary because, for example, the cipher requires the plaintext to be a multiple of a\ncertain number of bytes or to ensure that the resulting ciphertext terminates on a 4-byte boundary. Finally,\ntheAuthenticationData carries the authenticator.\nFigure 8.17.: IPSec's ESP format.\nIPsec supports a tunnel mode as well as the more straightforward transport mode. Each SA operates in one\nor the other mode. In a transport mode SA, ESP's payload data is simply a message for a higher layer such\nas UDP or TCP. In this mode, IPsec acts as an intermediate protocol layer, much like SSL/TLS does between\n406 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nTCP and a higher layer. When an ESP message is received, its payload is passed to the higher level protocol.\nIn a tunnel mode SA, however, ESP's payload data is itself an IP packet, as in Figure 8.18. The source and\ndestination of this inner IP packet may be different from those of the outer IP packet. When an ESP message\nis received, its payload is forwarded on as a normal IP packet. The most common way to use the ESP is to\nbuild an \"IPsec tunnel\" between two routers, typically firewalls. For example, a corporation wanting to link\ntwo sites using the Internet could open a pair of tunnel-mode SAs between a router at one site and a router\nat the other site. An IP packet outgoing from one site would, at the outgoing router, become the payload of\nan ESP message sent to the other site's router. The receiving router would unwrap the payload IP packet\nand forward it on to its true destination.\nFigure 8.18.: An IP packet with a nested IP packet encapsulated using ESP in tunnel mode. Note that the\ninner and outer packets have different addresses.\nThese tunnels may also be configured to use ESP with confidentiality and authentication, thus preventing\nunauthorized access to the data that traverses this virtual link and ensuring that no spurious data is received\nat the far end of the tunnel. Furthermore, tunnels can provide traffic confidentiality, since multiplexing\nmultiple flows through a single tunnel obscures information about how much traffic is flowing between\nparticular endpoints. A network of such tunnels can be used to implement an entire virtual private network.\nHosts communicating over a VPN need not even be aware that it exists.",
+      "source_section": "8.5.4",
+      "source_title": "IP Security (IPsec)",
+      "source_pages": [
+        409,
+        410,
+        411
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.5.4",
+    "section_title": "IP Security (IPsec)",
+    "pages": [
+      409,
+      410,
+      411
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

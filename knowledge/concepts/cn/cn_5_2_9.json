@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_5_2_9",
+  "subject": "computer_networks",
+  "name": "Performance",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_2_9_source",
+      "statement": "Recall that Chapter 1 introduced the two quantitative metrics by which network performance is evaluated:\nlatency and throughput. As mentioned in that discussion, these metrics are influenced not only by the under-\nlying hardware (e.g., propagation delay and link bandwidth) but also by software overheads. Now that we\nhave a complete software-based protocol graph available to us that includes alternative transport protocols,\nwe can discuss how to meaningfully measure its performance. The importance of such measurements is that\nthey represent the performance seen by application programs.\nWe begin, as any report of experimental results should, by describing our experimental method. This in-\n254 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 5.11.: Measured system: Two Linux workstations and a pair of Gbps Ethernet links.\ncludes the apparatus used in the experiments; in this case, each workstation has a pair of dual CPU 2.4-GHz\nXeon processors running Linux. In order to enable speeds above 1 Gbps, a pair of Ethernet adaptors (labeled\nNIC, for network interface card) are used on each machine. The Ethernet spans a single machine room so\npropagation is not an issue, making this a measure of processor/software overheads. A test program running\non top of the socket interface simply tries to transfer data as quickly as possible from one machine to the\nother. Figure 5.11 illustrates the setup.\nYou may notice that this experimental setup is not especially bleeding edge in terms of the hardware or link\nspeed. The point of this section is not to show how fast a particular protocol can run, but to illustrate the\ngeneral methodology for measuring and reporting protocol performance.\nThe throughput test is performed for a variety of message sizes using a standard benchmarking tool called\nTTCP. The results of the throughput test are given in Figure 5.12. The key thing to notice in this graph is\nthat throughput improves as the messages get larger. This makes sense—each message involves a certain\namount of overhead, so a larger message means that this overhead is amortized over more bytes. The\nthroughput curve flattens off above 1 KB, at which point the per-message overhead becomes insignificant\nwhen compared to the large number of bytes that the protocol stack has to process.\nIt's worth noting that the maximum throughput is less than 2 Gbps, the available link speed in this setup.\nFurther testing and analysis of results would be needed to figure out where the bottleneck is (or if there\nis more than one). For example, looking at CPU load might give an indication of whether the CPU is the\nbottleneck or whether memory bandwidth, adaptor performance, or some other issue is to blame.\nWe also note that the network in this test is basically \"perfect.\" It has almost no delay or loss, so the only fac-\ntors affecting performance are the TCP implementation and the workstation hardware and software. By con-\ntrast, most of the time we deal with networks that are far from perfect, notably our bandwidth-constrained,\nlast-mile links and loss-prone wireless links. Before we can fully appreciate how these links affect TCP\n5.2. Reliable Byte Stream (TCP) 255\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 5.12.: Measured throughput using TCP, for various message sizes.\nperformance, we need to understand how TCP deals with congestion, which is the topic of the next chapter.\nAt various times in the history of networking, the steadily increasing speed of network links has threatened\nto run ahead of what could be delivered to applications. For example, a large research effort was begun in the\nUnited States in 1989 to build \"gigabit networks,\" where the goal was not only to build links and switches\nthat could run at 1Gbps or higher but also to deliver that throughput all the way to a single application\nprocess. There were some real problems (e.g., network adaptors, workstation architectures, and operating\nsystems all had to be designed with network-to-application throughput in mind) and also some perceived\nproblems that turned out to be not so serious. High on the list of such problems was the concern that existing\ntransport protocols, TCP in particular, might not be up to the challenge of gigabit operation.\nAs it turns out, TCP has done well keeping up with the increasing demands of high-speed networks and\napplications. One of the most important factors was the introduction of window scaling to deal with larger\nbandwidth-delay products. However, there is often a big difference between the theoretical performance of\nTCP and what is achieved in practice. Relatively simple problems like copying the data more times than\nnecessary as it passes from network adaptor to application can drive down performance, as can insufficient\nbuffer memory when the bandwidth-delay product is large. And the dynamics of TCP are complex enough\n(as will become even more apparent in the next chapter) that subtle interactions among network behavior,\napplication behavior, and the TCP protocol itself can dramatically alter performance.\nFor our purposes, it's worth noting that TCP continues to perform very well as network speeds increase, and\nwhen it runs up against some limit (normally related to congestion, increasing bandwidth-delay products,\nor both), researchers rush in to find solutions. We've seen some of those in this chapter, and we'll see some\nmore in the next.\n256 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "5.2.9",
+      "source_title": "Performance",
+      "source_pages": [
+        258,
+        259,
+        260,
+        261
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.2.9",
+    "section_title": "Performance",
+    "pages": [
+      258,
+      259,
+      260,
+      261
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

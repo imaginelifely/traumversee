@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_3_6",
+  "subject": "computer_networks",
+  "name": "Address Translation (ARP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_6_source",
+      "statement": "In the previous section we talked about how to get IP datagrams to the right physical network but glossed\nover the issue of how to get a datagram to a particular host or router on that network. The main issue is\nthat IP datagrams contain IP addresses, but the physical interface hardware on the host or router to which\nyou want to send the datagram only understands the addressing scheme of that particular network. Thus,\nwe need to translate the IP address to a link-level address that makes sense on this network (e.g., a 48-bit\nEthernet address). We can then encapsulate the IP datagram inside a frame that contains that link-level\naddress and send it either to the ultimate destination or to a router that promises to forward the datagram\ntoward the ultimate destination.\nOne simple way to map an IP address into a physical network address is to encode a host's physical address\n142 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nin the host part of its IP address. For example, a host with physical address00100001 01001001 (which\nhas the decimal value 33 in the upper byte and 81 in the lower byte) might be given the IP address 128.\n96.33.81. While this solution has been used on some networks, it is limited in that the network's physical\naddresses can be no more than 16 bits long in this example; they can be only 8 bits long on a class C network.\nThis clearly will not work for 48-bit Ethernet addresses.\nA more general solution would be for each host to maintain a table of address pairs; that is, the table\nwould map IP addresses into physical addresses. While this table could be centrally managed by a system\nadministrator and then copied to each host on the network, a better approach would be for each host to\ndynamically learn the contents of the table using the network. This can be accomplished using the Address\nResolution Protocol (ARP). The goal of ARP is to enable each host on a network to build up a table of\nmappings between IP addresses and link-level addresses. Since these mappings may change over time (e.g.,\nbecause an Ethernet card in a host breaks and is replaced by a new one with a new address), the entries are\ntimed out periodically and removed. This happens on the order of every 15 minutes. The set of mappings\ncurrently stored in a host is known as the ARP cache or ARP table.\nARP takes advantage of the fact that many link-level network technologies, such as Ethernet, support broad-\ncast. If a host wants to send an IP datagram to a host (or router) that it knows to be on the same network\n(i.e., the sending and receiving nodes have the same IP network number), it first checks for a mapping in\nthe cache. If no mapping is found, it needs to invoke the Address Resolution Protocol over the network. It\ndoes this by broadcasting an ARP query onto the network. This query contains the IP address in question\n(the target IP address). Each host receives the query and checks to see if it matches its IP address. If it does\nmatch, the host sends a response message that contains its link-layer address back to the originator of the\nquery. The originator adds the information contained in this response to its ARP table.\nThe query message also includes the IP address and link-layer address of the sending host. Thus, when a\nhost broadcasts a query message, each host on the network can learn the sender's link-level and IP addresses\nand place that information in its ARP table. However, not every host adds this information to its ARP table.\nIf the host already has an entry for that host in its table, it \"refreshes\" this entry; that is, it resets the length\nof time until it discards the entry. If that host is the target of the query, then it adds the information about\nthe sender to its table, even if it did not already have an entry for that host. This is because there is a good\nchance that the source host is about to send it an application-level message, and it may eventually have to\nsend a response or ACK back to the source; it will need the source's physical address to do this. If a host\nis not the target and does not already have an entry for the source in its ARP table, then it does not add an\nentry for the source. This is because there is no reason to believe that this host will ever need the source's\nlink-level address; there is no need to clutter its ARP table with this information.\nFigure 3.24 shows the ARP packet format for IP-to-Ethernet address mappings. In fact, ARP can be used\nfor lots of other kinds of mappings—the major differences are in the address sizes. In addition to the IP and\nlink-layer addresses of both sender and target, the packet contains\n• A HardwareType field, which specifies the type of physical network (e.g., Ethernet)\n• A ProtocolType field, which specifies the higher-layer protocol (e.g., IP)\n• HLen (\"hardware\" address length) and PLen (\"protocol\" address length) fields, which specify the\nlength of the link-layer address and higher-layer protocol address, respectively\n• An Operation field, which specifies whether this is a request or a response\n• The source and target hardware (Ethernet) and protocol (IP) addresses\n3.3. Internet (IP) 143\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 3.24.: ARP packet format for mapping IP addresses into Ethernet addresses.\nNote that the results of the ARP process can be added as an extra column in a forwarding table like the one\nin Table 3.6. Thus, for example, when R2 needs to forward a packet to network 2, it not only finds that the\nnext hop is R1, but also finds the MAC address to place on the packet to send it to R1.\nKey Takeaway\nWe have now seen the basic mechanisms that IP provides for dealing with both heterogeneity and scale. On\nthe issue of heterogeneity, IP begins by defining a best-effort service model that makes minimal assumptions\nabout the underlying networks; most notably, this service model is based on unreliable datagrams. IP then\nmakes two important additions to this starting point: (1) a common packet format (fragmentation/reassembly\nis the mechanism that makes this format work over networks with different MTUs) and (2) a global address\nspace for identifying all hosts (ARP is the mechanism that makes this global address space work over net-\nworks with different physical addressing schemes). On the issue of scale, IP uses hierarchical aggregation to\nreduce the amount of information needed to forward packets. Specifically, IP addresses are partitioned into\nnetwork and host components, with packets first routed toward the destination network and then delivered\nto the correct host on that network. [Next]",
+      "source_section": "3.3.6",
+      "source_title": "Address Translation (ARP)",
+      "source_pages": [
+        146,
+        147,
+        148
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3.6",
+    "section_title": "Address Translation (ARP)",
+    "pages": [
+      146,
+      147,
+      148
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

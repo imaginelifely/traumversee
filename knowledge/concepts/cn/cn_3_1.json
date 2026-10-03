@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_1",
+  "subject": "computer_networks",
+  "name": "Switching Basics",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_1_source",
+      "statement": "In the simplest terms, a switch is a mechanism that allows us to interconnect links to form a larger network.\nA switch is a multi-input, multi-output device that transfers packets from an input to one or more outputs.\nThus, a switch adds the star topology (see Figure 3.1) to the set of possible network structures. A star\ntopology has several attractive properties:\n• Even though a switch has a fixed number of inputs and outputs, which limits the number of hosts\nthat can be connected to a single switch, large networks can be built by interconnecting a number of\nswitches.\n• We can connect switches to each other and to hosts using point-to-point links, which typically means\nthat we can build networks of large geographic scope.\n• Adding a new host to the network by connecting it to a switch does not necessarily reduce the perfor-\nmance of the network for other hosts already connected.\nFigure 3.1.: A switch provides a star topology.\n104 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nThis last claim cannot be made for the shared-media networks discussed in the last chapter. For example,\nit is impossible for two hosts on the same 10-Mbps Ethernet segment to transmit continuously at 10 Mbps\nbecause they share the same transmission medium. Every host on a switched network has its own link to the\nswitch, so it may be entirely possible for many hosts to transmit at the full link speed (bandwidth), provided\nthat the switch is designed with enough aggregate capacity. Providing high aggregate throughput is one of\nthe design goals for a switch; we return to this topic later. In general, switched networks are considered more\nscalable (i.e., more capable of growing to large numbers of nodes) than shared-media networks because of\nthis ability to support many hosts at full speed.\nDense Wavelength Division Multiplexing\nOur focus on packet-switched networks obsures the fact that, especially in wide-area networks, the un-\nderlying physical transport is all-optical: there are no packets. At this layer, commercially available\nDWDM (Dense Wavelength Division Multiplexing) equipment is able to transmit a large numbers of op-\ntical wavelengths (colors) down a single fiber. For example, one might send data on 100 or more different\nwavelengths, and each wavelength might carry as much as 100 Gbps of data.\nConnecting these fibers is an optical device called a ROADM ( Reconfigurable Optical Add/Drop Multi-\nplexers). A collection of ROADMs (nodes) and fibers (links) form an optical transport network, where\neach ROADM is able to forward individual wavelengths along a multi-hop path, creating a logical end-\nto-end circuit. From the perspective of a packet-switched network that might be constructed on top of\nthis optical transport, one wavelength, even it it crosses multiple ROADMs, appears to be a single point-\nto-point link between two switches, over which one might elect to run SONET or 100-Gbps Ethernet as\nthe framing protocol. The reconfigurability feature of ROADMs means that it is possible to change these\nunderlying end-to-end wavelengths, effectively creating a new topology at the packet-switching layer.\nA switch is connected to a set of links and, for each of these links, runs the appropriate data link protocol\nto communicate with the node at the other end of the link. A switch's primary job is to receive incoming\npackets on one of its links and to transmit them on some other link. This function is sometimes referred to\nas either switching or forwarding, and in terms of the Open Systems Interconnection (OSI) architecture, it\nis the main function of the network layer, otherwise known as Layer 2.\nThe question, then, is how does the switch decide which output link to place each packet on? The general\nanswer is that it looks at the header of the packet for an identifier that it uses to make the decision. The\ndetails of how it uses this identifier vary, but there are two common approaches. The first is the datagram\nor connectionless approach. The second is the virtual circuit or connection-oriented approach. A third\napproach, source routing, is less common than these other two, but it does have some useful applications.\nOne thing that is common to all networks is that we need to have a way to identify the end nodes. Such\nidentifiers are usually called addresses. We have already seen examples of addresses, such as the 48-bit\naddress used for Ethernet. The only requirement for Ethernet addresses is that no two nodes on a network\nhave the same address. This is accomplished by making sure that all Ethernet cards are assigned a globally\nunique identifier. For the following discussion, we assume that each host has a globally unique address.\nLater on, we consider other useful properties that an address might have, but global uniqueness is adequate\nto get us started.\nAnother assumption that we need to make is that there is some way to identify the input and output ports of\neach switch. There are at least two sensible ways to identify ports: One is to number each port, and the other\nis to identify the port by the name of the node (switch or host) to which it leads. For now, we use numbering\n3.1. Switching Basics 105\nComputer Networks: A Systems Approach, Release Version 6.1\nof the ports.",
+      "source_section": "3.1",
+      "source_title": "Switching Basics",
+      "source_pages": [
+        108,
+        109,
+        110
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.1",
+    "section_title": "Switching Basics",
+    "pages": [
+      108,
+      109,
+      110
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

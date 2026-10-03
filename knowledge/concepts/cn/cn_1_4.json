@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_1_4",
+  "subject": "computer_networks",
+  "name": "Software",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_4_source",
+      "statement": "Network architectures and protocol specifications are essential things, but a good blueprint is not enough\nto explain the phenomenal success of the Internet: The number of computers connected to the Internet has\ngrown exponentially for over three decades (although precise numbers are hard to come by). The number of\nusers of the Internet was estimated to be around 4.1 billion by the end of 2018—roughly half of the world's\npopulation.\nWhat explains the success of the Internet? There are certainly many contributing factors (including a good\narchitecture), but one thing that has made the Internet such a runaway success is the fact that so much of\n1.4. Software 31\nComputer Networks: A Systems Approach, Release Version 6.1\nits functionality is provided by software running on general-purpose computers. The significance of this is\nthat new functionality can be added readily with \"just a small matter of programming.\" As a result, new\napplications and services have been showing up at an incredible pace.\nA related factor is the massive increase in computing power available in commodity machines. Although\ncomputer networks have always been capable in principle of transporting any kind of information, such as\ndigital voice samples, digitized images, and so on, this potential was not particularly interesting if the com-\nputers sending and receiving that data were too slow to do anything useful with the information. Virtually\nall of today's computers are capable of playing back digitized audio and video at a speed and resolution that\nare quite usable.\nIn the years since the first edition of this book appeared, the writing of networked applications has become\na mainstream activity and not a job just for a few specialists. Many factors have played into this, including\nbetter tools to make the job easier and the opening up of new markets such as applications for smartphones.\nThe point to note is that knowing how to implement network software is an essential part of understanding\ncomputer networks, and while the odds are you will not be tasked to implement a low-level protocol like IP,\nthere is a good chance you will find reason to implement an application-level protocol—the elusive \"killer\napp\" that will lead to unimaginable fame and fortune. To get you started, this section introduces some of the\nissues involved in implementing a network application on top of the Internet. Typically, such programs are\nsimultaneously an application (i.e., designed to interact with users) and a protocol (i.e., communicates with\npeers across the network).",
+      "source_section": "1.4",
+      "source_title": "Software",
+      "source_pages": [
+        35,
+        36
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.4",
+    "section_title": "Software",
+    "pages": [
+      35,
+      36
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

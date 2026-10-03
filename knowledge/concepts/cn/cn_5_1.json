@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_5_1",
+  "subject": "computer_networks",
+  "name": "Simple Demultiplexor (UDP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_1_source",
+      "statement": "The simplest possible transport protocol is one that extends the host-to-host delivery service of the under-\nlying network into a process-to-process communication service. There are likely to be many processes\nrunning on any given host, so the protocol needs to add a level of demultiplexing, thereby allowing multiple\napplication processes on each host to share the network. Aside from this requirement, the transport protocol\nadds no other functionality to the best-effort service provided by the underlying network. The Internet's\nUser Datagram Protocol is an example of such a transport protocol.\nThe only interesting issue in such a protocol is the form of the address used to identify the target process.\nAlthough it is possible for processes to directly identify each other with an OS-assigned process id (pid),\nsuch an approach is only practical in a closed distributed system in which a single OS runs on all hosts and\nassigns each process a unique id. A more common approach, and the one used by UDP, is for processes to\nindirectly identify each other using an abstract locater, usually called a port. The basic idea is for a source\nprocess to send a message to a port and for the destination process to receive the message from a port.\nThe header for an end-to-end protocol that implements this demultiplexing function typically contains an\nidentifier (port) for both the sender (source) and the receiver (destination) of the message. For example, the\nUDP header is given in Figure 5.1. Notice that the UDP port field is only 16 bits long. This means that\nthere are up to 64K possible ports, clearly not enough to identify all the processes on all the hosts in the\nInternet. Fortunately, ports are not interpreted across the entire Internet, but only on a single host. That is,\na process is really identified by a port on some particular host: a (port, host) pair. This pair constitutes the\ndemultiplexing key for the UDP protocol.\n230 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\nThe next issue is how a process learns the port for the process to which it wants to send a message. Typically,\na client process initiates a message exchange with a server process. Once a client has contacted a server, the\nserver knows the client's port (from theSrcPrt field contained in the message header) and can reply to it.\nThe real problem, therefore, is how the client learns the server's port in the first place. A common approach\nis for the server to accept messages at a well-known port. That is, each server receives its messages at some\nfixed port that is widely published, much like the emergency telephone service available in the United States\nat the well-known phone number 911. In the Internet, for example, the Domain Name Server (DNS) receives\nmessages at well-known port 53 on each host, the mail service listens for messages at port 25, and the Unix\ntalk program accepts messages at well-known port 517, and so on. This mapping is published periodically\nin an RFC and is available on most Unix systems in file /etc/services. Sometimes a well-known port\nis just the starting point for communication: The client and server use the well-known port to agree on\nsome other port that they will use for subsequent communication, leaving the well-known port free for other\nclients.\nFigure 5.1.: Format for UDP header.\nAn alternative strategy is to generalize this idea, so that there is only a single well-known port—the one\nat which the port mapper service accepts messages. A client would send a message to the port mapper's\nwell-known port asking for the port it should use to talk to the \"whatever\" service, and the port mapper\nreturns the appropriate port. This strategy makes it easy to change the port associated with different services\nover time and for each host to use a different port for the same service.\nAs just mentioned, a port is purely an abstraction. Exactly how it is implemented differs from system to\nsystem, or more precisely, from OS to OS. For example, the socket API described in Chapter 1 is an example\nimplementation of ports. Typically, a port is implemented by a message queue, as illustrated in Figure 5.2.\nWhen a message arrives, the protocol (e.g., UDP) appends the message to the end of the queue. Should the\nqueue be full, the message is discarded. There is no flow-control mechanism in UDP to tell the sender to\nslow down. When an application process wants to receive a message, one is removed from the front of the\nqueue. If the queue is empty, the process blocks until a message becomes available.\nFinally, although UDP does not implement flow control or reliable/ordered delivery, it does provide one more\nfunction aside from demultiplexing messages to some application process—it also ensures the correctness\nof the message by the use of a checksum. (The UDP checksum is optional in IPv4 but is mandatory in IPv6.)\nThe basic UDP checksum algorithm is the same one used for IP—that is, it adds up a set of 16-bit words\nusing ones' complement arithmetic and takes the ones' complement of the result. But the input data that is\nused for the checksum is a little counterintuitive.\n5.1. Simple Demultiplexor (UDP) 231\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 5.2.: UDP message queue.\n232 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\nThe UDP checksum takes as input the UDP header, the contents of the message body, and something called\nthe pseudoheader. The pseudoheader consists of three fields from the IP header—protocol number, source\nIP address, and destination IP address—plus the UDP length field. (Yes, the UDP length field is included\ntwice in the checksum calculation.) The motivation behind having the pseudoheader is to verify that this\nmessage has been delivered between the correct two endpoints. For example, if the destination IP address\nwas modified while the packet was in transit, causing the packet to be misdelivered, this fact would be\ndetected by the UDP checksum.",
+      "source_section": "5.1",
+      "source_title": "Simple Demultiplexor (UDP)",
+      "source_pages": [
+        234,
+        235,
+        236,
+        237
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.1",
+    "section_title": "Simple Demultiplexor (UDP)",
+    "pages": [
+      234,
+      235,
+      236,
+      237
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

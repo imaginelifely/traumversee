@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_8_1",
+  "subject": "computer_networks",
+  "name": "Trust and Threats",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_1_source",
+      "statement": "Before we address the how's and why's of building secure networks, it is important to establish one simple\ntruth: We will inevitably fail. This is because security is ultimately an exercise in making assumptions about\ntrust, evaluating threats, and mitigating risk. There is no such thing as perfect security.\nTrust and threats are two sides of the same coin. A threat is a potential failure scenario that you design your\nsystem to avoid, and trust is an assumption you make about how external actors and internal components\nyou build upon will behave. For example, if you are transmitting a message over WiFi on an open campus,\nyou would likely identify an eavesdropper that can intercept the message as a threat (and adopt some of the\nmethods discussed in this chapter as a countermeasure), but if you are transmitting a message over a fiber\nlink between two machines in a locked datacenter, you might trust that channel is secure, and so take no\nadditional steps.\nYou could argue that since you already have a way to protect WiFi-based communication you just as well\nuse it to protect the fiber-based channel, but that presumes the outcome of a cost/benefit analysis. Suppose\nprotecting any message, whether sent over WiFi or fiber, slows the communication down by 10% due to\nthe overhead of encryption. If you need to squeeze every last ounce of performance out of a scientific\ncomputation (e.g., you are trying to model a hurricane) and the odds of someone breaking into the datacenter\nare one in a million (and even if they did, the data being transmitted has little value), then you would be\nwell-justified in not securing the fiber communication channel.\nThese sorts of calculations happen all the time, although they are often implicit and unstated. For example,\nyou may run the world's most secure encryption algorithm on a message before transmitting it, but you've\nimplicitly trusted that the server you're running on is both faithfully executing that algorithm and not leaking\na copy of your unencrypted message to an adversary. Do you treat this as a threat or do you trust that the\nserver does not misbehave? At the end of the day, the best you can do is mitigate risk: identify those threats\nthat you can eliminate in a cost effective way, and be explicit about what trust assumptions you are making\nso you aren't caught off-guard by changing circumstances, such as an ever more determined or sophisticated\nadversary.\nIn this particular example, the threat of an adversary compromising a server has become quite real as more\nof our computations move from local servers into the cloud, and so research is now going into building a\nTrusted Computing Base (TCB), an interesting topic, but one that is in the realm of computer architecture\nrather than computer networks. For the purpose of this chapter, our recommendation is to pay attention to\nthe words trust and threat (or adversary), as they are key to understanding the context in which security\nclaims are made.\n374 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nThere is one final historical note that helps set the table for this chapter. The Internet (and the ARPANET\nbefore it) where funded by the U.S. Department of Defense, an organization that certainly understands\nthreat analysis. The original assessment was dominated by concerns about the network surviving in the\nface of routers and networks failing (or being destroyed), which explains why the routing algorithms are\ndecentralized, with no central point of failure. On the other hand, the original design assumed all actors\ninside the network were trusted, and so little or no attention was paid what today we would call cybersecurity\n(attacks from bad actors that are able to connect to the network). What this means is that many of the tools\ndescribed in this chapter could be considered patches. They are strongly-grounded in cryptography, but\n\"add-ons\" nonetheless. If a comprehensive redesign of the Internet were to take place, integrating security\nwould likely be the foremost driving factor.",
+      "source_section": "8.1",
+      "source_title": "Trust and Threats",
+      "source_pages": [
+        378,
+        379
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.1",
+    "section_title": "Trust and Threats",
+    "pages": [
+      378,
+      379
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

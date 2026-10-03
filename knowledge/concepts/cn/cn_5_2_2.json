@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_5_2_2",
+  "subject": "computer_networks",
+  "name": "Segment Format",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_2_2_source",
+      "statement": "TCP is a byte-oriented protocol, which means that the sender writes bytes into a TCP connection and the\nreceiver reads bytes out of the TCP connection. Although \"byte stream\" describes the service TCP offers to\napplication processes, TCP does not, itself, transmit individual bytes over the Internet. Instead, TCP on the\nsource host buffers enough bytes from the sending process to fill a reasonably sized packet and then sends\nthis packet to its peer on the destination host. TCP on the destination host then empties the contents of the\npacket into a receive buffer, and the receiving process reads from this buffer at its leisure. This situation is\nillustrated in Figure 5.3, which, for simplicity, shows data flowing in only one direction. Remember that, in\ngeneral, a single TCP connection supports byte streams flowing in both directions.\nThe packets exchanged between TCP peers in Figure 5.3 are called segments, since each one carries a\nsegment of the byte stream. Each TCP segment contains the header schematically depicted in Figure 5.4.\nThe relevance of most of these fields will become apparent throughout this section. For now, we simply\nintroduce them.\nTheSrcPort andDstPort fields identify the source and destination ports, respectively, just as in UDP.\n5.2. Reliable Byte Stream (TCP) 235\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 5.3.: How TCP manages a byte stream.\nFigure 5.4.: TCP header format.\n236 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\nThese two fields, plus the source and destination IP addresses, combine to uniquely identify each TCP\nconnection. That is, TCP's demux key is given by the 4-tuple\n(SrcPort, SrcIPAddr, DstPort, DstIPAddr)\nNote that because TCP connections come and go, it is possible for a connection between a particular pair\nof ports to be established, used to send and receive data, and closed, and then at a later time for the same\npair of ports to be involved in a second connection. We sometimes refer to this situation as two different\nincarnations of the same connection.\nThe Acknowledgement, SequenceNum, and AdvertisedWindow fields are all involved in TCP's\nsliding window algorithm. Because TCP is a byte-oriented protocol, each byte of data has a sequence\nnumber. The SequenceNum field contains the sequence number for the first byte of data carried in that\nsegment, and theAcknowledgement andAdvertisedWindow fields carry information about the flow\nof data going in the other direction. To simplify our discussion, we ignore the fact that data can flow in both\ndirections, and we concentrate on data that has a particular SequenceNum flowing in one direction and\nAcknowledgement andAdvertisedWindow values flowing in the opposite direction, as illustrated in\nFigure 5.5. The use of these three fields is described more fully later in this chapter.\nFigure 5.5.: Simplified illustration (showing only one direction) of the TCP process, with data flow in one\ndirection and ACKs in the other.\nThe 6-bit Flags field is used to relay control information between TCP peers. The possible flags include\nSYN,FIN,RESET,PUSH,URG, and ACK. The SYN andFIN flags are used when establishing and termi-\nnating a TCP connection, respectively. Their use is described in a later section. TheACK flag is set any time\ntheAcknowledgement field is valid, implying that the receiver should pay attention to it. The URG flag\nsignifies that this segment contains urgent data. When this flag is set, the UrgPtr field indicates where the\nnonurgent data contained in this segment begins. The urgent data is contained at the front of the segment\nbody, up to and including a value of UrgPtr bytes into the segment. The PUSH flag signifies that the\nsender invoked the push operation, which indicates to the receiving side of TCP that it should notify the\nreceiving process of this fact. We discuss these last two features more in a later section. Finally, theRESET\nflag signifies that the receiver has become confused—for example, because it received a segment it did not\nexpect to receive—and so wants to abort the connection.\nFinally, the Checksum field is used in exactly the same way as for UDP—it is computed over the TCP\nheader, the TCP data, and the pseudoheader, which is made up of the source address, destination address,\nand length fields from the IP header. The checksum is required for TCP in both IPv4 and IPv6. Also, since\nthe TCP header is of variable length (options can be attached after the mandatory fields), aHdrLen field is\nincluded that gives the length of the header in 32-bit words. This field is also known as the Offset field,\nsince it measures the offset from the start of the packet to the start of the data.\n5.2. Reliable Byte Stream (TCP) 237\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "5.2.2",
+      "source_title": "Segment Format",
+      "source_pages": [
+        239,
+        240,
+        241,
+        242
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.2.2",
+    "section_title": "Segment Format",
+    "pages": [
+      239,
+      240,
+      241,
+      242
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

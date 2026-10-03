@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_1_5",
+  "subject": "computer_networks",
+  "name": "Performance",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_5_source",
+      "statement": "Up to this point, we have focused primarily on the functional aspects of networks. Like any computer\nsystem, however, computer networks are also expected to perform well. This is because the effectiveness of\ncomputations distributed over the network often depends directly on the efficiency with which the network\ndelivers the computation's data. While the old programming adage \"first get it right and then make it fast\"\nremains true, in networking it is often necessary to \"design for performance.\" It is therefore important to\nunderstand the various factors that impact network performance.",
+      "source_section": "1.5",
+      "source_title": "Performance",
+      "source_pages": [
+        41
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.5",
+    "section_title": "Performance",
+    "pages": [
+      41
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

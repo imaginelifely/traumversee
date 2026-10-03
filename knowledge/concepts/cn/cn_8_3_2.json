@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_8_3_2",
+  "subject": "computer_networks",
+  "name": "Predistribution of Secret Keys",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_3_2_source",
+      "statement": "If Alice wants to use a secret-key cipher to communicate with Bob, she can't just pick a key and send it\nto him because, without already having a key, they can't encrypt this key to keep it confidential and they\ncan't authenticate each other. As with public keys, some predistribution scheme is needed. Predistribution\nis harder for secret keys than for public keys for two obvious reasons:\n• While only one public key per entity is sufficient for authentication and confidentiality, there must be\na secret key for each pair of entities who wish to communicate. If there are N entities, that means\nN(N-1)/2 keys.\n• Unlike public keys, secret keys must be kept secret.\nIn summary, there are a lot more keys to distribute, and you can't use certificates that everyone can read.\nThe most common solution is to use aKey Distribution Center (KDC). A KDC is a trusted entity that shares\na secret key with each other entity. This brings the number of keys down to a more manageable N-1, few\nenough to establish out of band for some applications. When Alice wishes to communicate with Bob, that\ncommunication does not travel via the KDC. Rather, the KDC participates in a protocol that authenticates\nAlice and Bob—using the keys that the KDC already shares with each of them—and generates a new session\nkey for them to use. Then Alice and Bob communicate directly using their session key. Kerberos is a widely\nused system based on this approach. We describe Kerberos (which also provides authentication) in the next\nsection. The following subsection describes a powerful alternative.",
+      "source_section": "8.3.2",
+      "source_title": "Predistribution of Secret Keys",
+      "source_pages": [
+        391
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.3.2",
+    "section_title": "Predistribution of Secret Keys",
+    "pages": [
+      391
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_5_2_7",
+  "subject": "computer_networks",
+  "name": "Record Boundaries",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_2_7_source",
+      "statement": "Since TCP is a byte-stream protocol, the number of bytes written by the sender are not necessarily the same\nas the number of bytes read by the receiver. For example, the application might write 8 bytes, then 2 bytes,\nthen 20 bytes to a TCP connection, while on the receiving side the application reads 5 bytes at a time inside\na loop that iterates 6 times. TCP does not interject record boundaries between the 8th and 9th bytes, nor\nbetween the 10th and 11th bytes. This is in contrast to a message-oriented protocol, such as UDP, in which\nthe message that is sent is exactly the same length as the message that is received.\nEven though TCP is a byte-stream protocol, it has two different features that can be used by the sender\nto insert record boundaries into this byte stream, thereby informing the receiver how to break the stream\nof bytes into records. (Being able to mark record boundaries is useful, for example, in many database\napplications.) Both of these features were originally included in TCP for completely different reasons; they\nhave only come to be used for this purpose over time.\n252 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\nThe first mechanism is the urgent data feature, as implemented by theURG flag and theUrgPtr field in the\nTCP header. Originally, the urgent data mechanism was designed to allow the sending application to send\nout-of-band data to its peer. By \"out of band\" we mean data that is separate from the normal flow of data\n(e.g., a command to interrupt an operation already under way). This out-of-band data was identified in the\nsegment using theUrgPtr field and was to be delivered to the receiving process as soon as it arrived, even\nif that meant delivering it before data with an earlier sequence number. Over time, however, this feature has\nnot been used, so instead of signifying \"urgent\" data, it has come to be used to signify \"special\" data, such\nas a record marker. This use has developed because, as with the push operation, TCP on the receiving side\nmust inform the application that urgent data has arrived. That is, the urgent data in itself is not important. It\nis the fact that the sending process can effectively send a signal to the receiver that is important.\nThe second mechanism for inserting end-of-record markers into a byte is the push operation. Originally,\nthis mechanism was designed to allow the sending process to tell TCP that it should send (flush) whatever\nbytes it had collected to its peer. The push operation can be used to implement record boundaries because\nthe specification says that TCP must send whatever data it has buffered at the source when the application\nsays push, and, optionally, TCP at the destination notifies the application whenever an incoming segment\nhas the PUSH flag set. If the receiving side supports this option (the socket interface does not), then the\npush operation can be used to break the TCP stream into records.\nOf course, the application program is always free to insert record boundaries without any assistance from\nTCP. For example, it can send a field that indicates the length of a record that is to follow, or it can insert its\nown record boundary markers into the data stream.",
+      "source_section": "5.2.7",
+      "source_title": "Record Boundaries",
+      "source_pages": [
+        256,
+        257
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.2.7",
+    "section_title": "Record Boundaries",
+    "pages": [
+      256,
+      257
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

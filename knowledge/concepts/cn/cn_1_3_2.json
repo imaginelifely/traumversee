@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_1_3_2",
+  "subject": "computer_networks",
+  "name": "Encapsulation",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_3_2_source",
+      "statement": "Consider what happens in when one of the application programs sends a message to its peer by passing\nthe message to RRP. From RRP's perspective, the message it is given by the application is an uninterpreted\nstring of bytes. RRP does not care that these bytes represent an array of integers, an email message, a digital\nimage, or whatever; it is simply charged with sending them to its peer. However, RRP must communicate\ncontrol information to its peer, instructing it how to handle the message when it is received. RRP does\nthis by attaching a header to the message. Generally speaking, a header is a small data structure—from a\nfew bytes to a few dozen bytes—that is used among peers to communicate with each other. As the name\nsuggests, headers are usually attached to the front of a message. In some cases, however, this peer-to-peer\ncontrol information is sent at the end of the message, in which case it is called a trailer. The exact format\nfor the header attached by RRP is defined by its protocol specification. The rest of the message—that is, the\ndata being transmitted on behalf of the application—is called the message's body or payload. We say that\nthe application's data isencapsulated in the new message created by RRP.\nThis process of encapsulation is then repeated at each level of the protocol graph; for example, HHP encap-\nsulates RRP's message by attaching a header of its own. If we now assume that HHP sends the message\nto its peer over some network, then when the message arrives at the destination host, it is processed in the\nopposite order: HHP first interprets the HHP header at the front of the message (i.e., takes whatever action\nis appropriate given the contents of the header) and passes the body of the message (but not the HHP header)\nup to RRP, which takes whatever action is indicated by the RRP header that its peer attached and passes the\nbody of the message (but not the RRP header) up to the application program. The message passed up from\nRRP to the application on host 2 is exactly the same message as the application passed down to RRP on\n1.3. Architecture 25\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 1.12.: High-level messages are encapsulated inside of low-level messages.\n26 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\nhost 1; the application does not see any of the headers that have been attached to it to implement the lower-\nlevel communication services. This whole process is illustrated in Figure 1.12. Note that in this example,\nnodes in the network (e.g., switches and routers) may inspect the HHP header at the front of the message.\nNote that when we say a low-level protocol does not interpret the message it is given by some high-level\nprotocol, we mean that it does not know how to extract any meaning from the data contained in the message.\nIt is sometimes the case, however, that the low-level protocol applies some simple transformation to the\ndata it is given, such as to compress or encrypt it. In this case, the protocol is transforming the entire body\nof the message, including both the original application's data and all the headers attached to that data by\nhigher-level protocols.",
+      "source_section": "1.3.2",
+      "source_title": "Encapsulation",
+      "source_pages": [
+        29,
+        30,
+        31
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.3.2",
+    "section_title": "Encapsulation",
+    "pages": [
+      29,
+      30,
+      31
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

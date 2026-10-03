@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_802_11",
+  "subject": "computer_networks",
+  "name": "does specify is how nodes select their access points and, more interestingly, how this algorithm",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_802_11_source",
+      "statement": "works in light of nodes moving from one cell to another.\nThe technique for selecting an AP is called scanning and involves the following four steps:\n1. The node sends a Probe frame.\n2. All APs within reach reply with a Probe Response frame.\n3. The node selects one of the access points and sends that AP an Association Request frame.\n4. The AP replies with an Association Response frame.\nA node engages this protocol whenever it joins the network, as well as when it becomes unhappy with its\ncurrent AP. This might happen, for example, because the signal from its current AP has weakened due to\nthe node moving away from it. Whenever a node acquires a new AP, the new AP notifies the old AP of the\nchange (this happens in step 4) via the distribution system.\nConsider the situation shown in Figure 2.29, where node C moves from the cell serviced by AP-1 to the\ncell serviced by AP-2. As it moves, it sendsProbe frames, which eventually result inProbe Response\nframes from AP-2. At some point, C prefers AP-2 over AP-1, and so it associates itself with that access\npoint.\n2.7. Wireless Networks 91\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.29.: Node mobility.\nThe mechanism just described is called active scanning since the node is actively searching for an access\npoint. APs also periodically send a Beacon frame that advertises the capabilities of the access point; these\ninclude the transmission rates supported by the AP. This is called passive scanning, and a node can change\nto this AP based on theBeacon frame simply by sending anAssociation Request frame back to the\naccess point.\nFrame Format\nMost of the 802.11 frame format, which is depicted in Figure 2.30, is exactly what we would expect. The\nframe contains the source and destination node addresses, each of which is 48 bits long; up to 2312 bytes of\ndata; and a 32-bit CRC. The Control field contains three subfields of interest (not shown): a 6-bit Type\nfield that indicates whether the frame carries data, is an RTS or CTS frame, or is being used by the scanning\nalgorithm, and a pair of 1-bit fields—called ToDS andFromDS—that are described below.\nFigure 2.30.: 802.11 frame format.\nThe peculiar thing about the 802.11 frame format is that it contains four, rather than two, addresses. How\nthese addresses are interpreted depends on the settings of the ToDS and FromDS bits in the frame's\nControl field. This is to account for the possibility that the frame had to be forwarded across the dis-\ntribution system, which would mean that the original sender is not necessarily the same as the most recent\ntransmitting node. Similar reasoning applies to the destination address. In the simplest case, when one node\nis sending directly to another, both theDS bits are 0,Addr1 identifies the target node, andAddr2 identifies\nthe source node. In the most complex case, both DS bits are set to 1, indicating that the message went from\na wireless node onto the distribution system, and then from the distribution system to another wireless node.\n92 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\nWith both bits set, Addr1 identifies the ultimate destination, Addr2 identifies the immediate sender (the\none that forwarded the frame from the distribution system to the ultimate destination),Addr3 identifies the\nintermediate destination (the one that accepted the frame from a wireless node and forwarded it across the\ndistribution system), andAddr4 identifies the original source. In terms of the example given in Figure 2.28,\nAddr1 corresponds to E,Addr2 identifies AP-3, Addr3 corresponds to AP-1, andAddr4 identifies A.\nSecurity of Wireless Links\nOne of the fairly obvious problems of wireless links compared to wires or fibers is that you can't be too\nsure where your data has gone. You can probably figure out if it was received by the intended receiver, but\nthere is no telling how many other receivers might have also picked up your transmission. So, if you are\nconcerned about the privacy of your data, wireless networks present a challenge.\nEven if you are not concerned about data privacy—or perhaps have taken care of it in some other way—you\nmay be concerned about an unauthorized user injecting data into your network. If nothing else, such a user\nmight be able to consume resources that you would prefer to consume yourself, such as the finite bandwidth\nbetween your house and your ISP.\nFor these reasons, wireless networks typically come with some sort of mechanism to control access to both\nthe link itself and the transmitted data. These mechanisms are often categorized as wireless security. The\nwidely adopted WPA2 is described in Chapter 8.",
+      "source_section": "802.11",
+      "source_title": "does specify is how nodes select their access points and, more interestingly, how this algorithm",
+      "source_pages": [
+        95,
+        96,
+        97
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "802.11",
+    "section_title": "does specify is how nodes select their access points and, more interestingly, how this algorithm",
+    "pages": [
+      95,
+      96,
+      97
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

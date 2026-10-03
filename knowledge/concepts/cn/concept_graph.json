@@ -1,0 +1,137 @@
+{
+  "graph_version": "0.2",
+  "subject": "computer_networks",
+
+  "concepts": [
+    {
+      "id": "cn_network",
+      "name": "Network"
+    },
+    {
+      "id": "cn_node",
+      "name": "Node"
+    },
+    {
+      "id": "cn_link",
+      "name": "Link"
+    },
+    {
+      "id": "cn_connectivity",
+      "name": "Connectivity"
+    },
+    {
+      "id": "cn_indirect_connectivity",
+      "name": "Indirect Connectivity"
+    },
+    {
+      "id": "cn_switched_network",
+      "name": "Switched Network"
+    },
+    {
+      "id": "cn_circuit_switching",
+      "name": "Circuit Switching"
+    },
+    {
+      "id": "cn_packet_switching",
+      "name": "Packet Switching"
+    },
+    {
+      "id": "cn_store_forward",
+      "name": "Store-and-Forward"
+    },
+    {
+      "id": "cn_internetwork",
+      "name": "Internetwork"
+    },
+    {
+      "id": "cn_router_gateway",
+      "name": "Router / Gateway"
+    },
+    {
+      "id": "cn_address",
+      "name": "Address"
+    },
+    {
+      "id": "cn_routing",
+      "name": "Routing"
+    }
+  ],
+
+  "relationships": [
+    {
+      "from": "cn_network",
+      "to": "cn_connectivity",
+      "type": "requires",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_link",
+      "to": "cn_node",
+      "type": "connects",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_connectivity",
+      "to": "cn_indirect_connectivity",
+      "type": "has_form",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_indirect_connectivity",
+      "to": "cn_switched_network",
+      "type": "implemented_by",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_switched_network",
+      "to": "cn_circuit_switching",
+      "type": "has_type",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_switched_network",
+      "to": "cn_packet_switching",
+      "type": "has_type",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_packet_switching",
+      "to": "cn_store_forward",
+      "type": "uses",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_internetwork",
+      "to": "cn_router_gateway",
+      "type": "uses",
+      "basis": "source",
+      "source_section": "1.2.2"
+    },
+    {
+      "from": "cn_address",
+      "to": "cn_routing",
+      "type": "enables",
+      "basis": "source",
+      "source_section": "1.2.2"
+    }
+  ],
+
+  "source": {
+    "section": "1.2.2",
+    "title": "Scalable Connectivity",
+    "pages": [
+      14,
+      15,
+      16,
+      17,
+      18
+    ]
+  }
+}

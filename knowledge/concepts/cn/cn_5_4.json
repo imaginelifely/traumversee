@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_5_4",
+  "subject": "computer_networks",
+  "name": "Transport for Real-Time (RTP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_4_source",
+      "statement": "In the early days of packet switching, most applications were concerned with transfering files, although as\nearly as 1981, experiments were under way to carry real-time traffic, such as digitized voice samples. We\ncall an application \"real-time\" when it has strong requirements for the timely delivery of information. V oice\nover IP (V oIP) is a classic example of a real-time application because you can't easily carry on a conversation\nwith someone if it takes more than a fraction of a second to get a response. As we will see shortly, real-time\napplications place some specific demands on the transport protocol that are not well met by the protocols\ndiscussed so far in this chapter.\nFigure 5.23.: User interface of a videoconferencing tool.\n276 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\nMultimedia applications—those that involve video, audio, and data—are sometimes divided into two\nclasses: interactive applications and streaming applications. Figure 5.23 shows the authors using an example\nconferencing tool that's typical of the interactive class. Along with V oIP, these are the sort of applications\nwith the most stringent real-time requirements.\nStreaming applications typically deliver audio or video streams from a server to a client and are typified by\nsuch commercial products as Spotify. Streaming video, typified by YouTube and Netflix, has become one of\nthe dominant forms of traffic on the Internet. Because streaming applications lack human-to-human inter-\naction, they place somewhat less stringent real-time requirements on the underlying protocols. Timeliness\nis still important, however—for example, you want a video to start playing soon after pushing \"play,\" and\nonce it starts to play, late packets will either cause it to stall or create some sort of visual degradation. So,\nwhile streaming applications are not strictly real time, they still have enough in common with interactive\nmultimedia applications to warrant consideration of a common protocol for both types of application.\nIt should by now be apparent that designers of a transport protocol for real-time and multimedia applica-\ntions face a real challenge in defining the requirements broadly enough to meet the needs of very different\napplications. They must also pay attention to the interactions among different applications, such as the syn-\nchronization of audio and video streams. We will see below how these concerns affected the design of the\nprimary real-time transport protocol in use today: Real-time Transport Protocol (RTP).\nMuch of RTP actually derives from protocol functionality that was originally embedded in the application\nitself. Two of the first such applications were vic andvat, the former supporting real-time video and the\nlatter supporting real-time audio. Both applications originally ran directly over UDP, while the designers\nfigured out which features were needed to handle the real-time nature of the communication. Later, they\nrealized that these features could be useful to many other applications and defined a protocol with those\nfeatures. That protocol was eventually standardized as RTP.\nRTP can run over many lower-layer protocols, but still commonly runs over UDP. That leads to the protocol\nstack shown in Figure 5.24. Note that we are therefore running a transport protocol over a transport protocol.\nThere is no rule against that, and in fact it makes a lot of sense, since UDP provides such a minimal level of\nfunctionality, and the basic demultiplexing based on port numbers happens to be just what RTP needs as a\nstarting point. So, rather than recreate port numbers in RTP, RTP outsources the demultiplexing function to\nUDP.\nFigure 5.24.: Protocol stack for multimedia applications using RTP.\n5.4. Transport for Real-Time (RTP) 277\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "5.4",
+      "source_title": "Transport for Real-Time (RTP)",
+      "source_pages": [
+        280,
+        281,
+        282
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.4",
+    "section_title": "Transport for Real-Time (RTP)",
+    "pages": [
+      280,
+      281,
+      282
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

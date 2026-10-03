@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_3_3",
+  "subject": "computer_networks",
+  "name": "Diffie-Hellman Key Exchange",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_3_3_source",
+      "statement": "Another approach to establishing a shared secret key is to use the Diffie-Hellman key exchange protocol,\nwhich works without using any predistributed keys. The messages exchanged between Alice and Bob can\nbe read by anyone able to eavesdrop, and yet the eavesdropper won't know the secret key that Alice and Bob\nend up with.\nDiffie-Hellman doesn't authenticate the participants. Since it is rarely useful to communicate securely with-\nout being sure whom you're communicating with, Diffie-Hellman is usually augmented in some way to\nprovide authentication. One of the main uses of Diffie-Hellman is in the Internet Key Exchange (IKE)\nprotocol, a central part of the IP Security (IPsec) architecture.\nThe Diffie-Hellman protocol has two parameters, p and g, both of which are public and may be used by all\nthe users in a particular system. Parameterp must be a prime number. The integers modp (short for modulo\np) are 0 through p-1, sincex modp is the remainder after x is divided by p, and form what mathematicians\ncall a group under multiplication. Parameter g (usually called a generator) must be aprimitive root of p: For\nevery number n from 1 through p-1 there must be some value k such thatn =gk modp. For example, if p\nwere the prime number 5 (a real system would use a much larger number), then we might choose 2 to be the\ngenerator g since:\n1 = 20 modp\n8.3. Key Predistribution 387\nComputer Networks: A Systems Approach, Release Version 6.1\n2 = 21 modp\n3 = 23 modp\n4 = 22 modp\nSuppose Alice and Bob want to agree on a shared secret key. Alice and Bob, and everyone else, already know\nthe values of p and g. Alice generates a random private value a and Bob generates a random private valueb.\nBoth a and b are drawn from the set of integers{1,...,p − 1}. Alice and Bob derive their corresponding\npublic values—the values they will send to each other unencrypted—as follows. Alice's public value is\nga modp\nand Bob's public value is\ngb modp\nThey then exchange their public values. Finally, Alice computes\ngab modp = (gb modp)a modp\nand Bob computes\ngba modp = (ga modp)b modp.\nAlice and Bob now havegab modp (which is equal togba modp) as their shared secret key.\nAny eavesdropper would know p, g, and the two public values ga modp andgb modp. If only the eaves-\ndropper could determine a or b, she could easily compute the resulting key. Determining a or b from that\ninformation is, however, computationally infeasible for suitably large p,a, and b; it is known as the discrete\nlogarithm problem.\nFor example, using p = 5 and g = 2 from above, suppose Alice picks the random number a = 3 and Bob\npicks the random number b = 4. Then Alice sends Bob the public value\n23 mod 5 = 3\nand Bob sends Alice the public value\n24 mod 5 = 1\nAlice is then able to compute\ngab modp = (2b mod 5)3 mod 5 = (1)3 mod 5 = 1\nby substituting Bob's public value for(2b mod 5). Similarly, Bob is able to compute\ngba modp = (ga mod 5)4 mod 5 = (3)4 mod 5 = 1.\nby substituting Alice's public value for(2a mod 5). Both Alice and Bob now agree that the secret key is 1.\nThere is the problem of Diffie-Hellman's lack of authentication. One attack that can take advantage of this\nis the man-in-the-middle attack. Suppose Mallory is an adversary with the ability to intercept messages.\n388 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.7.: A man-in-the-middle attack.\nMallory already knows p and g since they are public, and she generates random private values c andd to\nuse with Alice and Bob, respectively. When Alice and Bob send their public values to each other, Mallory\nintercepts them and sends her own public values, as in Figure 8.7. The result is that Alice and Bob each end\nup unknowingly sharing a key with Mallory instead of each other.\nA variant of Diffie-Hellman sometimes called fixed Diffie-Hellman supports authentication of one or both\nparticipants. It relies on certificates that are similar to public key certificates but instead certify the Diffie-\nHellman public parameters of an entity. For example, such a certificate would state that Alice's Diffie-\nHellman parameters are p, g, and ga modp (note that the value of a would still be known only to Alice).\nSuch a certificate would assure Bob that the other participant in Diffie-Hellman is Alice—or else the other\nparticipant won't be able to compute the secret key, because she won't know a. If both participants have\ncertificates for their Diffie-Hellman parameters, they can authenticate each other. If just one has a certificate,\nthen just that one can be authenticated. This is useful in some situations; for example, when one participant\nis a web server and the other is an arbitrary client, the client can authenticate the web server and establish a\nsecret key for confidentiality before sending a credit card number to the web server.",
+      "source_section": "8.3.3",
+      "source_title": "Diffie-Hellman Key Exchange",
+      "source_pages": [
+        391,
+        392,
+        393
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.3.3",
+    "section_title": "Diffie-Hellman Key Exchange",
+    "pages": [
+      391,
+      392,
+      393
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

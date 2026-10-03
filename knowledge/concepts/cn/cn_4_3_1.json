@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_3_1",
+  "subject": "computer_networks",
+  "name": "Multicast Addresses",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_3_1_source",
+      "statement": "IP has a subrange of its address space reserved for multicast addresses. In IPv4, these addresses are assigned\nin the class D address space, and IPv6 also has a portion of its address space reserved for multicast group\naddresses. Some subranges of the multicast ranges are reserved for intradomain multicast, so they can be\nreused independently by different domains.\nThere are thus 28 bits of possible multicast address in IPv4 when we ignore the prefix shared by all multicast\naddresses. This presents a problem when attempting to take advantage of hardware multicasting on a local\narea network (LAN). Let's take the case of Ethernet. Ethernet multicast addresses have only 23 bits when we\nignore their shared prefix. In other words, to take advantage of Ethernet multicasting, IP has to map 28-bit\nIP multicast addresses into 23-bit Ethernet multicast addresses. This is implemented by taking the low-order\n23 bits of any IP multicast address to use as its Ethernet multicast address and ignoring the high-order 5 bits.\nThus, 32 (25) IP addresses map into each one of the Ethernet addresses.\nIn this section we use Ethernet as a canonical example of a networking technology that supports\nmulticast in hardware, but the same is also true of PON (Passive Optical Networks), which is\nthe access network technology often used to deliver fiber-to-the-home. In fact, IP Multicast\nover PON is now a common way to deliver IPTV to homes.\nWhen a host on an Ethernet joins an IP multicast group, it configures its Ethernet interface to receive any\npackets with the corresponding Ethernet multicast address. Unfortunately, this causes the receiving host to\nreceive not only the multicast traffic it desired but also traffic sent to any of the other 31 IP multicast groups\nthat map to the same Ethernet address, if they are routed to that Ethernet. Therefore, IP at the receiving\nhost must examine the IP header of any multicast packet to determine whether the packet really belongs to\nthe desired group. In summary, the mismatch of multicast address sizes means that multicast traffic may\n4.3. Multicast 201\nComputer Networks: A Systems Approach, Release Version 6.1\nplace a burden on hosts that are not even interested in the group to which the traffic was sent. Fortunately,\nin some switched networks (such as switched Ethernet) this problem can be mitigated by schemes wherein\nthe switches recognize unwanted packets and discard them.\nOne perplexing question is how senders and receivers learn which multicast addresses to use in the first\nplace. This is normally handled by out-of-band means, and there are some quite sophisticated tools to\nenable group addresses to be advertised on the Internet.",
+      "source_section": "4.3.1",
+      "source_title": "Multicast Addresses",
+      "source_pages": [
+        205,
+        206
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.3.1",
+    "section_title": "Multicast Addresses",
+    "pages": [
+      205,
+      206
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

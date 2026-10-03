@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_8_4",
+  "subject": "computer_networks",
+  "name": "Authentication Protocols",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_4_source",
+      "statement": "So far we described how to encrypt messages, build authenticators, predistribute the necessary keys. It might\nseem as if all we have to do to make a protocol secure is append an authenticator to every message and, if\nwe want confidentiality, encrypt the message.\nThere are two main reasons why it's not that simple. First, there is the problem of a replay attack: an\nadversary retransmitting a copy of a message that was previously sent. If the message was an order you had\nplaced on a website, for example, then the replayed message would appear to the website as though you had\nordered more of the same. Even though it wasn't the original incarnation of the message, its authenticator\nwould still be valid; after all, the message was created by you, and it wasn't modified. Clearly, we need a\nsolution that ensures originality.\nIn a variation of this attack called a suppress-replay attack, an adversary might merely delay your message\n(by intercepting and later replaying it), so that it is received at a time when it is no longer appropriate.\nFor example, an adversary could delay your order to buy stock from an auspicious time to a time when\n8.4. Authentication Protocols 389\nComputer Networks: A Systems Approach, Release Version 6.1\nyou would not have wanted to buy. Although this message would in a sense be the original, it wouldn't\nbe timely. So we also need to ensure timeliness. Originality and timeliness may be considered aspects of\nintegrity. Ensuring them will in most cases require a nontrivial, back-and-forth protocol.\nThe second problem we have not yet solved is how to establish a session key. A session key is a secret-key\ncipher key generated on the fly and used for just one session. This too involves a nontrivial protocol.\nWhat these two issues have in common is authentication. If a message is not original and timely, then from\na practical standpoint we want to consider it as not being authentic, not being from whom it claims to be.\nAnd, obviously, when you are arranging to share a new session key with someone, you want to know you\nare sharing it with the right person. Usually, authentication protocols establish a session key at the same\ntime, so that at the end of the protocol Alice and Bob have authenticated each other and they have a new\nsecret key to use. Without a new session key, the protocol would just authenticate Alice and Bob at one point\nin time; a session key allows them to efficiently authenticate subsequent messages. Generally, session key\nestablishment protocols perform authentication. A notable exception is Diffie-Hellman, as described below,\nso the terms authentication protocol and session key establishment protocol are almost synonymous.\nThere is a core set of techniques used to ensure originality and timeliness in authentication protocols. We\ndescribe those techniques before moving on to particular protocols.",
+      "source_section": "8.4",
+      "source_title": "Authentication Protocols",
+      "source_pages": [
+        393,
+        394
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.4",
+    "section_title": "Authentication Protocols",
+    "pages": [
+      393,
+      394
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

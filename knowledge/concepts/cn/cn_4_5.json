@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_4_5",
+  "subject": "computer_networks",
+  "name": "Routing Among Mobile Devices",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_5_source",
+      "statement": "It probably should not be a great surprise to learn that mobile devices present some challenges for the Internet\narchitecture. The Internet was designed in an era when computers were large, immobile devices, and, while\nthe Internet's designers probably had some notion that mobile devices might appear in the future, it's fair to\nassume it was not a top priority to accommodate them. Today, of course, mobile computers are everywhere,\nnotably in the form of laptops and smartphones, and increasingly in other forms, such as drones. In this\nsection, we will look at some of the challenges posed by the appearance of mobile devices and some of the\ncurrent approaches to accommodating them.",
+      "source_section": "4.5",
+      "source_title": "Routing Among Mobile Devices",
+      "source_pages": [
+        225
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.5",
+    "section_title": "Routing Among Mobile Devices",
+    "pages": [
+      225
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

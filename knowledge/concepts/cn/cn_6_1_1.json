@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_6_1_1",
+  "subject": "computer_networks",
+  "name": "Network Model",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_1_1_source",
+      "statement": "We begin by defining three salient features of the network architecture. For the most part, this is a summary\nof material presented in the previous chapters that is relevant to the problem of resource allocation.\n288 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nPacket-Switched Network\nWe consider resource allocation in a packet-switched network (or internet) consisting of multiple links and\nswitches (or routers). Since most of the mechanisms described in this chapter were designed for use on the\nInternet, and therefore were originally defined in terms of routers rather than switches, we use the termrouter\nthroughout our discussion. The problem is essentially the same, whether on a network or an internetwork.\nIn such an environment, a given source may have more than enough capacity on the immediate outgoing\nlink to send a packet, but somewhere in the middle of a network its packets encounter a link that is being\nused by many different traffic sources. Figure 6.1 illustrates this situation—two high-speed links are feeding\na low-speed link. This is in contrast to shared-access networks like Ethernet and wireless networks, where\nthe source can directly observe the traffic on the network and decide accordingly whether or not to send a\npacket. We have already seen the algorithms used to allocate bandwidth on shared-access networks (e.g.,\nEthernet and Wi-Fi). These access-control algorithms are, in some sense, analogous to congestion-control\nalgorithms in a switched network.\nKey Takeaway\nNote that congestion control is a different problem than routing. While it is true that a congested link could\nbe assigned a large edge weight by the routing protocol, and, as a consequence, routers would route around\nit, \"routing around\" a congested link does not generally solve the congestion problem. To see this, we need\nlook no further than the simple network depicted in Figure 6.1, where all traffic has to flow through the same\nrouter to reach the destination. Although this is an extreme example, it is common to have a certain router\nthat it is not possible to route around. This router can become congested, and there is nothing the routing\nmechanism can do about it. This congested router is sometimes called the bottleneck router. [Next]\nConnectionless Flows\nFor much of our discussion, we assume that the network is essentially connectionless, with any connection-\noriented service implemented in the transport protocol that is running on the end hosts. (We explain the\nqualification \"essentially\" in a moment.) This is precisely the model of the Internet, where IP provides a\nconnectionless datagram delivery service and TCP implements an end-to-end connection abstraction. Note\nthat this assumption does not hold in virtual circuit networks such as ATM and X.25. In such networks, a\nconnection setup message traverses the network when a circuit is established. This setup message reserves a\nset of buffers for the connection at each router, thereby providing a form of congestion control—a connection\nis established only if enough buffers can be allocated to it at each router. The major shortcoming of this\napproach is that it leads to an underutilization of resources—buffers reserved for a particular circuit are not\navailable for use by other traffic even if they were not currently being used by that circuit. The focus of\nthis chapter is on resource allocation approaches that apply in an internetwork, and thus we focus mainly on\nconnectionless networks.\nWe need to qualify the term connectionless because our classification of networks as being either connec-\ntionless or connection oriented is a bit too restrictive; there is a gray area in between. In particular, the\nassumption that all datagrams are completely independent in a connectionless network is too strong. The\ndatagrams are certainly switched independently, but it is usually the case that a stream of datagrams between\na particular pair of hosts flows through a particular set of routers. This idea of aflow—a sequence of packets\n6.1. Issues in Resource Allocation 289\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 6.1.: A potential bottleneck router.\nsent between a source/destination pair and following the same route through the network—is an important\nabstraction in the context of resource allocation; it is one that we will use in this chapter.\nOne of the powers of the flow abstraction is that flows can be defined at different granularities. For example,\na flow can be host-to-host (i.e., have the same source/destination host addresses) or process-to-process (i.e.,\nhave the same source/destination host/port pairs). In the latter case, a flow is essentially the same as a\nchannel, as we have been using that term throughout this book. The reason we introduce a new term is that\na flow is visible to the routers inside the network, whereas a channel is an end-to-end abstraction. Figure 6.2\nillustrates several flows passing through a series of routers.\nBecause multiple related packets flow through each router, it sometimes makes sense to maintain some state\ninformation for each flow, information that can be used to make resource allocation decisions about the\npackets that belong to the flow. This state is sometimes called soft state. The main difference between\nsoft state and hard state is that soft state need not always be explicitly created and removed by signalling.\nSoft state represents a middle ground between a purely connectionless network that maintains no state at\nthe routers and a purely connection-oriented network that maintains hard state at the routers. In general,\nthe correct operation of the network does not depend on soft state being present (each packet is still routed\ncorrectly without regard to this state), but when a packet happens to belong to a flow for which the router is\ncurrently maintaining soft state, then the router is better able to handle the packet.\nNote that a flow can be either implicitly defined or explicitly established. In the former case, each router\nwatches for packets that happen to be traveling between the same source/destination pair—the router does\nthis by inspecting the addresses in the header—and treats these packets as belonging to the same flow for\nthe purpose of congestion control. In the latter case, the source sends a flow setup message across the\nnetwork, declaring that a flow of packets is about to start. While explicit flows are arguably no different\nthan a connection across a connection-oriented network, we call attention to this case because, even when\nexplicitly established, a flow does not imply any end-to-end semantics and, in particular, does not imply the\nreliable and ordered delivery of a virtual circuit. It simply exists for the purpose of resource allocation. We\nwill see examples of both implicit and explicit flows in this chapter.\n290 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 6.2.: Multiple flows passing through a set of routers.\nService Model\nIn the early part of this chapter, we will focus on mechanisms that assume the best-effort service model of\nthe Internet. With best-effort service, all packets are given essentially equal treatment, with end hosts given\nno opportunity to ask the network that some packets or flows be given certain guarantees or preferential\nservice. Defining a service model that supports some kind of preferred service or guarantee—for example,\nguaranteeing the bandwidth needed for a video stream—is the subject of a later section. Such a service\nmodel is said to provide multiple qualities of service (QoS). As we will see, there is actually a spectrum\nof possibilities, ranging from a purely best-effort service model to one in which individual flows receive\nquantitative guarantees of QoS. One of the greatest challenges is to define a service model that meets the\nneeds of a wide range of applications and even allows for the applications that will be invented in the future.",
+      "source_section": "6.1.1",
+      "source_title": "Network Model",
+      "source_pages": [
+        292,
+        293,
+        294,
+        295
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.1.1",
+    "section_title": "Network Model",
+    "pages": [
+      292,
+      293,
+      294,
+      295
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_1_3_3",
+  "subject": "computer_networks",
+  "name": "Multiplexing and Demultiplexing",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_3_3_source",
+      "statement": "Recall that a fundamental idea of packet switching is to multiplex multiple flows of data over a single\nphysical link. This same idea applies up and down the protocol graph, not just to switching nodes. In Figure\n1.11, for example, we can think of RRP as implementing a logical communication channel, with messages\nfrom two different applications multiplexed over this channel at the source host and then demultiplexed back\nto the appropriate application at the destination host.\nPractically speaking, this simply means that the header that RRP attaches to its messages contains an identi-\nfier that records the application to which the message belongs. We call this identifier RRP's demultiplexing\nkey, or demux key for short. At the source host, RRP includes the appropriate demux key in its header. When\nthe message is delivered to RRP on the destination host, it strips its header, examines the demux key, and\ndemultiplexes the message to the correct application.\nRRP is not unique in its support for multiplexing; nearly every protocol implements this mechanism. For\nexample, HHP has its own demux key to determine which messages to pass up to RRP and which to pass\nup to MSP. However, there is no uniform agreement among protocols—even those within a single network\narchitecture—on exactly what constitutes a demux key. Some protocols use an 8-bit field (meaning they\ncan support only 256 high-level protocols), and others use 16- or 32-bit fields. Also, some protocols have a\nsingle demultiplexing field in their header, while others have a pair of demultiplexing fields. In the former\ncase, the same demux key is used on both sides of the communication, while in the latter case each side\nuses a different key to identify the high-level protocol (or application program) to which the message is to\nbe delivered.",
+      "source_section": "1.3.3",
+      "source_title": "Multiplexing and Demultiplexing",
+      "source_pages": [
+        31
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.3.3",
+    "section_title": "Multiplexing and Demultiplexing",
+    "pages": [
+      31
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

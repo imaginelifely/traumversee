@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_4_4_3",
+  "subject": "computer_networks",
+  "name": "Virtual Private Networks and Tunnels",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_4_3_source",
+      "statement": "One way to build virtual private networks (VPNs) is to use tunnels. It turns out that MPLS can be thought\nof as a way to build tunnels, and this makes it suitable for building VPNs of various types.\nThe simplest form of MPLS VPN to understand is a layer 2 VPN. In this type of VPN, MPLS is used to\ntunnel layer 2 data (such as Ethernet frames or ATM cells) across a network of MPLS-enabled routers. One\nreason for tunnels is to provide some sort of network service (such as multicast) that is not supported by\nsome routers in the network. The same logic applies here: IP routers are not ATM switches, so you cannot\nprovide an ATM virtual circuit service across a network of conventional routers. However, if you had a pair\nof routers interconnected by a tunnel, they could send ATM cells across the tunnel and emulate an ATM\ncircuit. The term for this technique within the IETF is pseudowire emulation. Figure 4.23 illustrates the\nidea.\nWe have already seen how IP tunnels are built: The router at the entrance of the tunnel wraps the data to\n218 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.23.: An ATM circuit is emulated by a tunnel.\nbe tunneled in an IP header (the tunnel header), which represents the address of the router at the far end of\nthe tunnel and sends the data like any other IP packet. The receiving router receives the packet with its own\naddress in the header, strips the tunnel header, and finds the data that was tunneled, which it then processes.\nExactly what it does with that data depends on what it is. For example, if it were another IP packet, it would\nthen be forwarded on like a normal IP packet. However, it need not be an IP packet, as long as the receiving\nrouter knows what to do with non-IP packets. We'll return to the issue of how to handle non-IP data in a\nmoment.\nAn MPLS tunnel is not too different from an IP tunnel, except that the tunnel header consists of an MPLS\nheader rather than an IP header. Looking back to our first example, in Figure 4.19, we saw that router R1\nattached a label (15) to every packet that it sent towards prefix 18.1.1. Such a packet would then follow\nthe path R1-R2-R3, with each router in the path examining only the MPLS label. Thus, we observe that\nthere was no requirement that R1 only send IP packets along this path—any data could be wrapped up in\nthe MPLS header and it would follow the same path, because the intervening routers never look beyond the\nMPLS header. In this regard, an MPLS header is just like an IP tunnel header (except only 4 bytes long\ninstead of 20 bytes). The only issue with sending non-IP traffic along a tunnel, MPLS or otherwise, is what\nto do with non-IP traffic when it reaches the end of the tunnel. The general solution is to carry some sort\nof demultiplexing identifier in the tunnel payload that tells the router at the end of the tunnel what to do. It\nturns out that an MPLS label is a perfect fit for such an identifier. An example will make this clear.\nLet's assume we want to tunnel ATM cells from one router to another across a network of MPLS-enabled\nrouters, as in Figure 4.23. Further, we assume that the goal is to emulate an ATM virtual circuit; that is, cells\narrive at the entrance, or head, of the tunnel on a certain input port with a certain VCI and should leave the\ntail end of the tunnel on a certain output port and potentially different VCI. This can be accomplished by\nconfiguring the head and tail routers as follows:\n• The head router needs to be configured with the incoming port, the incoming VCI, the demultiplexing\nlabel for this emulated circuit, and the address of the tunnel end router.\n• The tail router needs to be configured with the outgoing port, the outgoing VCI, and the demultiplex-\ning label.\nOnce the routers are provided with this information, we can see how an ATM cell would be forwarded.\nFigure 4.24 illustrates the steps.\n1. An ATM cell arrives on the designated input port with the appropriate VCI value (101 in this example).\n2. The head router attaches the demultiplexing label that identifies the emulated circuit.\n3. The head router then attaches a second label, which is the tunnel label that will get the packet to the\n4.4. Multiprotocol Label Switching 219\nComputer Networks: A Systems Approach, Release Version 6.1\ntail router. This label is learned by mechanisms just like those described elsewhere in this section.\n4. Routers between the head and tail forward the packet using only the tunnel label.\n5. The tail router removes the tunnel label, finds the demultiplexing label, and recognizes the emulated\ncircuit.\n6. The tail router modifies the ATM VCI to the correct value (202 in this case) and sends it out the correct\nport.\nFigure 4.24.: Forward ATM cells along a tunnel.\nOne item in this example that might be surprising is that the packet has two labels attached to it. This is one\nof the interesting features of MPLS—labels may be stacked on a packet to any depth. This provides some\nuseful scaling capabilities. In this example, it allows a single tunnel to carry a potentially large number of\nemulated circuits.\nThe same techniques described here can be applied to emulate many other layer 2 services, including Frame\nRelay and Ethernet. It is worth noting that virtually identical capabilities can be provided using IP tunnels;\nthe main advantage of MPLS here is the shorter tunnel header.\nBefore MPLS was used to tunnel layer 2 services, it was also being used to support layer 3 VPNs. We won't\ngo into the details of layer 3 VPNs, which are quite complex, but we will note that they represent one of the\nmost popular uses of MPLS today. Layer 3 VPNs also use stacks of MPLS labels to tunnel packets across\nan IP network. However, the packets that are tunneled are themselves IP packets—hence, the name layer 3\nVPNs. In a layer 3 VPN, a single service provider operates a network of MPLS-enabled routers and provides\na \"virtually private\" IP network service to any number of distinct customers. That is, each customer of the\nprovider has some number of sites, and the service provider creates the illusion for each customer that there\nare no other customers on the network. The customer sees an IP network interconnecting his own sites and\nno other sites. This means that each customer is isolated from all other customers in terms of both routing\nand addressing. Customer A can't sent packets directly to customer B, andvice versa. Customer A can even\nuse IP addresses that have also been used by customer B. The basic idea is illustrated in Figure 4.25. As in\nlayer 2 VPNs, MPLS is used to tunnel packets from one site to another; however, the configuration of the\ntunnels is performed automatically by some fairly elaborate use of BGP, which is beyond the scope of this\nbook.\nCustomer A in fact usually can send data to customer B in some restricted way. Most likely, both customer\nA and customer B have some connection to the global Internet, and thus it is probably possible for customer\nA to send email messages, for example, to the mail server inside customer B's network. The \"privacy\"\noffered by a VPN prevents customer A from having unrestricted access to all the machines and subnets\ninside customer B's network.\n220 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.25.: Example of a layer 3 VPN. Customers A and B each obtain a virtually private IP service from\na single provider.\nIn summary, MPLS is a rather versatile tool that has been applied to a wide range of different networking\nproblems. It combines the label-swapping forwarding mechanism that is normally associated with virtual\ncircuit networks with the routing and control protocols of IP datagram networks to produce a class of net-\nwork that is somewhere between the two conventional extremes. This extends the capabilities of IP networks\nto enable, among other things, more precise control of routing and the support of a range of VPN services.",
+      "source_section": "4.4.3",
+      "source_title": "Virtual Private Networks and Tunnels",
+      "source_pages": [
+        222,
+        223,
+        224,
+        225
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.4.3",
+    "section_title": "Virtual Private Networks and Tunnels",
+    "pages": [
+      222,
+      223,
+      224,
+      225
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

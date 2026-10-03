@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_5_2",
+  "subject": "computer_networks",
+  "name": "Hardware Switch",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_5_2_source",
+      "statement": "Throughout much of the Internet's history, high-performance switches and routers have been specialized\ndevices, built with Application-Specific Integrated Circuits (ASICs). While it was possible to build low-end\nrouters and switches using commodity servers running C programs, ASICs were required to achieve the\nrequired throughput rates.\nThe problem with ASICs is that hardware takes a long time to design and fabricate, meaning the delay for\nadding new features to a switch is usually measured in years, not the days or weeks today's software industry\nis accustomed to. Ideally, we'd like to benefit from the performance of ASICs and the agility of software.\nFortunately, recent advances in domain specific processors (and other commodity components) have made\nthis possible. Just as importantly, the full architectural specification for switches that take advantage of these\nnew processors is now available on-line—the hardware equivalent of open source software . This means\nanyone can build a high-performance switch by pulling the blueprint off the web (see the Open Compute\nProject, OCP, for examples) in the same way it is possible to build your own PC. In both cases you still need\nsoftware to run on the hardware, but just as Linux is available to run on your home-built PC, there are now\nopen source L2 and L3 stacks available on GitHub to run on your home-built switch. Alternatively, you\ncan simply buy a pre-built switch from a commodity switch manufacturer and then load your own software\nonto it. The following describes these open white-box switches, so called to contrast them with closed\n\"black-box\" devices that have historically dominated the industry.\nFigure 3.39.: White-box switch using a Network Processing Unit.\nFigure 3.39 is a simplified depiction of a white-box switch. The key difference from the earlier implemen-\ntation on a general-purpose processor is the addition of a Network Processor Unit (NPU), a domain-specific\nprocessor with an architecture and instruction set that has been optimized for processing packet headers (i.e.,\nfor implementing the data plane). NPUs are similar in spirit to GPUs that have an architecture optimized for\nrendering computer graphics, but in this case, the NPU is optimized for parsing packet headers and making\na forwarding decision. NPUs are able to process packets (input, make a forwarding decision, and output) at\n172 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nrates measured in Terabits-per-second (Tbps), easily fast enough to keep up with 32x100-Gbps ports, or the\n48x40-Gbps ports shown in the diagram.\nNetwork Processing Units\nOur use of the term NPU is a bit non-standard. Historically, NPU was the name given more narrowly-\ndefined network processing chips used, for example, to implement intelligent firewalls or deep packet\ninspection. They were not as general-purpose as the NPUs we're discussing here; nor were they as\nhigh-performance. It seems likely that the current approach will make purpose-built network processors\nobsolete, but in any case, we prefer the NPU nomenclator because it is consistent with the trend to build\nprogrammable domain-specific processors, including GPUs for graphics and TPUs (Tensor Processing\nUnits) for AI.\nThe beauty of this new switch design is that a given white-box can now be programmed to be an L2 switch,\nand L3 router, or a combination of both, just by a matter of programming. The exact same control plane\nsoftware stack used in a software switch still runs on the control CPU, but in addition, data plane \"programs\"\nare loaded onto the NPU to reflect the forwarding decisions made by the control plane software. Exactly\nhow one \"programs\" the NPU depends on the chip vendor, of which there are currently several. In some\ncases, the forwarding pipeline is fixed and the control processor merely loads the forwarding table into the\nNPU (by fixed we mean the NPU only knows how to process certain headers, like Ethernet and IP), but in\nother cases, the forwarding pipeline is itself programmable. P4 is a new programming language that can be\nused to program such NPU-based forwarding pipelines. Among other things, P4 tries to hide many of the\ndifferences in the underlying NPU instruction sets.\nInternally, an NPU takes advantage of three technologies. First, a fast SRAM-based memory buffers packets\nwhile they are being processed. SRAM (Static Random Access Memory), is roughly an order of magnitude\nfaster than the DRAM (Dynamic Random Access Memory) that is used by main memory. Second, a TCAM-\nbased memory stores bit patterns to be matched in the packets being processed. The \"CAM\" in TCAM stands\nfor \"Content Addressable Memory,\" which means that the key you want to look up in a table can effectively\nbe used as the address into the memory that implements the table. The \"T\" stands for \"Ternary\" which is a\nfancy way to say the key you want to look up can have wildcards in it (e.g, key10*1 matches both1001 and\n1011). Finally, the processing involved to forward each packet is implemented by a forwarding pipeline.\nThis pipeline is implemented by an ASIC, but when well-designed, the pipeline's forwarding behavior can\nbe modified by changing the program it runs. At a high level, this program is expressed as a collection of\n(Match, Action) pairs: if you match such-and-such field in the header, then execute this-or-that action.\nThe relevance of packet processing being implemented by a multi-stage pipeline rather than a single-stage\nprocessor is that forwarding a single packet likely involves looking at multiple header fields. Each stage can\nbe programmed to look at a different combination of fields. A multi-stage pipeline adds a little end-to-end\nlatency to each packet (measured in nanoseconds), but also means that multiple packets can be processed at\nthe same time. For example, Stage 2 can be making a second lookup on packet A while Stage 1 is doing an\ninitial lookup on packet B, and so on. This means the NPU as a whole is able to keep up with line speeds.\nAs of this writing, the state-of-the-art is 12.8 Tbps.\nFinally, Figure 3.39 includes other commodity components that make this all practical. In particular, it is\nnow possible to buy pluggable transceiver modules that take care of all the media access details—be it\nGigabit Ethernet, 10-Gigabit Ethernet, or SONET—as well as the optics. These transceivers all conform\nto standardized form factors, such as SFP+, that can in turn be connected to other components over a\n3.5. Implementation 173\nComputer Networks: A Systems Approach, Release Version 6.1\nstandardized bus (e.g., SFI). Again, the key takeaway is that the networking industry is just now entering\ninto the same commoditized world that the computing industry has enjoyed for the last two decades.",
+      "source_section": "3.5.2",
+      "source_title": "Hardware Switch",
+      "source_pages": [
+        176,
+        177,
+        178
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.5.2",
+    "section_title": "Hardware Switch",
+    "pages": [
+      176,
+      177,
+      178
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_9_4",
+  "subject": "computer_networks",
+  "name": "Overlay Networks",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_9_4_source",
+      "statement": "From its inception, the Internet has adopted a clean model, in which the routers inside the network are\nresponsible for forwarding packets from source to destination, and application programs run on the hosts\nconnected to the edges of the network. The client/server paradigm illustrated by the applications discussed\nin the first two sections of this chapter certainly adhere to this model.\nIn the last few years, however, the distinction between packet forwarding and application processing has\nbecome less clear. New applications are being distributed across the Internet, and in many cases these appli-\ncations make their own forwarding decisions. These new hybrid applications can sometimes be implemented\nby extending traditional routers and switches to support a modest amount of application-specific processing.\nFor example, so-calledlevel-7 switches sit in front of server clusters and forward HTTP requests to a specific\nserver based on the requested URL. However, overlay networks are quickly emerging as the mechanism of\nchoice for introducing new functionality into the Internet.\nFigure 9.20.: Overlay network layered on top of a physical network.\nYou can think of an overlay as a logical network implemented on top of some underlying network. By this\ndefinition, the Internet started out as an overlay network on top of the links provided by the old telephone\nnetwork. Figure 9.20 depicts an overlay implemented on top of an underlying network. Each node in the\noverlay also exists in the underlying network; it processes and forwards packets in an application-specific\nway. The links that connect the overlay nodes are implemented as tunnels through the underlying network.\nMultiple overlay networks can exist on top of the same underlying network—each implementing its own\napplication-specific behavior—and overlays can be nested, one on top of another. For example, all of the\nexample overlay networks discussed in this section treat today's Internet as the underlying network.\nWe have already seen examples of tunneling, for example, to implement virtual private networks (VPNs).\n9.4. Overlay Networks 461\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 9.21.: Overlay nodes tunnel through physical nodes.\nAs a brief refresher, the nodes on either end of a tunnel treat the multi-hop path between them as a single\nlogical link, the nodes that are tunneled through forward packets based on the outer header, never aware that\nthe end nodes have attached an inner header. Figure 9.21 shows three overlay nodes (A, B, and C) connected\nby a pair of tunnels. In this example, overlay node B might make a forwarding decision for packets from\nA to C based on the inner header ( IHdr), and then attach an outer header ( OHdr) that identifies C as the\ndestination in the underlying network. Nodes A, B, and C are able to interpret both the inner and outer\nheader, whereas the intermediate routers understand only the outer header. Similarly, A, B, and C have\naddresses in both the overlay network and the underlying network, but they are not necessarily the same;\nfor example, their underlying address might be a 32-bit IP address, while their overlay address might be an\nexperimental 128-bit address. In fact, the overlay need not use conventional addresses at all but may route\nbased on URLs, domain names, an XML query, or even the content of the packet.",
+      "source_section": "9.4",
+      "source_title": "Overlay Networks",
+      "source_pages": [
+        465,
+        466
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "9.4",
+    "section_title": "Overlay Networks",
+    "pages": [
+      465,
+      466
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

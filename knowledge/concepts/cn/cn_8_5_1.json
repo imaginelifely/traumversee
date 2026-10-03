@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_5_1",
+  "subject": "computer_networks",
+  "name": "Pretty Good Privacy (PGP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_5_1_source",
+      "statement": "Pretty Good Privacy (PGP) is a widely used approach to providing security for electronic mail. It provides\nauthentication, confidentiality, data integrity, and nonrepudiation. Originally devised by Phil Zimmerman,\nit has evolved into an IETF standard known as OpenPGP. As we saw in a previous section, PGP is notable\nfor using a \"web of trust\" model for distribution of keys rather than a tree-like hierarchy.\nPGP's confidentiality and receiver authentication depend on the receiver of an email message having a public\nkey that is known to the sender. To provide sender authentication and nonrepudiation, the sender must have\na public key that is known by the receiver. These public keys are predistributed using certificates and a web-\nof-trust PKI. PGP supports RSA and DSS for public key certificates. These certificates may additionally\nspecify which cryptographic algorithms are supported or preferred by the key's owner. The certificates\nprovide bindings between email addresses and public keys.\nConsider the following example of PGP being used to provide both sender authentication and confidentiality.\nSuppose Alice has a message to email to Bob. Alice's PGP application goes through the steps illustrated in\nFigure 8.13. First, the message is digitally signed by Alice; MD5, SHA-1, and the SHA-2 family are among\nthe hashes that may be used in the digital signature. Her PGP application then generates a new session key\nfor just this one message; AES and 3DES are among the supported secret-key ciphers. The digitally signed\nmessage is encrypted using the session key, then the session key itself is encrypted using Bob's public key\nand appended to the message. Alice's PGP application reminds her of the level of trust she had previously\nassigned to Bob's public key, based on the number of certificates she has for Bob and the trustworthiness\nof the individuals who signed the certificates. Finally, not for security but because email messages have\nto be sent in ASCII, a base64 encoding is applied to the message to convert it to an ASCII-compatible\nrepresentation. Upon receiving the PGP message in an email, Bob's PGP application reverses this process\nstep-by-step to obtain the original plaintext message and confirm Alice's digital signature—and reminds\nBob of the level of trust he has in Alice's public key.\nEmail has particular characteristics that allow PGP to embed an adequate authentication protocol in this one-\nmessage data transmission protocol, avoiding the need for any prior message exchange (and sidestepping\nsome of the complexities described in the previous section). Alice's digital signature suffices to authenticate\n8.5. Example Systems 397\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.13.: PGP's steps to prepare a message for emailing from Alice to Bob.\n398 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nher. Although there is no proof that the message is timely, legitimate email isn't guaranteed to be timely\neither. There is also no proof that the message is original, but Bob is an email user and probably a fault-\ntolerant human who can recover from duplicate emails (which, again, are not out of the question under\nnormal operation anyway). Alice can be sure that only Bob could read the message because the session key\nwas encrypted with his public key. Although this protocol doesn't prove to Alice that Bob is actually there\nand received the email, an authenticated email from Bob back to Alice could do this.\nThe preceding discussion gives a good example of why application-layer security mechanisms can be help-\nful. Only with a full knowledge of how the application works can you make the right choices about which\nattacks to defend against (like forged email) versus which to ignore (like delayed or replayed email).",
+      "source_section": "8.5.1",
+      "source_title": "Pretty Good Privacy (PGP)",
+      "source_pages": [
+        401,
+        402,
+        403
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.5.1",
+    "section_title": "Pretty Good Privacy (PGP)",
+    "pages": [
+      401,
+      402,
+      403
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

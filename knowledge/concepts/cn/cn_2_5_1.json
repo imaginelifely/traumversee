@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_2_5_1",
+  "subject": "computer_networks",
+  "name": "Stop-and-Wait",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_5_1_source",
+      "statement": "The simplest ARQ scheme is the stop-and-wait algorithm. The idea of stop-and-wait is straightforward:\nAfter transmitting one frame, the sender waits for an acknowledgment before transmitting the next frame. If\nthe acknowledgment does not arrive after a certain period of time, the sender times out and retransmits the\noriginal frame.\nFigure 2.14 illustrates timelines for four different scenarios that result from this basic algorithm. The sending\nside is represented on the left, the receiving side is depicted on the right, and time flows from top to bottom.\nFigure 2.14(a) shows the situation in which the ACK is received before the timer expires; (b) and (c) show\nthe situation in which the original frame and the ACK, respectively, are lost; and (d) shows the situation\nin which the timeout fires too soon. Recall that by \"lost\" we mean that the frame was corrupted while in\ntransit, that this corruption was detected by an error code on the receiver, and that the frame was subsequently\ndiscarded.\nThe packet timelines shown in this section are examples of a frequently used tool in teaching, explaining, and\ndesigning protocols. They are useful because they capture visually the behavior over time of a distributed\nsystem—something that can be quite hard to analyze. When designing a protocol, you often have to be\nprepared for the unexpected—a system crashes, a message gets lost, or something that you expected to\nhappen quickly turns out to take a long time. These sorts of diagrams can often help us understand what\nmight go wrong in such cases and thus help a protocol designer be prepared for every eventuality.\nThere is one important subtlety in the stop-and-wait algorithm. Suppose the sender sends a frame and the\nreceiver acknowledges it, but the acknowledgment is either lost or delayed in arriving. This situation is\nillustrated in timelines (c) and (d) of Figure 2.14. In both cases, the sender times out and retransmits the\noriginal frame, but the receiver will think that it is the next frame, since it correctly received and acknowl-\nedged the first frame. This has the potential to cause duplicate copies of a frame to be delivered. To address\nthis problem, the header for a stop-and-wait protocol usually includes a 1-bit sequence number—that is, the\n66 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.14.: Timeline showing four different scenarios for the stop-and-wait algorithm. (a) The ACK is\nreceived before the timer expires; (b) the original frame is lost; (c) the ACK is lost; (d) the timeout fires too\nsoon.\n2.5. Reliable Transmission 67\nComputer Networks: A Systems Approach, Release Version 6.1\nsequence number can take on the values 0 and 1—and the sequence numbers used for each frame alternate,\nas illustrated in Figure 2.15. Thus, when the sender retransmits frame 0, the receiver can determine that it is\nseeing a second copy of frame 0 rather than the first copy of frame 1 and therefore can ignore it (the receiver\nstill acknowledges it, in case the first ACK was lost).\nFigure 2.15.: Timeline for stop-and-wait with 1-bit sequence number.\nThe main shortcoming of the stop-and-wait algorithm is that it allows the sender to have only one outstanding\nframe on the link at a time, and this may be far below the link's capacity. Consider, for example, a 1.5-Mbps\nlink with a 45-ms round-trip time. This link has a delay × bandwidth product of 67.5 Kb, or approximately\n8 KB. Since the sender can send only one frame per RTT, and assuming a frame size of 1 KB, this implies a\nmaximum sending rate of\nBits-Per-Frame / Time-Per-Frame = 1024 x 8 / 0.045 = 182 kbps\nor about one-eighth of the link's capacity. To use the link fully, then, we'd like the sender to be able to\ntransmit up to eight frames before having to wait for an acknowledgment.\nKey Takeaway\nThe significance of the delay × bandwidth product is that it represents the amount of data that could be in\ntransit. We would like to be able to send this much data without waiting for the first acknowledgment. The\nprinciple at work here is often referred to askeeping the pipe full. The algorithms presented in the following\ntwo subsections do exactly this. [Next]",
+      "source_section": "2.5.1",
+      "source_title": "Stop-and-Wait",
+      "source_pages": [
+        70,
+        71,
+        72
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.5.1",
+    "section_title": "Stop-and-Wait",
+    "pages": [
+      70,
+      71,
+      72
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

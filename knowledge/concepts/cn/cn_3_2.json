@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_3_2",
+  "subject": "computer_networks",
+  "name": "Switched Ethernet",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_2_source",
+      "statement": "Having discussed some of the basic ideas behind switching, we now focus more closely on a specific switch-\ning technology: Switched Ethernet. The switches used to build such networks, which are often referred to\nas L2 switches, are widely used in campus and enterprise networks. Historically, they were more commonly\nreferred to as bridges because they were used to \"bridge\" ethernet segments to build an extended LAN. But\ntoday most networks deploy Ethernet in a point-to-point configuration, with these links interconneted by L2\nswitches to form a switched Ethernet.\nThe following starts with the historical perspective (using bridges to connect a set of Ethernet segments), and\nthen shifts to the perspective in wide-spread use today (using L2 switches to connect a set of point-to-point\nlinks). But whether we call the device a bridge or a switch—and the network you build an extended LAN or\na switched Ethernet—the two behave in exactly the same way.\nTo begin, suppose you have a pair of Ethernets that you want to interconnect. One approach you might try\nis to put a repeater between them. This would not be a workable solution, however, if doing so exceeded\nthe physical limitations of the Ethernet. (Recall that no more than two repeaters between any pair of hosts\nand no more than a total of 2500 m in length are allowed.) An alternative would be to put a node with a pair\nof Ethernet adaptors between the two Ethernets and have the node forward frames from one Ethernet to the\nother. This node would differ from a repeater, which operates on bits, not frames, and just blindly copies the\nbits received on one interface to another. Instead, this node would fully implement the Ethernet's collision\ndetection and media access protocols on each interface. Hence, the length and number-of-host restrictions\nof the Ethernet, which are all about managing collisions, would not apply to the combined pair of Ethernets\nconnected in this way. This device operates in promiscuous mode, accepting all frames transmitted on either\nof the Ethernets, and forwarding them to the other.\nIn their simplest variants, bridges simply accept LAN frames on their inputs and forward them out on all\nother outputs. This simple strategy was used by early bridges but has some pretty serious limitations as we'll\nsee below. A number of refinements were added over the years to make bridges an effective mechanism for\ninterconnecting a set of LANs. The rest of this section fills in the more interesting details.",
+      "source_section": "3.2",
+      "source_title": "Switched Ethernet",
+      "source_pages": [
+        120
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.2",
+    "section_title": "Switched Ethernet",
+    "pages": [
+      120
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

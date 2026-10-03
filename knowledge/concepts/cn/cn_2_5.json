@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_5",
+  "subject": "computer_networks",
+  "name": "Reliable Transmission",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_5_source",
+      "statement": "As we saw in the previous section, frames are sometimes corrupted while in transit, with an error code like\nCRC used to detect such errors. While some error codes are strong enough also to correct errors, in practice\nthe overhead is typically too large to handle the range of bit and burst errors that can be introduced on a\nnetwork link. Even when error-correcting codes are used (e.g., on wireless links) some errors will be too\nsevere to be corrected. As a result, some corrupt frames must be discarded. A link-level protocol that wants\nto deliver frames reliably must somehow recover from these discarded (lost) frames.\n2.5. Reliable Transmission 65\nComputer Networks: A Systems Approach, Release Version 6.1\nIt's worth noting that reliability is a function that may be provided at the link level, but many modern\nlink technologies omit this function. Furthermore, reliable delivery is frequently provided at higher levels,\nincluding both transport and sometimes, the application layer. Exactly where it should be provided is a\nmatter of some debate and depends on many factors. We describe the basics of reliable delivery here, since\nthe principles are common across layers, but you should be aware that we're not just talking about a link-\nlayer function.\nReliable delivery is usually accomplished using a combination of two fundamental mecha-\nnisms— acknowledgments and timeouts. An acknowledgment (ACK for short) is a small control frame\nthat a protocol sends back to its peer saying that it has received an earlier frame. By control frame we mean\na header without any data, although a protocol can piggyback an ACK on a data frame it just happens to be\nsending in the opposite direction. The receipt of an acknowledgment indicates to the sender of the original\nframe that its frame was successfully delivered. If the sender does not receive an acknowledgment after\na reasonable amount of time, then it retransmits the original frame. This action of waiting a reasonable\namount of time is called a timeout.\nThe general strategy of using acknowledgments and timeouts to implement reliable delivery is sometimes\ncalled automatic repeat request (abbreviated ARQ). This section describes three different ARQ algorithms\nusing generic language; that is, we do not give detailed information about a particular protocol's header\nfields.",
+      "source_section": "2.5",
+      "source_title": "Reliable Transmission",
+      "source_pages": [
+        69,
+        70
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.5",
+    "section_title": "Reliable Transmission",
+    "pages": [
+      69,
+      70
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_1_1",
+  "subject": "computer_networks",
+  "name": "Applications",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_1_source",
+      "statement": "Most people know the Internet through its applications: the World Wide Web, email, social media, streaming\nmusic or movies, videoconferencing, instant messaging, file-sharing, to name just a few examples. That is\nto say, we interact with the Internet as users of the network. Internet users represent the largest class of\npeople who interact with the Internet in some way, but there are several other important constituencies.\nThere is the group of people who create the applications—a group that has greatly expanded in recent years\nas powerful programming platforms and new devices such as smartphones have created new opportunities\nto develop applications quickly and to bring them to a large market.\nThen there are those who operate or manage networks—mostly a behind-the-scenes job, but a critical one\nand often a very complex one. With the prevalence of home networks, more and more people are also\nbecoming, if only in a small way, network operators.\nFinally, there are those whodesign and build the devices and protocols that collectively make up the Internet.\nThat final constituency is the traditional target of networking textbooks such as this one and will continue\nto be our main focus. However, throughout this book we will also consider the perspectives of application\ndevelopers and network operators.\nConsidering these perspectives will enable us to better understand the diverse requirements that a network\nmust meet. Application developers will also be able to make applications that work better if they understand\nhow the underlying technology works and interacts with the applications. So, before we start figuring out\nhow to build a network, let's look more closely at the types of applications that today's networks support.",
+      "source_section": "1.1",
+      "source_title": "Applications",
+      "source_pages": [
+        10
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.1",
+    "section_title": "Applications",
+    "pages": [
+      10
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_7",
+  "subject": "computer_networks",
+  "name": "Wireless Networks",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_7_source",
+      "statement": "Wireless technologies differ from wired links in some important ways, while at the same time sharing many\ncommon properties. Like wired links, issues of bit errors are of great concern—typically even more so\ndue to the unpredictable noise environment of most wireless links. Framing and reliability also have to be\naddressed. Unlike wired links, power is a big issue for wireless, especially because wireless links are often\nused by small mobile devices (like phones and sensors) that have limited access to power (e.g., a small\nbattery). Furthermore, you can't go blasting away at arbitrarily high power with a radio transmitter—there\nare concerns about interference with other devices and usually regulations about how much power a device\nmay emit at any given frequency.\nWireless media are also inherently multi-access; it's difficult to direct your radio transmission to just a single\nreceiver or to avoid receiving radio signals from any transmitter with enough power in your neighborhood.\nHence, media access control is a central issue for wireless links. And, because it's hard to control who\nreceives your signal when you transmit over the air, issues of eavesdropping may also have to be addressed.\nThere is a baffling assortment of different wireless technologies, each of which makes different tradeoffs\nin various dimensions. One simple way to categorize the different technologies is by the data rates they\nprovide and how far apart communicating nodes can be. Other important differences include which part of\nthe electromagnetic spectrum they use (including whether it requires a license) and how much power they\nconsume. In this section, we discuss two prominent wireless technologies: Wi-Fi (more formally known as\n802.11), and Bluetooth. The next section discusses cellular networks in the context of ISP access services.\nTable 2.3 gives an overview of these technologies and how they compare to each other.\n2.7. Wireless Networks 83\nComputer Networks: A Systems Approach, Release Version 6.1\nTable 2.3.: Overview of Leading Wireless Technologies.\nBluetooth (802.15.1) Wi-Fi (802.11) 4G Cellular\nTypical link length 10 m 100 m Tens of kilometers\nTypical data rate 2 Mbps (shared) 150-450 Mbps 1-5 Mbps\nTypical use Link a peripheral to a\ncomputer\nLink a computer to a\nwired base\nLink mobile phone to a\nwired tower\nWired technology\nanalogy\nUSB Ethernet PON\nYou may recall that bandwidth sometimes means the width of a frequency band in hertz and sometimes the\ndata rate of a link. Because both these concepts come up in discussions of wireless networks, we're going to\nuse bandwidth here in its stricter sense—width of a frequency band—and use the term data rate to describe\nthe number of bits per second that can be sent over the link, as in Table 2.3.",
+      "source_section": "2.7",
+      "source_title": "Wireless Networks",
+      "source_pages": [
+        87,
+        88
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.7",
+    "section_title": "Wireless Networks",
+    "pages": [
+      87,
+      88
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

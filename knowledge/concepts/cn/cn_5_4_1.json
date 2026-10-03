@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_5_4_1",
+  "subject": "computer_networks",
+  "name": "Requirements",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_4_1_source",
+      "statement": "The most basic requirement for a general-purpose multimedia protocol is that it allows similar applications\nto interoperate with each other. For example, it should be possible for two independently implemented\naudioconferencing applications to talk to each other. This immediately suggests that the applications had\nbetter use the same method of encoding and compressing voice; otherwise, the data sent by one party will be\nincomprehensible to the receiving party. Since there are quite a few different coding schemes for voice, each\nwith its own trade-offs among quality, bandwidth requirements, and computational cost, it would probably\nbe a bad idea to decree that only one such scheme can be used. Instead, our protocol should provide a way\nthat a sender can tell a receiver which coding scheme it wants to use, and possibly negotiate until a scheme\nthat is available to both parties is identified.\nJust as with audio, there are many different video coding schemes. Thus, we see that the first common\nfunction that RTP can provide is the ability to communicate that choice of coding scheme. Note that this\nalso serves to identify the type of application (e.g., audio or video); once we know what coding algorithm is\nbeing used, we know what type of data is being encoded as well.\nAnother important requirement is to enable the recipient of a data stream to determine the timing relationship\namong the received data. Real-time applications need to place received data into aplayback buffer to smooth\nout the jitter that may have been introduced into the data stream during transmission across the network.\nThus, some sort of timestamping of the data will be necessary to enable the receiver to play it back at the\nappropriate time.\nRelated to the timing of a single media stream is the issue of synchronization of multiple media in a confer-\nence. The obvious example of this would be to synchronize an audio and video stream that are originating\nfrom the same sender. As we will see below, this is a slightly more complex problem than playback time\ndetermination for a single stream.\nAnother important function to be provided is an indication of packet loss. Note that an application with tight\nlatency bounds generally cannot use a reliable transport like TCP because retransmission of data to correct\nfor loss would probably cause the packet to arrive too late to be useful. Thus, the application must be able\nto deal with missing packets, and the first step in dealing with them is noticing that they are in fact missing.\nAs an example, a video application using MPEG encoding may take different actions when a packet is lost,\ndepending on whether the packet came from an I frame, a B frame, or a P frame.\nPacket loss is also a potential indicator of congestion. Since multimedia applications generally do not run\nover TCP, they also miss out on the congestion avoidance features of TCP. Yet, many multimedia appli-\ncations are capable of responding to congestion—for example, by changing the parameters of the coding\nalgorithm to reduce the bandwidth consumed. Clearly, to make this work, the receiver needs to notify the\nsender that losses are occurring so that the sender can adjust its coding parameters.\nAnother common function across multimedia applications is the concept of frame boundary indication. A\nframe in this context is application specific. For example, it may be helpful to notify a video application\nthat a certain set of packets correspond to a single frame. In an audio application it is helpful to mark the\nbeginning of a \"talkspurt,\" which is a collection of sounds or words followed by silence. The receiver can\nthen identify the silences between talkspurts and use them as opportunities to move the playback point. This\nfollows the observation that slight shortening or lengthening of the spaces between words are not perceptible\nto users, whereas shortening or lengthening the words themselves is both perceptible and annoying.\nA final function that we might want to put into the protocol is some way of identifying senders that is more\nuser-friendly than an IP address. As illustrated in Figure 5.23, audio and video conferencing applications\n278 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\ncan display strings such as on their control panels, and thus the application protocol should support the\nassociation of such a string with a data stream.\nIn addition to the functionality that is required from our protocol, we note an additional requirement: It\nshould make reasonably efficient use of bandwidth. Put another way, we don't want to introduce a lot of\nextra bits that need to be sent with every packet in the form of a long header. The reason for this is that\naudio packets, which are one of the most common types of multimedia data, tend to be small, so as to\nreduce the time it takes to fill them with samples. Long audio packets would mean high latency due to\npacketization, which has a negative effect on the perceived quality of conversations. (This was one of the\nfactors in choosing the length of ATM cells.) Since the data packets themselves are short, a large header\nwould mean that a relatively large amount of link bandwidth would be used by headers, thus reducing\nthe available capacity for \"useful\" data. We will see several aspects of the design of RTP that have been\ninfluenced by the necessity of keeping the header short.\nYou could argue whether every single feature just described really needs to be in a real-time transport\nprotocol, and you could probably find some more that could be added. The key idea here is to make life\neasier for application developers by giving them a useful set of abstractions and building blocks for their\napplications. For example, by putting a timestamping mechanism into RTP, we save every developer of\na real-time application from inventing his own. We also increase the chances that two different real-time\napplications might interoperate.",
+      "source_section": "5.4.1",
+      "source_title": "Requirements",
+      "source_pages": [
+        282,
+        283
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.4.1",
+    "section_title": "Requirements",
+    "pages": [
+      282,
+      283
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

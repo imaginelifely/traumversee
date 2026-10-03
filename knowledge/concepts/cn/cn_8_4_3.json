@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_8_4_3",
+  "subject": "computer_networks",
+  "name": "Secret-Key Authentication Protocols",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_4_3_source",
+      "statement": "Only in fairly small systems is it practical to predistribute secret keys to every pair of entities. We focus here\non larger systems, where each entity would have its own master key shared only with a Key Distribution\nCenter (KDC). In this case, secret-key-based authentication protocols involve three parties: Alice, Bob, and\na KDC. The end product of the authentication protocol is a session key shared between Alice and Bob that\nthey will use to communicate directly, without involving the KDC.\nThe Needham-Schroeder authentication protocol is illustrated in Figure 8.11. Note that the KDC doesn't\nactually authenticate Alice's initial message and doesn't communicate with Bob at all. Instead, the KDC\nuses its knowledge of Alice's and Bob's master keys to construct a reply that would be useless to anyone\nother than Alice (because only Alice can decrypt it) and contains the necessary ingredients for Alice and\nBob to perform the rest of the authentication protocol themselves.\nThe nonce in the first two messages is to assure Alice that the KDC's reply is fresh. The second and third\nmessages include the new session key and Alice's identifier, encrypted together using Bob's master key.\nIt is a sort of secret-key version of a public-key certificate; it is in effect a signed statement by the KDC\n(because the KDC is the only entity besides Bob who knows Bob's master key) that the enclosed session\nkey is owned by Alice and Bob. Although the nonce in the last two messages is intended to assure Bob that\nthe third message was fresh, there is a flaw in this reasoning.\n392 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.10.: A public-key authentication protocol that does not depend on synchronization. Alice checks\nher own timestamp against her own clock, and likewise for Bob.\n8.4. Authentication Protocols 393\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.11.: The Needham-Schroeder authentication protocol.\n394 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nKerberos\nKerberos is an authentication system based on the Needham-Schroeder protocol and specialized for\nclient/server environments. Originally developed at MIT, it has been standardized by the IETF and is avail-\nable as both open source and commercial products. We will focus here on some of Kerberos's interesting\ninnovations.\nKerberos clients are generally human users, and users authenticate themselves using passwords. Alice's\nmaster key, shared with the KDC, is derived from her password—if you know the password, you can com-\npute the key. Kerberos assumes anyone can physically access any client machine; therefore, it is important\nto minimize the exposure of Alice's password or master key not just in the network but also on any machine\nwhere she logs in. Kerberos takes advantage of Needham-Schroeder to accomplish this. In Needham-\nSchroeder, the only time Alice needs to use her password is when decrypting the reply from the KDC.\nKerberos client-side software waits until the KDC's reply arrives, prompts Alice to enter her password,\ncomputes the master key and decrypts the KDC's reply, and then erases all information about the password\nand master key to minimize its exposure. Also note that the only sign a user sees of Kerberos is when the\nuser is prompted for a password.\nIn Needham-Schroeder, the KDC's reply to Alice plays two roles: It gives her the means to prove her\nidentity (only Alice can decrypt the reply), and it gives her a sort of secret-key certificate or \"ticket\" to\npresent to Bob—the session key and Alice's identifier, encrypted with Bob's master key. In Kerberos,\nthose two functions—and the KDC itself, in effect—are split up (Figure 8.12). A trusted server called an\nAuthentication Server (AS) plays the first KDC role of providing Alice with something she can use to prove\nher identity—not to Bob this time, but to a second trusted server called a Ticket Granting Server (TGS). The\nTGS plays the second KDC role, replying to Alice with a ticket she can present to Bob. The attraction of\nthis scheme is that if Alice needs to communicate with several servers, not just Bob, then she can get tickets\nfor each of them from the TGS without going back to the AS.\nIn the client/server application domain for which Kerberos is intended, it is reasonable to assume a de-\ngree of clock synchronization. This allows Kerberos to use timestamps and lifespans instead of Needham-\nShroeder's nonces, and thereby eliminate the Needham-Schroeder security weakness. Kerberos supports a\nchoice of hash functions and secret-key ciphers, allowing it to keep pace with the state-of-the-art in crypto-\ngraphic algorithms.",
+      "source_section": "8.4.3",
+      "source_title": "Secret-Key Authentication Protocols",
+      "source_pages": [
+        396,
+        397,
+        398,
+        399
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.4.3",
+    "section_title": "Secret-Key Authentication Protocols",
+    "pages": [
+      396,
+      397,
+      398,
+      399
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

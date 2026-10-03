@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_8_3",
+  "subject": "computer_networks",
+  "name": "Key Predistribution",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_3_source",
+      "statement": "To use ciphers and authenticators, the communicating participants need to know what keys to use. In the\ncase of a secret-key cipher, how does a pair of participants obtain the key they share? In the case of a public-\nkey cipher, how do participants know what public key belongs to a certain participant? The answer differs\ndepending on whether the keys are short-lived session keys or longer-lived predistributed keys.\nA session key is a key used to secure a single, relatively short episode of communication: a session. Each\ndistinct session between a pair of participants uses a new session key, which is always a secret key for speed.\nThe participants determine what session key to use by means of a protocol—a session key establishment\nprotocol. A session key establishment protocol needs its own security (so that, for example, an adversary\ncannot learn the new session key); that security is based on the longer-lived predistributed keys.\nThere are two primary motivations for this division of labor between session keys and predistributed keys:\n• Limiting the amount of time a key is used results in less time for computationally intensive attacks,\nless ciphertext for cryptanalysis, and less information exposed should the key be broken.\n• Public key ciphers are generally superior for authentication and session key establishment but too\nslow to use for encrypting entire messages for confidentiality.\nThis section explains how predistributed keys are distributed, and the next section will explain how session\nkeys are then established. We henceforth use \"Alice\" and \"Bob\" to designate participants, as is common in\nthe cryptography literature. Bear in mind that although we tend to refer to participants in anthropomorphic\nterms, we are more frequently concerned with the communication between software or hardware entities\nsuch as clients and servers that often have no direct relationship with any particular person.",
+      "source_section": "8.3",
+      "source_title": "Key Predistribution",
+      "source_pages": [
+        387
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.3",
+    "section_title": "Key Predistribution",
+    "pages": [
+      387
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

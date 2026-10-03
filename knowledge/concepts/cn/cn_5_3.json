@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_5_3",
+  "subject": "computer_networks",
+  "name": "Remote Procedure Call",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_3_source",
+      "statement": "A common pattern of communication used by application programs structured as a client/server pair is the\nrequest/reply message transaction: A client sends a request message to a server, and the server responds with\na reply message, with the client blocking (suspending execution) to wait for the reply. Figure 5.13 illustrates\nthe basic interaction between the client and server in such an exchange.\nFigure 5.13.: Timeline for RPC.\nA transport protocol that supports the request/reply paradigm is much more than a UDP message going in\none direction followed by a UDP message going in the other direction. It needs to deal with correctly identi-\nfying processes on remote hosts and correlating requests with responses. It may also need to overcome some\nor all of the limitations of the underlying network outlined in the problem statement at the beginning of this\nchapter. While TCP overcomes these limitations by providing a reliable byte-stream service, it doesn't per-\nfectly match the request/reply paradigm either. This section describes a third category of transport protocol,\ncalled Remote Procedure Call (RPC), that more closely matches the needs of an application involved in a\nrequest/reply message exchange.",
+      "source_section": "5.3",
+      "source_title": "Remote Procedure Call",
+      "source_pages": [
+        264
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.3",
+    "section_title": "Remote Procedure Call",
+    "pages": [
+      264
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

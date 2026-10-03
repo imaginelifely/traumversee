@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_9_2_1",
+  "subject": "computer_networks",
+  "name": "Session Control and Call Control (SDP, SIP, H.323)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_9_2_1_source",
+      "statement": "To understand some of the issues of session control, consider the following problem. Suppose you want to\nhold a videoconference at a certain time and make it available to a wide number of participants. Perhaps\nyou have decided to encode the video stream using the MPEG-2 standard, to use the multicast IP address",
+      "source_section": "9.2.1",
+      "source_title": "Session Control and Call Control (SDP, SIP, H.323)",
+      "source_pages": [
+        441
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "9.2.1",
+    "section_title": "Session Control and Call Control (SDP, SIP, H.323)",
+    "pages": [
+      441
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

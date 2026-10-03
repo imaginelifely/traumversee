@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_8_4_1",
+  "subject": "computer_networks",
+  "name": "Originality and Timeliness Techniques",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_4_1_source",
+      "statement": "We have seen that authenticators alone do not enable us to detect messages that are not original or timely.\nOne approach is to include a timestamp in the message. Obviously the timestamp itself must be tamper-\nproof, so it must be covered by the authenticator. The primary drawback to timestamps is that they require\ndistributed clock synchronization. Since our system would then depend on synchronization, the clock syn-\nchronization itself would need to be defended against security threats, in addition to the usual challenges of\nclock synchronization. Another issue is that distributed clocks are synchronized to only a certain degree—a\ncertain margin of error. Thus, the timing integrity provided by timestamps is only as good as the degree of\nsynchronization.\nAnother approach is to include a nonce—a random number used only once—in the message. Participants\ncan then detect replay attacks by checking whether a nonce has been used previously. Unfortunately, this\nrequires keeping track of past nonces, of which a great many could accumulate. One solution is to combine\nthe use of timestamps and nonces, so that nonces are required to be unique only within a certain span of\ntime. That makes ensuring uniqueness of nonces manageable while requiring only loose synchronization of\nclocks.\nAnother solution to the shortcomings of timestamps and nonces is to use one or both of them in achallenge-\nresponse protocol. Suppose we use a timestamp. In a challenge-response protocol, Alice sends Bob a\ntimestamp, challenging Bob to encrypt it in a response message (if they share a secret key) or digitally sign\nit in a response message (if Bob has a public key, as in Figure 8.8). The encrypted timestamp is like an\nauthenticator that additionally proves timeliness. Alice can easily check the timeliness of the timestamp in\na response from Bob since that timestamp comes from Alice's own clock—no distributed clock synchro-\nnization needed. Suppose instead that the protocol uses nonces. Then Alice need only keep track of those\nnonces for which responses are currently outstanding and haven't been outstanding too long; any purported\nresponse with an unrecognized nonce must be bogus.\nThe beauty of challenge-response, which might otherwise seem excessively complex, is that it combines\ntimeliness and authentication; after all, only Bob (and possibly Alice, if it's a secret-key cipher) knows the\n390 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.8.: A challenge-response protocol.\nkey necessary to encrypt the never before seen timestamp or nonce. Timestamps or nonces are used in most\nof the authentication protocols that follow.",
+      "source_section": "8.4.1",
+      "source_title": "Originality and Timeliness Techniques",
+      "source_pages": [
+        394,
+        395
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.4.1",
+    "section_title": "Originality and Timeliness Techniques",
+    "pages": [
+      394,
+      395
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

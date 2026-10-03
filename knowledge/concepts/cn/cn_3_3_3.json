@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_3_3",
+  "subject": "computer_networks",
+  "name": "Global Addresses",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_3_source",
+      "statement": "In the above discussion of the IP service model, we mentioned that one of the things that it provides is an\naddressing scheme. After all, if you want to be able to send data to any host on any network, there needs\nto be a way of identifying all the hosts. Thus, we need a global addressing scheme—one in which no two\nhosts have the same address. Global uniqueness is the first property that should be provided in an addressing\nscheme.\nEthernet addresses are globally unique, but that alone does not suffice for an addressing scheme in a large\ninternetwork. Ethernet addresses are also flat, which means that they have no structure and provide very\nfew clues to routing protocols. (In fact, Ethernet addresses do have a structure for the purposes of as-\nsignment—the first 24 bits identify the manufacturer—but this provides no useful information to routing\nprotocols since this structure has nothing to do with network topology.) In contrast, IP addresses arehierar-\nchical, by which we mean that they are made up of several parts that correspond to some sort of hierarchy\nin the internetwork. Specifically, IP addresses consist of two parts, usually referred to as a network part and\na host part. This is a fairly logical structure for an internetwork, which is made up of many interconnected\nnetworks. The network part of an IP address identifies the network to which the host is attached; all hosts\nattached to the same network have the same network part in their IP address. The host part then identifies\neach host uniquely on that particular network. Thus, in the simple internetwork of Figure 3.15, the addresses\nof the hosts on network 1, for example, would all have the same network part and different host parts.\nNote that the routers in Figure 3.15 are attached to two networks. They need to have an address on each\n3.3. Internet (IP) 133\nComputer Networks: A Systems Approach, Release Version 6.1\nnetwork, one for each interface. For example, router R1, which sits between the wireless network and an\nEthernet, has an IP address on the interface to the wireless network whose network part is the same as all the\nhosts on that network. It also has an IP address on the interface to the Ethernet that has the same network\npart as the hosts on that Ethernet. Thus, bearing in mind that a router might be implemented as a host with\ntwo network interfaces, it is more precise to think of IP addresses as belonging to interfaces than to hosts.\nNow, what do these hierarchical addresses look like? Unlike some other forms of hierarchical address, the\nsizes of the two parts are not the same for all addresses. Originally, IP addresses were divided into three\ndifferent classes, as shown in Figure 3.20, each of which defines different-sized network and host parts.\n(There are also class D addresses that specify a multicast group and class E addresses that are currently\nunused.) In all cases, the address is 32 bits long.\nThe class of an IP address is identified in the most significant few bits. If the first bit is 0, it is a class A\naddress. If the first bit is 1 and the second is 0, it is a class B address. If the first two bits are 1 and the\nthird is 0, it is a class C address. Thus, of the approximately 4 billion possible IP addresses, half are class A,\none-quarter are class B, and one-eighth are class C. Each class allocates a certain number of bits for the\nnetwork part of the address and the rest for the host part. Class A networks have 7 bits for the network part\nand 24 bits for the host part, meaning that there can be only 126 class A networks (the values 0 and 127\nare reserved), but each of them can accommodate up to 224− 2 (about 16 million) hosts (again, there are\ntwo reserved values). Class B addresses allocate 14 bits for the network and 16 bits for the host, meaning\nthat each class B network has room for 65,534 hosts. Finally, class C addresses have only 8 bits for the host\nand 21 for the network part. Therefore, a class C network can have only 256 unique host identifiers, which\nmeans only 254 attached hosts (one host identifier, 255, is reserved for broadcast, and 0 is not a valid host\nnumber). However, the addressing scheme supports 221 class C networks.\nFigure 3.20.: IP addresses: (a) class A; (b) class B; (c) class C.\nOn the face of it, this addressing scheme has a lot of flexibility, allowing networks of vastly different sizes\nto be accommodated fairly efficiently. The original idea was that the Internet would consist of a small\nnumber of wide area networks (these would be class A networks), a modest number of site- (campus-\n) sized networks (these would be class B networks), and a large number of LANs (these would be class C\nnetworks). However, it turned out not to be flexible enough, as we will see in a moment. Today, IP addresses\nare normally \"classless\"; the details of this are explained below.\nBefore we look at how IP addresses get used, it is helpful to look at some practical matters, such as how you\nwrite them down. By convention, IP addresses are written as four decimal integers separated by dots. Each\n134 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\ninteger represents the decimal value contained in 1 byte of the address, starting at the most significant. For\nexample, the address of the computer on which this sentence was typed is171.69.210.245.\nIt is important not to confuse IP addresses with Internet domain names, which are also hierarchical. Domain\nnames tend to be ASCII strings separated by dots, such as cs.princeton.edu. The important thing\nabout IP addresses is that they are what is carried in the headers of IP packets, and it is those addresses that\nare used in IP routers to make forwarding decisions.",
+      "source_section": "3.3.3",
+      "source_title": "Global Addresses",
+      "source_pages": [
+        137,
+        138,
+        139
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3.3",
+    "section_title": "Global Addresses",
+    "pages": [
+      137,
+      138,
+      139
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

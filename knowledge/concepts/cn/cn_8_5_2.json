@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_5_2",
+  "subject": "computer_networks",
+  "name": "Secure Shell (SSH)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_5_2_source",
+      "statement": "The Secure Shell (SSH) protocol is used to provide a remote login service, replacing the less secure Telnet\nused in the early days of the Internet. (SSH can also be used to remotely execute commands and transfer\nfiles, but we will focus first on how SSH supports remote login.) SSH is most often used to provide strong\nclient/server authentication/message integrity—where the SSH client runs on the user's desktop machine\nand the SSH server runs on some remote machine that the user wants to log into—but it also supports\nconfidentiality. Telnet provides none of these capabilities. Note that \"SSH\" is often used to refer to both the\nSSH protocol and applications that use it; you need to figure out which from the context.\nTo better appreciate the importance of SSH on today's Internet, consider a couple of the scenarios where it is\nused. Telecommuters, for example, often subscribe to ISPs that offer high-speed fiber-to-the-home, and they\nuse these ISPs (plus some chain of other ISPs) to reach machines operated by their employer. This means\nthat when a telecommuter logs into a machine inside his employer's data center, both the passwords and all\nthe data sent or received potentially passes through any number of untrusted networks. SSH provides a way\nto encrypt the data sent over these connections and to improve the strength of the authentication mechanism\nused to log in. (A similar situation occurs when said employee connects to work using the public Wi-Fi at\nStarbucks.) Another usage of SSH is remote login to a router, perhaps to change its configuration or read\nits log files; clearly, a network administrator wants to be sure that he can log into a router securely and that\nunauthorized parties can neither log in nor intercept the commands sent to the router or output sent back to\nthe administrator.\nThe latest version of SSH, version 2, consists of three protocols:\n• SSH-TRANS, a transport layer protocol\n• SSH-AUTH, an authentication protocol\n• SSH-CONN, a connection protocol\nWe focus on the first two, which are involved in remote login. We briefly discuss the purpose of SSH-CONN\nat the end of the section.\nSSH-TRANS provides an encrypted channel between the client and server machines. It runs on top of a TCP\nconnection. Any time a user uses an SSH application to log into a remote machine, the first step is to set up\nan SSH-TRANS channel between those two machines. The two machines establish this secure channel by\nfirst having the client authenticate the server using RSA. Once authenticated, the client and server establish\na session key that they will use to encrypt any data sent over the channel. This high-level description\nskims over several details, including the fact that the SSH-TRANS protocol includes a negotiation of the\n8.5. Example Systems 399\nComputer Networks: A Systems Approach, Release Version 6.1\nencryption algorithm the two sides are going to use. For example, AES is commonly selected. Also, SSH-\nTRANS includes a message integrity check of all data exchanged over the channel.\nThe one issue we can't skim over is how the client came to possess the server's public key that it needs\nto authenticate the server. Strange as it may sound, the server tells the client its public key at connection\ntime. The first time a client connects to a particular server, the SSH application warns the user that it has\nnever talked to this machine before and asks if the user wants to continue. Although it is a risky thing to do,\nbecause SSH is effectively not able to authenticate the server, users often say \"yes\" to this question. The SSH\napplication then remembers the server's public key, and the next time the user connects to that same machine\nit compares this saved key with the one the server responds with. If they are the same, SSH authenticates\nthe server. If they are different, however, the SSH application again warns the user that something is amiss,\nand the user is then given an opportunity to abort the connection. Alternatively, the prudent user can learn\nthe server's public key through some out-of-band mechanism, save it on the client machine, and thus never\ntake the \"first time\" risk.\nOnce the SSH-TRANS channel exists, the next step is for the user to actually log into the machine, or more\nspecifically, authenticate himself or herself to the server. SSH allows three different mechanisms for doing\nthis. First, since the two machines are communicating over a secure channel, it is OK for the user to simply\nsend his or her password to the server. This is not a safe thing to do when using Telnet since the password\nwould be sent in the clear, but in the case of SSH the password is encrypted in the SSH-TRANS channel.\nThe second mechanism uses public-key encryption. This requires that the user has already placed his or her\npublic key on the server. The third mechanism, called host-based authentication, basically says that any\nuser claiming to be so-and-so from a certain set of trusted hosts is automatically believed to be that same\nuser on the server. Host-based authentication requires that the client host authenticate itself to the server\nwhen they first connect; standard SSH-TRANS only authenticates the server by default.\nThe main thing you should take away from this discussion is that SSH is a fairly straightforward application\nof the protocols and algorithms we have seen throughout this chapter. However, what sometimes makes\nSSH a challenge to understand is all the keys a user has to create and manage, where the exact interface is\noperating system dependent. For example, the OpenSSH package that runs on most Unix machines supports\na command that can be used to create public/private key pairs. These keys are then stored in various files\nin directory in the user's home directory. For example, file ~/.ssh/known_hosts records the keys for\nall the hosts the user has logged into, file ~/.ssh/authorized_keys contains the public keys needed\nto authenticate the user when he or she logs into this machine (i.e., they are used on the server side), and\nfile contains the private keys needed to authenticate the user on remote machines (i.e., they are used on the\nclient side).\nFinally, SSH has proven so useful as a system for securing remote login, it has been extended to also support\nother applications, such as sending and receiving email. The idea is to run these applications over a secure\n\"SSH tunnel.\" This capability is called port forwarding, and it uses the SSH-CONN protocol. The idea is\nillustrated in Figure 8.14, where we see a client on host A indirectly communicating with a server on host\nB by forwarding its traffic through an SSH connection. The mechanism is called port forwarding because\nwhen messages arrive at the well-known SSH port on the server, SSH first decrypts the contents and then\n\"forwards\" the data to the actual port at which the server is listening. This is just another sort of tunnel,\nwhich in this case happens to provide confidentiality and authentication. It's possible to provide a form of\nvirtual private network (VPN) using SSH tunnels in this way.\n400 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.14.: Using SSH port forwarding to secure other TCP-based applications.",
+      "source_section": "8.5.2",
+      "source_title": "Secure Shell (SSH)",
+      "source_pages": [
+        403,
+        404,
+        405
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.5.2",
+    "section_title": "Secure Shell (SSH)",
+    "pages": [
+      403,
+      404,
+      405
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

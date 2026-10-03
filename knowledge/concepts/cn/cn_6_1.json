@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_6_1",
+  "subject": "computer_networks",
+  "name": "Issues in Resource Allocation",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_1_source",
+      "statement": "Resource allocation and congestion control are complex issues that have been the subject of much study\never since the first network was designed. They are still active areas of research. One factor that makes\nthese issues complex is that they are not isolated to one single level of a protocol hierarchy. Resource\nallocation is partially implemented in the routers, switches, and links inside the network and partially in\nthe transport protocol running on the end hosts. End systems may use signalling protocols to convey their\nresource requirements to network nodes, which respond with information about resource availability. One\nof the main goals of this chapter is to define a framework in which these mechanisms can be understood, as\nwell as to give the relevant details about a representative sample of mechanisms.\nWe should clarify our terminology before going any further. By resource allocation, we mean the pro-\ncess by which network elements try to meet the competing demands that applications have for network\nresources—primarily link bandwidth and buffer space in routers or switches. Of course, it will often not\nbe possible to meet all the demands, meaning that some users or applications may receive fewer network\nresources than they want. Part of the resource allocation problem is deciding when to say no and to whom.\nWe use the term congestion control to describe the efforts made by network nodes to prevent or respond to\noverload conditions. Since congestion is generally bad for everyone, the first order of business is making\ncongestion subside, or preventing it in the first place. This might be achieved simply by persuading a few\nhosts to stop sending, thus improving the situation for everyone else. However, it is more common for\ncongestion-control mechanisms to have some aspect of fairness—that is, they try to share the pain among\nall users, rather than causing great pain to a few. Thus, we see that many congestion-control mechanisms\nhave some sort of resource allocation built into them.\nIt is also important to understand the difference between flow control and congestion control. Flow control\ninvolves keeping a fast sender from overrunning a slow receiver. Congestion control, by contrast, is intended\nto keep a set of senders from sending too much data into the network because of lack of resources at some\npoint. These two concepts are often confused; as we will see, they also share some mechanisms.",
+      "source_section": "6.1",
+      "source_title": "Issues in Resource Allocation",
+      "source_pages": [
+        292
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.1",
+    "section_title": "Issues in Resource Allocation",
+    "pages": [
+      292
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

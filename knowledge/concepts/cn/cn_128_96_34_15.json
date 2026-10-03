@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_128_96_34_15",
+  "subject": "computer_networks",
+  "name": "and a subnet mask of 255.255.255.128. (All hosts on a given subnet are configured with the",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_128_96_34_15_source",
+      "statement": "same mask; that is, there is exactly one subnet mask per subnet.) The bitwise AND of these two numbers\ndefines the subnet number of the host and of all other hosts on the same subnet. In this case, 128.96.34.15\nAND 255.255.255.128 equals 128.96.34.0, so this is the subnet number for the topmost subnet in the figure.\nWhen the host wants to send a packet to a certain IP address, the first thing it does is to perform a bitwise\nAND between its own subnet mask and the destination IP address. If the result equals the subnet number of\nthe sending host, then it knows that the destination host is on the same subnet and the packet can be delivered\n138 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 3.22.: An example of subnetting.\ndirectly over the subnet. If the results are not equal, the packet needs to be sent to a router to be forwarded\nto another subnet. For example, if H1 is sending to H2, then H1 ANDs its subnet mask (255.255.255.128)\nwith the address for H2 (128.96.34.139) to obtain 128.96.34.128. This does not match the subnet number\nfor H1 (128.96.34.0) so H1 knows that H2 is on a different subnet. Since H1 cannot deliver the packet to\nH2 directly over the subnet, it sends the packet to its default router R1.\nThe forwarding table of a router also changes slightly when we introduce subnetting. Recall that we pre-\nviously had a forwarding table that consisted of entries of the form (NetworkNum, NextHop). To\nsupport subnetting, the table must now hold entries of the form (SubnetNumber, SubnetMask,\nNextHop). To find the right entry in the table, the router ANDs the packet's destination address with\ntheSubnetMaskfor each entry in turn; if the result matches theSubnetNumber of the entry, then this is\nthe right entry to use, and it forwards the packet to the next hop router indicated. In the example network of\nFigure 3.22, router R1 would have the entries shown in Table 3.8.\nTable 3.8.: Example Forwarding Table with Subnetting.\nSubnetNumber SubnetMask NextHop",
+      "source_section": "128.96.34.15",
+      "source_title": "and a subnet mask of 255.255.255.128. (All hosts on a given subnet are configured with the",
+      "source_pages": [
+        142,
+        143
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "128.96.34.15",
+    "section_title": "and a subnet mask of 255.255.255.128. (All hosts on a given subnet are configured with the",
+    "pages": [
+      142,
+      143
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

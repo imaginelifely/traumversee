@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_1_4_1",
+  "subject": "computer_networks",
+  "name": "Application Programming Interface (Sockets)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_4_1_source",
+      "statement": "The place to start when implementing a network application is the interface exported by the network. Since\nmost network protocols are in software (especially those high in the protocol stack), and nearly all computer\nsystems implement their network protocols as part of the operating system, when we refer to the interface\n\"exported by the network,\" we are generally referring to the interface that the OS provides to its networking\nsubsystem. This interface is often called the network application programming interface (API).\nAlthough each operating system is free to define its own network API (and most have), over time certain of\nthese APIs have become widely supported; that is, they have been ported to operating systems other than\ntheir native system. This is what has happened with thesocket interface originally provided by the Berkeley\ndistribution of Unix, which is now supported in virtually all popular operating systems, and is the foundation\nof language-specific interfaces, such as the Java or Python socket library. We use Linux and C for all code\nexamples in this book, Linux because it is open source and C because it remains the language of choice\nfor network internals. (C also has the advantage of exposing all the low-level details, which is helpful in\nunderstanding the underlying ideas.)\nSockets Enabled Application Explosion\nIt is hard to overstate the importance of the Socket API. It defines the demarcation point between the\napplications running on top of the Internet, and the details of how the Internet is implemented. As a con-\nsequence of Sockets providing a well-defined and stable interface, writing Internet applications exploded\ninto a multi-billion dollar industry. Starting from the humble beginnings of the client/server paradigm\nand a handful of simple application programs like email, file transfer, and remote login, everyone now has\naccess to an never-ending supply of cloud applications from their smartphones.\n32 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\nThis section lays the foundation by revisiting the simplicity of a client program opening a socket so it can\nexchange messages with a server program, but today a rich software ecosystem is layered on top of the\nSocket API. This layer includes a plethora of cloud-based tools that lower the barrier for implementing\nscalable applications. We return to the interplay between the cloud and the network in every chapter,\nstarting with the Perspective section at the end of Chapter 1.\nBefore describing the socket interface, it is important to keep two concerns separate in your mind. Each\nprotocol provides a certain set of services, and the API provides a syntax by which those services can be\ninvoked on a particular computer system. The implementation is then responsible for mapping the tangible\nset of operations and objects defined by the API onto the abstract set of services defined by the protocol. If\nyou have done a good job of defining the interface, then it will be possible to use the syntax of the interface to\ninvoke the services of many different protocols. Such generality was certainly a goal of the socket interface,\nalthough it's far from perfect.\nThe main abstraction of the socket interface, not surprisingly, is thesocket. A good way to think of a socket\nis as the point where a local application process attaches to the network. The interface defines operations\nfor creating a socket, attaching the socket to the network, sending/receiving messages through the socket,\nand closing the socket. To simplify the discussion, we will limit ourselves to showing how sockets are used\nwith TCP.\nThe first step is to create a socket, which is done with the following operation:\nint socket(int domain, int type, int protocol);\nThe reason that this operation takes three arguments is that the socket interface was designed to be general\nenough to support any underlying protocol suite. Specifically, the domain argument specifies the protocol\nfamily that is going to be used: PF_INET denotes the Internet family, PF_UNIX denotes the Unix pipe\nfacility, andPF_PACKET denotes direct access to the network interface (i.e., it bypasses the TCP/IP protocol\nstack). The type argument indicates the semantics of the communication. SOCK_STREAM is used to\ndenote a byte stream. SOCK_DGRAM is an alternative that denotes a message-oriented service, such as that\nprovided by UDP. Theprotocol argument identifies the specific protocol that is going to be used. In our\ncase, this argument is UNSPEC because the combination of PF_INET and SOCK_STREAM implies TCP.\nFinally, the return value from socket is a handle for the newly created socket—that is, an identifier by\nwhich we can refer to the socket in the future. It is given as an argument to subsequent operations on this\nsocket.\nThe next step depends on whether you are a client or a server. On a server machine, the application process\nperforms a passive open—the server says that it is prepared to accept connections, but it does not actually\nestablish a connection. The server does this by invoking the following three operations:\nint bind(int socket, struct sockaddr *address, int addr_len);\nint listen(int socket, int backlog);\nint accept(int socket, struct sockaddr *address, int *addr_len);\nThe bind operation, as its name suggests, binds the newly created socket to the specified address.\nThis is the network address of the local participant—the server. Note that, when used with the Internet\nprotocols, address is a data structure that includes both the IP address of the server and a TCP port\nnumber. Ports are used to indirectly identify processes. They are a form of demux keys. The port number is\nusually some well-known number specific to the service being offered; for example, web servers commonly\naccept connections on port 80.\n1.4. Software 33\nComputer Networks: A Systems Approach, Release Version 6.1\nThelisten operation then defines how many connections can be pending on the specified socket. Fi-\nnally, the accept operation carries out the passive open. It is a blocking operation that does not return\nuntil a remote participant has established a connection, and when it does complete it returns a new socket\nthat corresponds to this just-established connection, and the address argument contains the remote par-\nticipant's address. Note that whenaccept returns, the original socket that was given as an argument still\nexists and still corresponds to the passive open; it is used in future invocations ofaccept.\nOn the client machine, the application process performs an active open; that is, it says who it wants to\ncommunicate with by invoking the following single operation:\nint connect(int socket, struct sockaddr *address, int addr_len);\nThis operation does not return until TCP has successfully established a connection, at which time the ap-\nplication is free to begin sending data. In this case, address contains the remote participant's address. In\npractice, the client usually specifies only the remote participant's address and lets the system fill in the local\ninformation. Whereas a server usually listens for messages on a well-known port, a client typically does not\ncare which port it uses for itself; the OS simply selects an unused one.\nOnce a connection is established, the application processes invoke the following two operations to send and\nreceive data:\nint send(int socket, char *message, int msg_len, int flags);\nint recv(int socket, char *buffer, int buf_len, int flags);\nThe first operation sends the given message over the specified socket, while the second operation re-\nceives a message from the specifiedsocket into the givenbuffer. Both operations take a set of flags\nthat control certain details of the operation.",
+      "source_section": "1.4.1",
+      "source_title": "Application Programming Interface (Sockets)",
+      "source_pages": [
+        36,
+        37,
+        38
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.4.1",
+    "section_title": "Application Programming Interface (Sockets)",
+    "pages": [
+      36,
+      37,
+      38
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

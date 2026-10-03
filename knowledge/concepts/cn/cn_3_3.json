@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_3_3",
+  "subject": "computer_networks",
+  "name": "Internet (IP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_source",
+      "statement": "In the previous section, we saw that it was possible to build reasonably large LANs using bridges and\nLAN switches, but that such approaches were limited in their ability to scale and to handle heterogeneity.\nIn this section, we explore some ways to go beyond the limitations of bridged networks, enabling us to\nbuild large, highly heterogeneous networks with reasonably efficient routing. We refer to such networks as\ninternetworks. We'll continue the discussion of how to build a truly global internetwork in the next chapter,\nbut for now we'll explore the basics. We start by considering more carefully what the word internetwork\nmeans.",
+      "source_section": "3.3",
+      "source_title": "Internet (IP)",
+      "source_pages": [
+        129
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3",
+    "section_title": "Internet (IP)",
+    "pages": [
+      129
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

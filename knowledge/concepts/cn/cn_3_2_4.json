@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_3_2_4",
+  "subject": "computer_networks",
+  "name": "Broadcast and Multicast",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_2_4_source",
+      "statement": "The preceding discussion focuses on how switches forward unicast frames from one port to another. Since\nthe goal of a switch is to transparently extend a LAN across multiple networks, and since most LANs support\nboth broadcast and multicast, then switches must also support these two features. Broadcast is simple—each\nswitch forwards a frame with a destination broadcast address out on each active (selected) port other than\nthe one on which the frame was received.\nMulticast can be implemented in exactly the same way, with each host deciding for itself whether or not\nto accept the message. This is exactly what is done in practice. Notice, however, that since not all hosts\nare a member of any particular multicast group, it is possible to do better. Specifically, the spanning tree\nalgorithm can be extended to prune networks over which multicast frames need not be forwarded. Consider\na frame sent to group M by a host A in Figure 3.12. If host C does not belong to group M, then there is no\nneed for switch S4 to forward the frames over that network.\nHow would a given switch learn whether it should forward a multicast frame over a given port? It learns ex-\nactly the same way that a switch learns whether it should forward a unicast frame over a particular port—by\nobserving the source addresses that it receives over that port. Of course, groups are not typically the source\nof frames, so we have to cheat a little. In particular, each host that is a member of group M must periodically\nsend a frame with the address for group M in the source field of the frame header. This frame would have\nas its destination address the multicast address for the switches.\nAlthough the multicast extension just described was once proposed, it was not widely adopted. Instead,\nmulticast is implemented in exactly the same way as broadcast.",
+      "source_section": "3.2.4",
+      "source_title": "Broadcast and Multicast",
+      "source_pages": [
+        127
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.2.4",
+    "section_title": "Broadcast and Multicast",
+    "pages": [
+      127
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

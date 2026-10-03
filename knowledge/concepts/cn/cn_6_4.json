@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_6_4",
+  "subject": "computer_networks",
+  "name": "Advanced Congestion Control",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_4_source",
+      "statement": "This section explores congestion control more deeply. In doing so, it is important to understand that the\nstandard TCP's strategy is to control congestion once it happens, as opposed to trying to avoid congestion\nin the first place. In fact, TCP repeatedly increases the load it imposes on the network in an effort to find\nthe point at which congestion occurs, and then it backs off from this point. Said another way, TCP needs to\ncreate losses to find the available bandwidth of the connection. An appealing alternative is to predict when\ncongestion is about to happen and then to reduce the rate at which hosts send data just before packets start\nbeing discarded. We call such a strategy congestion avoidance to distinguish it from congestion control, but\nit's probably most accurate to think of \"avoidance\" as a subset of \"control.\"\nWe describe two different approaches to congestion-avoidance. The first puts a small amount of additional\nfunctionality into the router to assist the end node in the anticipation of congestion. This approach is often\nreferred to as Active Queue Management (AQM). The second approach attempts to avoid congestion purely\nfrom the end hosts. This approach is implemented in TCP, making it variant of the congestion control\nmechanisms described in the previous section.",
+      "source_section": "6.4",
+      "source_title": "Advanced Congestion Control",
+      "source_pages": [
+        315
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.4",
+    "section_title": "Advanced Congestion Control",
+    "pages": [
+      315
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

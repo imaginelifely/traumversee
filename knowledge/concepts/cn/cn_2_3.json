@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_3",
+  "subject": "computer_networks",
+  "name": "Framing",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_3_source",
+      "statement": "Now that we have seen how to transmit a sequence of bits over a point-to-point link—from adaptor to adap-\ntor—let's consider the scenario in Figure 2.6. Recall from Chapter 1 that we are focusing on packet-switched\nnetworks, which means that blocks of data (called frames at this level), not bit streams, are exchanged be-\ntween nodes. It is the network adaptor that enables the nodes to exchange frames. When node A wishes to\ntransmit a frame to node B, it tells its adaptor to transmit a frame from the node's memory. This results in\na sequence of bits being sent over the link. The adaptor on node B then collects together the sequence of\nbits arriving on the link and deposits the corresponding frame in B's memory. Recognizing exactly what set\nof bits constitutes a frame—that is, determining where the frame begins and ends—is the central challenge\nfaced by the adaptor.\nThere are several ways to address the framing problem. This section uses three different protocols to illus-\ntrate the various points in the design space. Note that while we discuss framing in the context of point-to-\npoint links, the problem is a fundamental one that must also be addressed in multiple-access networks like\nEthernet and Wi-Fi.\n54 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.6.: Bits flow between adaptors, frames between hosts.",
+      "source_section": "2.3",
+      "source_title": "Framing",
+      "source_pages": [
+        58,
+        59
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.3",
+    "section_title": "Framing",
+    "pages": [
+      58,
+      59
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_1",
+  "subject": "computer_networks",
+  "name": "Global Internet",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_1_source",
+      "statement": "At this point, we have seen how to connect a heterogeneous collection of networks to create an internetwork\nand how to use the simple hierarchy of the IP address to make routing in an internet somewhat scalable. We\nsay \"somewhat\" scalable because, even though each router does not need to know about all the hosts con-\nnected to the internet, it does, in the model described so far, need to know about all the networks connected\nto the internet. Today's Internet has hundreds of thousands of networks connected to it (or more, depending\non how you count). Routing protocols such as those we have just discussed do not scale to those kinds of\nnumbers. This section looks at a variety of techniques that greatly improve scalability and that have enabled\nthe Internet to grow as far as it has.\nFigure 4.1.: The tree structure of the Internet in 1990.\nBefore getting to these techniques, we need to have a general picture in our heads of what the global Internet\nlooks like. It is not just a random interconnection of Ethernets, but instead it takes on a shape that reflects\nthe fact that it interconnects many different organizations. Figure 4.1 gives a simple depiction of the state\nof the Internet in 1990. Since that time, the Internet's topology has grown much more complex than this\nfigure suggests—we present a slightly more accurate picture of the current Internet in a later section—but\nthis picture will do for now.\nOne of the salient features of this topology is that it consists of end-user sites (e.g., Stanford University)\nthat connect to service provider networks (e.g., BARRNET was a provider network that served sites in the\nSan Francisco Bay Area). In 1990, many providers served a limited geographic region and were thus known\nas regional networks. The regional networks were, in turn, connected by a nationwide backbone. In 1990,\nthis backbone was funded by the National Science Foundation (NSF) and was therefore called the NSFNET\nbackbone.\nNSFNET gave way to Internet2, which still runs a backbone on behalf of Research and Education institutions\nin the US (there are similar R&E networks in other countries), but of course most people get their Internet\nconnectivity from commercial providers. Although the detail is not shown in the figure, today the largest\nprovider networks (they are called tier-1) are typically built from dozens of high-end routers located in major\nmeteropolitan areas (colloquially referred to as \"NFL cities\") connected by point-to-point links (often with\n100 Gbps capacity). Similarly, each end-user site is typically not a single network but instead consists of\nmultiple physical networks connected by switches and routers.\nNotice in that each provider and end-user is likely to be an administratively independent entity. This has\n180 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nsome significant consequences on routing. For example, it is quite likely that different providers will have\ndifferent ideas about the best routing protocol to use within their networks and on how metrics should be\nassigned to links in their network. Because of this independence, each provider's network is usually a single\nautonomous system (AS). We will define this term more precisely in a later section, but for now it is adequate\nto think of an AS as a network that is administered independently of other ASs.\nThe fact that the Internet has a discernible structure can be used to our advantage as we tackle the problem of\nscalability. In fact, we need to deal with two related scaling issues. The first is the scalability of routing. We\nneed to find ways to minimize the number of network numbers that get carried around in routing protocols\nand stored in the routing tables of routers. The second is address utilization—that is, making sure that the\nIP address space does not get consumed too quickly.\nThroughout this book, we see the principle of hierarchy used again and again to improve scalability. We\nsaw in the previous chapter how the hierarchical structure of IP addresses, especially with the flexibility\nprovided by Classless Interdomain Routing (CIDR) and subnetting, can improve the scalability of routing.\nIn the next two sections, we'll see further uses of hierarchy (and its partner, aggregation) to provide greater\nscalability, first in a single domain and then between domains. Our final subsection looks at IP version 6,\nthe invention of which was largely the result of scalability concerns.",
+      "source_section": "4.1",
+      "source_title": "Global Internet",
+      "source_pages": [
+        184,
+        185
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.1",
+    "section_title": "Global Internet",
+    "pages": [
+      184,
+      185
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

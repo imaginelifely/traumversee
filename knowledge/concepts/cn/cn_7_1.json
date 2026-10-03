@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_7_1",
+  "subject": "computer_networks",
+  "name": "Presentation Formatting",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_7_1_source",
+      "statement": "One of the most common transformations of network data is from the representation used by the application\nprogram into a form that is suitable for transmission over a network and vice versa. This transformation is\ntypically called presentation formatting. As illustrated in Figure 7.1, the sending program translates the data\nit wants to transmit from the representation it uses internally into a message that can be transmitted over\nthe network; that is, the data is encoded in a message. On the receiving side, the application translates this\narriving message into a representation that it can then process; that is, the message is decoded. This process\nis sometimes called argument marshalling or serialization. This terminology comes from the Remote Pro-\ncedure Call (RPC) world, where the client thinks it is invoking a procedure with a set of arguments, but these\narguments are then \"brought together and ordered in an appropriate and effective way\" to form a network\nmessage.\nYou might ask what makes this problem challenging. One reason is that computers represent data in different\nways. For example, some computers represent floating-point numbers in IEEE standard 754 format, while\nsome older machines still use their own nonstandard format. Even for something as simple as integers,\ndifferent architectures use different sizes (e.g., 16-bit, 32-bit, 64-bit). To make matters worse, on some\nmachines integers are represented in big-endian form (the most significant bit of a word is in the byte\nwith the highest address), while on other machines integers are represented in little-endian form (the most\nsignificant bit is in the byte with the lowest address). For example, PowerPC processors are big-endian\nmachines, and the Intel x86 family is a little-endian architecture. Today, many architectures support both\nrepresentations (and so are called bi-endian), but the point is that you can never be sure how the host you\nare communicating with stores integers. The big-endian and little-endian representations of the integer\n34,677,374 are given in Figure 7.2.\nAnother reason that marshalling is difficult is that application programs are written in different languages,\n342 Chapter 7. End-to-End Data\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 7.1.: Presentation formatting involves encoding and decoding application data.\nFigure 7.2.: Big-endian and little-endian byte order for the integer 34,677,374\n7.1. Presentation Formatting 343\nComputer Networks: A Systems Approach, Release Version 6.1\nand even when you are using a single language there may be more than one compiler. For example, compilers\nhave a fair amount of latitude in how they lay out structures (records) in memory, such as how much padding\nthey put between the fields that make up the structure. Thus, you could not simply transmit a structure from\none machine to another, even if both machines were of the same architecture and the program was written in\nthe same language, because the compiler on the destination machine might align the fields in the structure\ndifferently.",
+      "source_section": "7.1",
+      "source_title": "Presentation Formatting",
+      "source_pages": [
+        346,
+        347,
+        348
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "7.1",
+    "section_title": "Presentation Formatting",
+    "pages": [
+      346,
+      347,
+      348
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

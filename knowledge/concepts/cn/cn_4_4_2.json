@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_4_2",
+  "subject": "computer_networks",
+  "name": "Explicit Routing",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_4_2_source",
+      "statement": "IP has a source routing option, but it is not widely used for several reasons, including the fact that only a\nlimited number of hops can be specified and because it is usual processed outside the \"fast path\" on most\nrouters.\nMPLS provides a convenient way to add capabilities similar to source-routing to IP networks, although\nthe capability is more often referred to as explicit routing rather than source routing. One reason for the\ndistinction is that it usually isn't the real source of the packet that picks the route. More often it is one of\nthe routers inside a service provider's network. Figure 4.22 shows an example of how the explicit routing\ncapability of MPLS might be applied. This sort of network is often called afish network because of its shape\n(the routers R1 and R2 form the tail; R7 is at the head).\nFigure 4.22.: A network requiring explicit routing.\nSuppose that the operator of the network in Figure 4.22 has determined that any traffic flowing from R1 to\nR7 should follow the path R1-R3-R6-R7 and that any traffic going from R2 to R7 should follow the path\nR2-R3-R4-R5-R7. One reason for such a choice would be to make good use of the capacity available along\nthe two distinct paths from R3 to R7. We can think of the R1-to-R7 traffic as constituting one forwarding\n4.4. Multiprotocol Label Switching 217\nComputer Networks: A Systems Approach, Release Version 6.1\nequivalence class, and the R2-to-R7 traffic constitutes a second FEC. Forwarding traffic in these two classes\nalong different paths is difficult with normal IP routing, because R3 doesn't normally look at where traffic\ncame from in making its forwarding decisions.\nBecause MPLS uses label swapping to forward packets, it is easy enough to achieve the desired routing if the\nrouters are MPLS enabled. If R1 and R2 attach distinct labels to packets before sending them to R3—thus\nidentifying them as being in different FECs—then R3 can forward packets from R1 and R2 along different\npaths. The question that then arises is how do all the routers in the network agree on what labels to use\nand how to forward packets with particular labels? Clearly, we can't use the same procedures as described\nin the preceding section to distribute labels, because those procedures establish labels that cause packets to\nfollow the normal paths picked by IP routing, which is exactly what we are trying to avoid. Instead, a new\nmechanism is needed. It turns out that the protocol used for this task is the Resource Reservation Protocol\n(RSVP). For now it suffices to say that it is possible to send an RSVP message along an explicitly specified\npath (e.g., R1-R3-R6-R7) and use it to set up label forwarding table entries all along that path. This is very\nsimilar to the process of establishing a virtual circuit.\nOne of the applications of explicit routing is traffic engineering, which refers to the task of ensuring that\nsufficient resources are available in a network to meet the demands placed on it. Controlling exactly which\npaths the traffic flows on is an important part of traffic engineering. Explicit routing can also help to make\nnetworks more resilient in the face of failure, using a capability called fast reroute. For example, it is\npossible to precalculate a path from router A to router B that explicitly avoids a certain link L. In the event\nthat link L fails, router A could send all traffic destined to B down the precalculated path. The combination\nof precalculation of the backup path and the explicit routing of packets along the path means that A doesn't\nneed to wait for routing protocol packets to make their way across the network or for routing algorithms to\nbe executed by various other nodes in the network. In certain circumstances, this can significantly reduce\nthe time taken to reroute packets around a point of failure.\nOne final point to note about explicit routing is that explicit routes need not be calculated by a network oper-\nator as in the above example. Routers can use various algorithms to calculate explicit routes automatically.\nThe most common of these is constrained shortest path first (CSPF), which is a link-state algorithm, but\nwhich also takes various constraints into account. For example, if it was required to find a path from R1 to\nR7 that could carry an offered load of 100 Mbps, we could say that the constraint is that each link must have\nat least 100 Mbps of available capacity. CSPF addresses this sort of problem.",
+      "source_section": "4.4.2",
+      "source_title": "Explicit Routing",
+      "source_pages": [
+        221,
+        222
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.4.2",
+    "section_title": "Explicit Routing",
+    "pages": [
+      221,
+      222
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

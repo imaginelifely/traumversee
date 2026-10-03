@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_2_3",
+  "subject": "computer_networks",
+  "name": "Public-Key Ciphers",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_2_3_source",
+      "statement": "An alternative to secret-key ciphers is public-key, ciphers. Instead of a single key shared by two participants,\na public-key cipher uses a pair of related keys, one for encryption and a different one for decryption. The\npair of keys is \"owned\" by just one participant. The owner keeps the decryption key secret so that only the\nowner can decrypt messages; that key is called theprivate key. The owner makes the encryption key public,\nso that anyone can encrypt messages for the owner; that key is called the public key. Obviously, for such a\nscheme to work, it must not be possible to deduce the private key from the public key. Consequently, any\nparticipant can get the public key and send an encrypted message to the owner of the keys, and only the\nowner has the private key necessary to decrypt it. This scenario is depicted in Figure 8.3.\n378 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.3.: Public-key encryption.\nBecause it is somewhat unintuitive, we emphasize that the public encryption key is useless for decrypting\na message—you couldn't even decrypt a message that you yourself had just encrypted unless you had the\nprivate decryption key. If we think of keys as defining a communication channel between participants, then\nanother difference between public-key and secret-key ciphers is the topology of the channels. A key for\na secret-key cipher provides a channel that is two-way between two participants—each participant holds\nthe same (symmetric) key that either one can use to encrypt or decrypt messages in either direction. A\npublic/private key pair, in contrast, provides a channel that is one way and many-to-one: from everyone who\nhas the public key to the unique owner of the private key, as illustrated in Figure 8.3.\nAn important additional property of public-key ciphers is that the private \"decryption\" key can be used\nwith the encryption algorithm to encrypt messages so that they can only be decrypted using the public\n\"encryption\" key. This property clearly wouldn't be useful for confidentiality since anyone with the public\nkey could decrypt such a message. (Indeed, for two-way confidentiality between two participants, each\nparticipant needs its own pair of keys, and each encrypts messages using the other's public key.) This\nproperty is, however, useful for authentication since it tells the receiver of such a message that it could only\nhave been created by the owner of the keys (subject to certain assumptions that we will get into later). This\nis illustrated in Figure 8.4. It should be clear from the figure that anyone with the public key can decrypt\nthe encrypted message, and, assuming that the result of the decryption matches the expected result, it can be\nconcluded that the private key must have been used to perform the encryption. Exactly how this operation\nis used to provide authentication is the topic of a later section. As we will see, public-key ciphers are\nused primarily for authentication and to confidentially distribute secret (symmetric) keys, leaving the rest of\nconfidentiality to secret-key ciphers.\nA bit of interesting history: The concept of public-key ciphers was first published in 1976 by Diffie and\n8.2. Cryptographic Building Blocks 379\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.4.: Authentication using public keys.\nHellman. Subsequently, however, documents have come to light proving that Britain's Communications-\nElectronics Security Group had discovered public-key ciphers by 1970, and the U.S. National Security\nAgency (NSA) claims to have discovered them in the mid-1960s.\nThe best-known public-key cipher is RSA, named after its inventors: Rivest, Shamir, and Adleman. RSA\nrelies on the high computational cost of factoring large numbers. The problem of finding an efficient way to\nfactor numbers is one that mathematicians have worked on unsuccessfully since long before RSA appeared\nin 1978, and RSA's subsequent resistance to cryptanalysis has further bolstered confidence in its security.\nUnfortunately, RSA needs relatively large keys, at least 1024 bits, to be secure. This is larger than keys for\nsecret-key ciphers because it is faster to break an RSA private key by factoring the large number on which\nthe pair of keys is based than by exhaustively searching the key space.\nAnother public-key cipher is ElGamal. Like RSA, it relies on a mathematical problem, the discrete logarithm\nproblem, for which no efficient solution has been found, and requires keys of at least 1024 bits. There is\na variation of the discrete logarithm problem, arising when the input is an elliptic curve, that is thought to\nbe even more difficult to compute; cryptographic schemes based on this problem are referred to as elliptic\ncurve cryptography.\nPublic-key ciphers are, unfortunately, several orders of magnitude slower than secret-key ciphers. Conse-\nquently, secret-key ciphers are used for the vast majority of encryption, while public-key ciphers are reserved\nfor use in authentication and session key establishment.",
+      "source_section": "8.2.3",
+      "source_title": "Public-Key Ciphers",
+      "source_pages": [
+        382,
+        383,
+        384
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.2.3",
+    "section_title": "Public-Key Ciphers",
+    "pages": [
+      382,
+      383,
+      384
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

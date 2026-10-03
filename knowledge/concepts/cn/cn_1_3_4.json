@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_1_3_4",
+  "subject": "computer_networks",
+  "name": "7-Layer OSI Model",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_3_4_source",
+      "statement": "The ISO was one of the first organizations to formally define a common way to connect computers. Their\narchitecture, called the Open Systems Interconnection (OSI) architecture and illustrated in Figure 1.13, de-\nfines a partitioning of network functionality into seven layers, where one or more protocols implement the\nfunctionality assigned to a given layer. In this sense, the schematic given in is not a protocol graph, per se,\nbut rather a reference model for a protocol graph. It is often referred to as the 7-layer model. While there\nis no OSI-based network running today, the terminology it defined is still widely used, so it is still worth a\ncursory look.\nStarting at the bottom and working up, the physical layer handles the transmission of raw bits over a com-\nmunications link. The data link layer then collects a stream of bits into a larger aggregate called a frame.\nNetwork adaptors, along with device drivers running in the node's operating system, typically implement\n1.3. Architecture 27\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 1.13.: The OSI 7-layer model.\n28 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\nthe data link level. This means that frames, not raw bits, are actually delivered to hosts. The network layer\nhandles routing among nodes within a packet-switched network. At this layer, the unit of data exchanged\namong nodes is typically called a packet rather than a frame, although they are fundamentally the same\nthing. The lower three layers are implemented on all network nodes, including switches within the network\nand hosts connected to the exterior of the network. The transport layer then implements what we have up to\nthis point been calling a process-to-process channel. Here, the unit of data exchanged is commonly called a\nmessage rather than a packet or a frame. The transport layer and higher layers typically run only on the end\nhosts and not on the intermediate switches or routers.\nSkipping ahead to the top (seventh) layer and working our way back down, we find the application layer.\nApplication layer protocols include things like the Hypertext Transfer Protocol (HTTP), which is the basis\nof the World Wide Web and is what enables web browsers to request pages from web servers. Below that,\nthe presentation layer is concerned with the format of data exchanged between peers—for example, whether\nan integer is 16, 32, or 64 bits long, whether the most significant byte is transmitted first or last, or how a\nvideo stream is formatted. Finally, the session layer provides a name space that is used to tie together the\npotentially different transport streams that are part of a single application. For example, it might manage an\naudio stream and a video stream that are being combined in a teleconferencing application.",
+      "source_section": "1.3.4",
+      "source_title": "7-Layer OSI Model",
+      "source_pages": [
+        31,
+        32,
+        33
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.3.4",
+    "section_title": "7-Layer OSI Model",
+    "pages": [
+      31,
+      32,
+      33
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

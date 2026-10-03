@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_128_96_34_0",
+  "subject": "computer_networks",
+  "name": "255.255.255.128 Interface 0",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_128_96_34_0_source",
+      "statement": "",
+      "source_section": "128.96.34.0",
+      "source_title": "255.255.255.128 Interface 0",
+      "source_pages": [
+        143
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "128.96.34.0",
+    "section_title": "255.255.255.128 Interface 0",
+    "pages": [
+      143
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

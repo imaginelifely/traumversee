@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_2_6_1",
+  "subject": "computer_networks",
+  "name": "Physical Properties",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_6_1_source",
+      "statement": "Ethernet segments were originally implemented using coaxial cable of length up to 500 m. (Modern Ether-\nnets use twisted copper pairs, usually a particular type known as \"Category 5,\" or optical fibers, and in some\ncases can be quite a lot longer than 500 m.) This cable was similar to the type used for cable TV . Hosts\nconnected to an Ethernet segment by tapping into it. A transceiver, a small device directly attached to the\ntap, detected when the line was idle and drove the signal when the host was transmitting. It also received\nincoming signals. The transceiver, in turn, connected to an Ethernet adaptor, which was plugged into the\nhost. This configuration is shown in Figure 2.19.\n2.6. Multi-Access Networks 77\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.19.: Ethernet transceiver and adaptor.\nMultiple Ethernet segments can be joined together by repeaters (or a multi-port variant of a repeater, called\na hub). A repeater is a device that forwards digital signals, much like an amplifier forwards analog signals;\nrepeaters do not understand bits or frames. No more than four repeaters could be positioned between any\npair of hosts, meaning that a classical Ethernet had a total reach of only 2500 m. For example, using just\ntwo repeaters between any pair of hosts supports a configuration similar to the one illustrated in Figure 2.20;\nthat is, a segment running down the spine of a building with a segment on each floor.\nFigure 2.20.: Ethernet repeater, interconnecting segments to form a larger collision domain.\nAny signal placed on the Ethernet by a host is broadcast over the entire network; that is, the signal is prop-\nagated in both directions, and repeaters and hubs forward the signal on all outgoing segments. Terminators\nattached to the end of each segment absorb the signal and keep it from bouncing back and interfering with\n78 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\ntrailing signals. The original Ethernet specifications used the Manchester encoding scheme described in\nan earlier section, while 4B/5B encoding (or the similar 8B/10B) scheme is used today on higher speed\nEthernets.\nIt is important to understand that whether a given Ethernet spans a single segment, a linear sequence of\nsegments connected by repeaters, or multiple segments connected in a star configuration, data transmitted\nby any one host on that Ethernet reaches all the other hosts. This is the good news. The bad news is that all\nthese hosts are competing for access to the same link, and, as a consequence, they are said to be in the same\ncollision domain. The multi-access part of the Ethernet is all about dealing with the competition for the link\nthat arises in a collision domain.",
+      "source_section": "2.6.1",
+      "source_title": "Physical Properties",
+      "source_pages": [
+        81,
+        82,
+        83
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.6.1",
+    "section_title": "Physical Properties",
+    "pages": [
+      81,
+      82,
+      83
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

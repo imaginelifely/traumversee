@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_8_4_2",
+  "subject": "computer_networks",
+  "name": "Public-Key Authentication Protocols",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_4_2_source",
+      "statement": "In the following discussion, we assume that Alice and Bob's public keys have been predistributed to each\nother via some means such as a PKI. We mean this to include the case where Alice includes her certificate\nin her first message to Bob, and the case where Bob searches for a certificate about Alice when he receives\nher first message.\nThis first protocol (Figure 8.9) relies on Alice and Bob's clocks being synchronized. Alice sends Bob a\nmessage with a timestamp and her identity in plaintext plus her digital signature. Bob uses the digital\nsignature to authenticate the message and the timestamp to verify its freshness. Bob sends back a message\nwith a timestamp and his identity in plaintext, as well as a new session key encrypted (for confidentiality)\nusing Alice's public key, all digitally signed. Alice can verify the authenticity and freshness of the message,\nso she knows she can trust the new session key. To deal with imperfect clock synchronization, the timestamps\ncould be augmented with nonces.\nThe second protocol (Figure 8.10) is similar but does not rely on clock synchronization. In this protocol,\nAlice again sends Bob a digitally signed message with a timestamp and her identity. Because their clocks\naren't synchronized, Bob cannot be sure that the message is fresh. Bob sends back a digitally signed message\nwith Alice's original timestamp, his own new timestamp, and his identity. Alice can verify the freshness of\nBob's reply by comparing her current time against the timestamp that originated with her. She then sends\nBob a digitally signed message with his original timestamp and a new session key encrypted using Bob's\npublic key. Bob can verify the freshness of the message because the timestamp came from his clock, so he\nknows he can trust the new session key. The timestamps essentially serve as convenient nonces, and indeed\nthis protocol could use nonces instead.\n8.4. Authentication Protocols 391\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 8.9.: A public-key authentication protocol that depends on synchronization.",
+      "source_section": "8.4.2",
+      "source_title": "Public-Key Authentication Protocols",
+      "source_pages": [
+        395,
+        396
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.4.2",
+    "section_title": "Public-Key Authentication Protocols",
+    "pages": [
+      395,
+      396
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

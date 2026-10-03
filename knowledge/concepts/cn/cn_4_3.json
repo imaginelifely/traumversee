@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_3",
+  "subject": "computer_networks",
+  "name": "Multicast",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_3_source",
+      "statement": "Multi-access networks like Ethernet implement multicast in hardware. There are, however, applications that\nneed a broader multicasting capability that is effective at the scale of the Internet. For example, when a\nradio station is broadcast over the Internet, the same data must be sent to all the hosts where a user has tuned\nin to that station. In that example, the communication is one-to-many. Other examples of one-to-many\napplications include transmitting the same news, current stock prices, software updates, or TV channels to\nmultiple hosts. The latter example is commonly called IPTV .\nThere are also applications whose communication is many-to-many, such as multimedia teleconferencing,\nonline multiplayer gaming, or distributed simulations. In such cases, members of a group receive data from\nmultiple senders, typically each other. From any particular sender, they all receive the same data.\nNormal IP communication, in which each packet must be addressed and sent to a single host, is not well\nsuited to such applications. If an application has data to send to a group, it would have to send a separate\npacket with the identical data to each member of the group. This redundancy consumes more bandwidth\nthan necessary. Furthermore, the redundant traffic is not distributed evenly but rather is focused around the\nsending host, and may easily exceed the capacity of the sending host and the nearby networks and routers.\nTo better support many-to-many and one-to-many communication, IP provides an IP-level multicast analo-\ngous to the link-level multicast provided by multi-access networks like Ethernet. Now that we are introduc-\ning the concept of multicast for IP, we also need a term for the traditional one-to-one service of IP that has\nbeen described so far: That service is referred to as unicast.\nThe basic IP multicast model is a many-to-many model based on multicast groups, where each group has\nits own IP multicast address. The hosts that are members of a group receive copies of any packets sent to\nthat group's multicast address. A host can be in multiple groups, and it can join and leave groups freely by\ntelling its local router using a protocol that we will discuss shortly. Thus, while we think of unicast addresses\nas being associated with a node or an interface, multicast addresses are associated with an abstract group,\nthe membership of which changes dynamically over time. Further, the original IP multicast service model\nallows any host to send multicast traffic to a group; it doesn't have to be a member of the group, and there\nmay be any number of such senders to a given group.\n200 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nUsing IP multicast to send the identical packet to each member of the group, a host sends a single copy of\nthe packet addressed to the group's multicast address. The sending host doesn't need to know the individual\nunicast IP address of each member of the group because, as we will see, that knowledge is distributed\namong the routers in the internetwork. Similarly, the sending host doesn't need to send multiple copies of\nthe packet because the routers will make copies whenever they have to forward the packet over more than\none link. Compared to using unicast IP to deliver the same packets to many receivers, IP multicast is more\nscalable because it eliminates the redundant traffic (packets) that would have been sent many times over the\nsame links, especially those near to the sending host.\nIP's original many-to-many multicast has been supplemented with support for a form of one-to-many mul-\nticast. In this model of one-to-many multicast, called Source-Specific Multicast (SSM), a receiving host\nspecifies both a multicast group and a specific sending host. The receiving host would then receive multi-\ncasts addressed to the specified group, but only if they are from the specified sender. Many Internet multicast\napplications (e.g., radio broadcasts) fit the SSM model. To contrast it with SSM, IP's original many-to-many\nmodel is sometimes referred to as Any Source Multicast (ASM).\nA host signals its desire to join or leave a multicast group by communicating with its local router using\na special protocol for just that purpose. In IPv4, that protocol is the Internet Group Management Protocol\n(IGMP); in IPv6, it isMulticast Listener Discovery(MLD). The router then has the responsibility for making\nmulticast behave correctly with regard to that host. Because a host may fail to leave a multicast group when\nit should (after a crash or other failure, for example), the router periodically polls the network to determine\nwhich groups are still of interest to the attached hosts.",
+      "source_section": "4.3",
+      "source_title": "Multicast",
+      "source_pages": [
+        204,
+        205
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.3",
+    "section_title": "Multicast",
+    "pages": [
+      204,
+      205
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

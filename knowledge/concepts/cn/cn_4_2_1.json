@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_2_1",
+  "subject": "computer_networks",
+  "name": "Historical Perspective",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_2_1_source",
+      "statement": "The IETF began looking at the problem of expanding the IP address space in 1991, and several alternatives\nwere proposed. Since the IP address is carried in the header of every IP packet, increasing the size of the\naddress dictates a change in the packet header. This means a new version of the Internet Protocol and, as a\nconsequence, a need for new software for every host and router in the Internet. This is clearly not a trivial\nmatter—it is a major change that needs to be thought about very carefully.\nThe effort to define a new version of IP was originally known as IP Next Generation, or IPng. As the work\nprogressed, an official IP version number was assigned, so IPng became IPv6. Note that the version of IP\ndiscussed so far in this chapter is version 4 (IPv4). The apparent discontinuity in numbering is the result of\nversion number 5 being used for an experimental protocol many years ago.\nThe significance of changing to a new version of IP caused a snowball effect. The general feeling among\nnetwork designers was that if you are going to make a change of this magnitude you might as well fix as\nmany other things in IP as possible at the same time. Consequently, the IETF solicited white papers from\nanyone who cared to write one, asking for input on the features that might be desired in a new version of IP.\nIn addition to the need to accommodate scalable routing and addressing, some of the other wish list items\nfor IPng included:\n• Support for real-time services\n• Security support\n• Autoconfiguration (i.e., the ability of hosts to automatically configure themselves with such informa-\ntion as their own IP address and domain name)\n• Enhanced routing functionality, including support for mobile hosts\nIt is interesting to note that, while many of these features were absent from IPv4 at the time IPv6 was being\ndesigned, support for all of them has made its way into IPv4 in recent years, often using similar techniques\nin both protocols. It can be argued that the freedom to think of IPv6 as a clean slate facilitated the design of\nnew capabilities for IP that were then retrofitted into IPv4.\nIn addition to the wish list, one absolutely non-negotiable feature for IPv6 was that there must be a transition\nplan to move from the current version of IP (version 4) to the new version. With the Internet being so large\nand having no centralized control, it would be completely impossible to have a \"flag day\" on which everyone\nshut down their hosts and routers and installed a new version of IP. The architects expected a long transition\nperiod in which some hosts and routers would run IPv4 only, some will run IPv4 and IPv6, and some will run\nIPv6 only. It is doubtful they anticipated that transition period would be approaching its 30th anniversary.\n4.2. IP Version 6 193\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "4.2.1",
+      "source_title": "Historical Perspective",
+      "source_pages": [
+        197,
+        198
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.2.1",
+    "section_title": "Historical Perspective",
+    "pages": [
+      197,
+      198
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

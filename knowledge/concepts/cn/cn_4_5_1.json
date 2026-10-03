@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_4_5_1",
+  "subject": "computer_networks",
+  "name": "Challenges for Mobile Networking",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_5_1_source",
+      "statement": "It is easy enough today to turn up in a wireless hotspot, connect to the Internet using 802.11 or some other\nwireless networking protocol, and obtain pretty good Internet service. One key enabling technology that\n4.5. Routing Among Mobile Devices 221\nComputer Networks: A Systems Approach, Release Version 6.1\nmade the hotspot feasible is DHCP. You can settle in at a coffee shop, open your laptop, obtain an IP address\nfor your laptop, and get your laptop talking to a default router and a Domain Name System (DNS) server,\nand for a broad class of applications you have everything you need.\nIf we look a little more closely, however, it's clear that for some application scenarios, just getting a new IP\naddress every time you move—which is what DHCP does for you—isn't always enough. Suppose you are\nusing your laptop or smartphone for a V oice over IP telephone call, and while talking on the phone you move\nfrom one hotspot to another, or even switch from Wi-Fi to the cellular network for your Internet connection.\nClearly, when you move from one access network to another, you need to get a new IP address—one that\ncorresponds to the new network. But, the computer or telephone at the other end of your conversation doesn't\nimmediately know where you have moved or what your new IP address is. Consequently, in the absence of\nsome other mechanism, packets would continue to be sent to the address where you used to be, not where\nyou are now. This problem is illustrated in Figure 4.26; as the mobile node moves from the 802.11 network\nin Figure 4.26(a) to the cellular network in Figure 4.26(b), somehow packets from the correspondent node\nneed to find their way to the new network and then on to the mobile node.\nFigure 4.26.: Forwarding packets from a correspondent node to a mobile node.\nThere are many different ways to tackle the problem just described, and we will look at some of them below.\nAssuming that there is some way to redirect packets so that they come to your new address rather than your\nold address, the next immediately apparent problems relate to security. For example, if there is a mechanism\nby which I can say, \"My new IP address is X,\" how do I prevent some attacker from making such a statement\nwithout my permission, thus enabling him to either receive my packets, or to redirect my packets to some\nunwitting third party? Thus, we see that security and mobility are quite closely related.\nOne issue that the above discussion highlights is the fact that IP addresses actually serve two tasks. They\nare used as an identifier of an endpoint, and they are also used to locate the endpoint. Think of the identifier\nas a long-lived name for the endpoint, and the locator as some possibly more temporary information about\n222 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nhow to route packets to the endpoint. As long as devices do not move, or do not move often, using a single\naddress for both jobs seem pretty reasonable. But once devices start to move, you would rather like to have\nan identifier that does not change as you move—this is sometimes called an Endpoint Identifier or Host\nIdentifier—and a separate locator. This idea of separating locators from identifiers has been around for a\nlong time, and most of the approaches to handling mobility described below provide such a separation in\nsome form.\nThe assumption that IP addresses don't change shows up in many different places. For example, transport\nprotocols like TCP have historically made assumptions about the IP address staying constant for the life of\na connection, so one approach could be to redesign transport protocols so they can operate with changing\nend-point addresses.\nBut rather than try to change TCP, a common alternative is for the application to periodically re-establish\nthe TCP connection in case the client's IP address has changed. As strange as this sounds, if the application\nis HTTP-based (e.g., a web browser like Chrome or a streaming application like Netflix) then that is exactly\nwhat happens. In other words, the strategy is for the application to work around situations where the user's\nIP address may have changed, instead of trying to maintain the appearance that it does not change.\nWhile we are all familiar with endpoints that move, it is worth noting that routers can also move. This is\ncertainly less common today than endpoint mobility, but there are plenty of environments where a mobile\nrouter might make sense. One example might be an emergency response team trying to deploy a network\nafter some natural disaster has knocked out all the fixed infrastructure. There are additional considerations\nwhen all the nodes in a network, not just the endpoints, are mobile, a topic we will discuss later in this\nsection.\nBefore we start to look at some of the approaches to supporting mobile devices, a couple of points of\nclarification. It is common to find that people confuse wireless networks with mobility. After all, mobility\nand wireless often are found together for obvious reasons. But wireless communication is really about\ngetting data from A to B without a wire, while mobility is about dealing with what happens when a node\nmoves around as it communicates. Certainly many nodes that use wireless communication channels are not\nmobile, and sometimes mobile nodes will use wired communication (although this is less common).\nFinally, in this chapter we are mostly interested in what we might call network-layer mobility. That is, we\nare interested in how to deal with nodes that move from one network to another. Moving from one access\npoint to another in the same 802.11 network can be handled by mechanisms specific to 802.11, and cellular\nnetworks also have ways to handle mobility, of course, but in large heterogeneous systems like the Internet\nwe need to support mobility more broadly across networks.",
+      "source_section": "4.5.1",
+      "source_title": "Challenges for Mobile Networking",
+      "source_pages": [
+        225,
+        226,
+        227
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.5.1",
+    "section_title": "Challenges for Mobile Networking",
+    "pages": [
+      225,
+      226,
+      227
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

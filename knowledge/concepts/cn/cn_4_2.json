@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_4_2",
+  "subject": "computer_networks",
+  "name": "IP Version 6",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_2_source",
+      "statement": "The motivation for defining a new version of IP is simple: to deal with exhaustion of the IP address space.\nCIDR helped considerably to contain the rate at which the Internet address space was being consumed and\n190 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.9.: Example of interdomain and intradomain routing. All routers run iBGP and an intradomain\nrouting protocol. Border routers A, D, and E also run eBGP to other autonomous systems.\n4.2. IP Version 6 191\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.10.: BGP routing table, IGP routing table, and combined table at router B.\n192 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nalso helped to control the growth of routing table information needed in the Internet's routers. However,\nthese techniques are no longer adequate. In particular, it is virtually impossible to achieve 100% address\nutilization efficiency, so the address space was consumed well before the 4 billionth host was connected to\nthe Internet. Even if we were able to use all 4 billion addresses, it is now clear that IP addresses need to be\nassigned to more than traditional computers, including smart phones, televisions, household appliances, and\ndrones. With the clarity of 20/20 hindsight, a 32-bit address space is quite small.",
+      "source_section": "4.2",
+      "source_title": "IP Version 6",
+      "source_pages": [
+        194,
+        195,
+        196,
+        197
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.2",
+    "section_title": "IP Version 6",
+    "pages": [
+      194,
+      195,
+      196,
+      197
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

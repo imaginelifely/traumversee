@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_4_1",
+  "subject": "computer_networks",
+  "name": "Destination-Based Forwarding",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_4_1_source",
+      "statement": "One of the earliest publications to introduce the idea of attaching labels to IP packets was a paper by Chan-\ndranmenon and Vargese that described an idea called threaded indices. A very similar idea is now imple-\nmented in MPLS-enabled routers. The following example shows how this idea works.\nFigure 4.18.: Routing tables in example network.\nConsider the network in Figure 4.18. Each of the two routers on the far right (R3 and R4) has one connected\nnetwork, with prefixes 18.1.1/24 and 18.3.3/24. The remaining routers (R1 and R2) have routing\ntables that indicate which outgoing interface each router would use when forwarding packets to one of those\ntwo networks.\nWhen MPLS is enabled on a router, the router allocates a label for each prefix in its routing table and\nadvertises both the label and the prefix that it represents to its neighboring routers. This advertisement is\n212 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\ncarried in the Label Distribution Protocol. This is illustrated in Figure 4.19. Router R2 has allocated the label\nvalue15 for the prefix 18.1.1 and the label value16 for the prefix 18.3.3. These labels can be chosen\nat the convenience of the allocating router and can be thought of as indices into the routing table. After\nallocating the labels, R2 advertises the label bindings to its neighbors; in this case, we see R2 advertising\na binding between the label 15 and the prefix 18.1.1 to R1. The meaning of such an advertisement is\nthat R2 has said, in effect, \"Please attach the label 15 to all packets sent to me that are destined to prefix\n18.1.1.\" R1 stores the label in a table alongside the prefix that it represents as the remote or outgoing label\nfor any packets that it sends to that prefix.\nIn Figure 4.19(c), we see another label advertisement from router R3 to R2 for the prefix 18.1.1, and R2\nplaces the remote label that it learned from R3 in the appropriate place in its table.\nAt this point, we can look at what happens when a packet is forwarded in this network. Suppose a packet\ndestined to the IP address 18.1.1.5 arrives from the left to router R1. R1 in this case is referred to as a\nLabel Edge Router (LER); an LER performs a complete IP lookup on arriving IP packets and then applies\nlabels to them as a result of the lookup. In this case, R1 would see that 18.1.1.5 matches the prefix",
+      "source_section": "4.4.1",
+      "source_title": "Destination-Based Forwarding",
+      "source_pages": [
+        216,
+        217
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.4.1",
+    "section_title": "Destination-Based Forwarding",
+    "pages": [
+      216,
+      217
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

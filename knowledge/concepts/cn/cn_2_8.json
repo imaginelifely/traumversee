@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_2_8",
+  "subject": "computer_networks",
+  "name": "Access Networks",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_8_source",
+      "statement": "In addition to the Ethernet and Wi-Fi connections we typically use to connect to the Internet at home, at\nwork, at school, and in many public spaces, most of us connect to the Internet over an access or broadband\nservice that we buy from an ISP. This section describes two such technologies: Passive Optical Networks\n(PON), commonly referred to as fiber-to-the-home, and Cellular Networks that connect our mobile devices.\nIn both cases, the networks are multi-access (like Ethernet and Wi-Fi), but as we will see, their approach to\nmediating access is quite different.\nTo set a little more context, ISPs (e.g., Telco or Cable companies) often operate a national backbone, and\nconnected to the periphery of that backbone are hundreds or thousands of edge sites, each of which serves\na city or neighborhood. These edge sites are commonly called Central Offices in the Telco world and\nHead Ends in the cable world, but despite their names implying \"centralized\" and \"root of the hierarchy\"\nthese sites are at the very edge of the ISP's network; the ISP-side of the last-mile that directly connects to\ncustomers. PON and Cellular access networks are anchored in these facilities.1",
+      "source_section": "2.8",
+      "source_title": "Access Networks",
+      "source_pages": [
+        99
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.8",
+    "section_title": "Access Networks",
+    "pages": [
+      99
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

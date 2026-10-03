@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_2_7_3",
+  "subject": "computer_networks",
+  "name": "Bluetooth (802.15.1)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_7_3_source",
+      "statement": "Bluetooth fills the niche of very short range communication between mobile phones, PDAs, notebook com-\nputers, and other personal or peripheral devices. For example, Bluetooth can be used to connect a mobile\nphone to a headset or a notebook computer to a keyboard. Roughly speaking, Bluetooth is a more convenient\nalternative to connecting two devices with a wire. In such applications, it is not necessary to provide much\nrange or bandwidth. This means that Bluetooth radios can use quite low power transmission, since trans-\nmission power is one of the main factors affecting bandwidth and range of wireless links. This matches the\ntarget applications for Bluetooth-enabled devices—most of them are battery powered (such as the ubiquitous\nphone headset) and hence it is important that they not consume much power.\nBluetooth operates in the license-exempt band at 2.45 GHz. Bluetooth links have typical bandwidths around\n1 to 3 Mbps and a range of about 10 m. For this reason, and because the communicating devices typically\nbelong to one individual or group, Bluetooth is sometimes categorized as a Personal Area Network (PAN).\nBluetooth is specified by an industry consortium called the Bluetooth Special Interest Group. It specifies an\nentire suite of protocols, going beyond the link layer to define application protocols, which it calls profiles,\nfor a range of applications. For example, there is a profile for synchronizing a PDA with a personal computer.\nAnother profile gives a mobile computer access to a wired LAN in the manner of 802.11, although this was\nnot Bluetooth's original goal. The IEEE 802.15.1 standard is based on Bluetooth but excludes the application\nprotocols.\nThe basic Bluetooth network configuration, called a piconet, consists of a master device and up to seven\nslave devices, as shown in Figure 2.31. Any communication is between the master and a slave; the slaves\ndo not communicate directly with each other. Because slaves have a simpler role, their Bluetooth hardware\nand software can be simpler and cheaper.\n2.7. Wireless Networks 93\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.31.: A Bluetooth piconet.\nSince Bluetooth operates in an license-exempt band, it is required to use a spread spectrum technique to deal\nwith possible interference in the band. It uses frequency-hopping with 79channels (frequencies), using each\nfor 625 μs at a time. This provides a natural time slot for Bluetooth to use for synchronous time division\nmultiplexing. A frame takes up 1, 3, or 5 consecutive time slots. Only the master can start to transmit in odd-\nnumbered slots. A slave can start to transmit in an even-numbered slot—but only in response to a request\nfrom the master during the previous slot, thereby preventing any contention between the slave devices.\nA slave device can be parked; that is, it is set to an inactive, low-power state. A parked device cannot\ncommunicate on the piconet; it can only be reactivated by the master. A piconet can have up to 255 parked\ndevices in addition to its active slave devices.\nIn the realm of very low-power, short-range communication there are a few other technologies besides\nBluetooth. One of these is ZigBee, devised by the ZigBee alliance and standardized as IEEE 802.15.4. It is\ndesigned for situations where the bandwidth requirements are low and power consumption must be very low\nto give very long battery life. It is also intended to be simpler and cheaper than Bluetooth, making it feasible\nto incorporate in cheaper devices such as sensors. Sensors are becoming an increasingly important class of\nnetworked device, as technology advances to the point where very cheap small devices can be deployed in\nlarge quantities to monitor things like temperature, humidity, and energy consumption in a building.\n94 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "2.7.3",
+      "source_title": "Bluetooth (802.15.1)",
+      "source_pages": [
+        97,
+        98,
+        99
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.7.3",
+    "section_title": "Bluetooth (802.15.1)",
+    "pages": [
+      97,
+      98,
+      99
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

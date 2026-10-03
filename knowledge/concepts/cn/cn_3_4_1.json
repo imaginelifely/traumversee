@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_4_1",
+  "subject": "computer_networks",
+  "name": "Network as a Graph",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_4_1_source",
+      "statement": "Routing is, in essence, a problem of graph theory. Figure 3.29 shows a graph representing a network.\nThe nodes of the graph, labeled A through F, may be hosts, switches, routers, or networks. For our initial\ndiscussion, we will focus on the case where the nodes are routers. The edges of the graph correspond to the\nnetwork links. Each edge has an associated cost, which gives some indication of the desirability of sending\ntraffic over that link. A discussion of how edge costs are assigned is given in a later section.\nNote that the example networks (graphs) used throughout this chapter have undirected edges that are as-\nsigned a single cost. This is actually a slight simplification. It is more accurate to make the edges directed,\nwhich typically means that there would be a pair of edges between each node—one flowing in each direction,\nand each with its own edge cost.\nThe basic problem of routing is to find the lowest-cost path between any two nodes, where the cost of a\npath equals the sum of the costs of all the edges that make up the path. For a simple network like the one in\nFigure 3.29, you could imagine just calculating all the shortest paths and loading them into some nonvolatile\nstorage on each node. Such a static approach has several shortcomings:\n• It does not deal with node or link failures.\n152 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 3.29.: Network represented as a graph.\n• It does not consider the addition of new nodes or links.\n• It implies that edge costs cannot change, even though we might reasonably wish to have link costs\nchange over time (e.g., assigning high cost to a link that is heavily loaded).\nFor these reasons, routing is achieved in most practical networks by running routing protocols among the\nnodes. These protocols provide a distributed, dynamic way to solve the problem of finding the lowest-\ncost path in the presence of link and node failures and changing edge costs. Note the word distributed in\nthe previous sentence; it is difficult to make centralized solutions scalable, so all the widely used routing\nprotocols use distributed algorithms.\nThe distributed nature of routing algorithms is one of the main reasons why this has been such a rich field\nof research and development—there are a lot of challenges in making distributed algorithms work well. For\nexample, distributed algorithms raise the possibility that two routers will at one instant have different ideas\nabout the shortest path to some destination. In fact, each one may think that the other one is closer to the\ndestination and decide to send packets to the other one. Clearly, such packets will be stuck in a loop until\nthe discrepancy between the two routers is resolved, and it would be good to resolve it as soon as possible.\nThis is just one example of the type of problem routing protocols must address.\nTo begin our analysis, we assume that the edge costs in the network are known. We will examine the two\nmain classes of routing protocols: distance vector and link state. In a later section, we return to the problem\nof calculating edge costs in a meaningful way.",
+      "source_section": "3.4.1",
+      "source_title": "Network as a Graph",
+      "source_pages": [
+        156,
+        157
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.4.1",
+    "section_title": "Network as a Graph",
+    "pages": [
+      156,
+      157
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

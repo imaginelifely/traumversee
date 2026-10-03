@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_1_2_5",
+  "subject": "computer_networks",
+  "name": "Manageability",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_2_5_source",
+      "statement": "A final requirement, which seems to be neglected or left till last all too often (as we do here), is that networks\nneed to be managed. Managing a network includes upgrading equipment as the network grows to carry\nmore traffic or reach more users, troubleshooting the network when things go wrong or performance isn't as\ndesired, and adding new features in support of new applications. Network management has historically been\na human-intensive aspect of networking, and while it is ulikely we'll get people entirely out of the loop, it is\nincreasingly being addressed by automation and self-healing designs.\nThis requirement is partly related to the issue of scalability discussed above—as the Internet has scaled up\nto support billions of users and at least hundreds of millions of hosts, the challenges of keeping the whole\nthing running correctly and correctly configuring new devices as they are added have become increasingly\nproblematic. Configuring a single router in a network is often a task for a trained expert; configuring\nthousands of routers and figuring out why a network of such a size is not behaving as expected can become\na task beyond any single human. This is why automation is becoming so important.\nOne way to make a network easier to manage is to avoid change. Once the network is working, simply do\nnot touch it! This mindset exposes the fundamental tension between stability and feature velocity: the rate\nat which new capabilities are introduced into the network. Favoring stability is the approach the telecommu-\nnications industry (not to mention University system administrators and corporate IT departments) adopted\nfor many years, making it one of the most slow moving and risk averse industries you will find anywhere.\nBut the recent explosion of the cloud has changed that dynamic, making it necessary to bring stability and\nfeature velocity more into balance. The impact of the cloud on the network is a topic that comes up over\nand over throughout the book, and one we pay particular attention to in the Perspectives section at the end\nof each chapter. For now, suffice it to say that managing a rapidly evolving network is arguably the central\nchallenge in networking today.",
+      "source_section": "1.2.5",
+      "source_title": "Manageability",
+      "source_pages": [
+        25
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.2.5",
+    "section_title": "Manageability",
+    "pages": [
+      25
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

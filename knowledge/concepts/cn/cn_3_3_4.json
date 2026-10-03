@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_3_4",
+  "subject": "computer_networks",
+  "name": "Datagram Forwarding in IP",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_4_source",
+      "statement": "We are now ready to look at the basic mechanism by which IP routers forward datagrams in an internetwork.\nRecall from an earlier section that forwarding is the process of taking a packet from an input and sending\nit out on the appropriate output, while routing is the process of building up the tables that allow the correct\noutput for a packet to be determined. The discussion here focuses on forwarding; we take up routing in a\nlater section.\nThe main points to bear in mind as we discuss the forwarding of IP datagrams are the following:\n• Every IP datagram contains the IP address of the destination host.\n• The network part of an IP address uniquely identifies a single physical network that is part of the\nlarger Internet.\n• All hosts and routers that share the same network part of their address are connected to the same\nphysical network and can thus communicate with each other by sending frames over that network.\n• Every physical network that is part of the Internet has at least one router that, by definition, is also\nconnected to at least one other physical network; this router can exchange packets with hosts or routers\non either network.\nForwarding IP datagrams can therefore be handled in the following way. A datagram is sent from a source\nhost to a destination host, possibly passing through several routers along the way. Any node, whether it is a\nhost or a router, first tries to establish whether it is connected to the same physical network as the destination.\nTo do this, it compares the network part of the destination address with the network part of the address of\neach of its network interfaces. (Hosts normally have only one interface, while routers normally have two or\nmore, since they are typically connected to two or more networks.) If a match occurs, then that means that\nthe destination lies on the same physical network as the interface, and the packet can be directly delivered\nover that network. A later section explains some of the details of this process.\nIf the node is not connected to the same physical network as the destination node, then it needs to send the\ndatagram to a router. In general, each node will have a choice of several routers, and so it needs to pick the\nbest one, or at least one that has a reasonable chance of getting the datagram closer to its destination. The\nrouter that it chooses is known as the next hop router. The router finds the correct next hop by consulting\nits forwarding table. The forwarding table is conceptually just a list of(NetworkNum, NextHop)pairs.\n(As we will see below, forwarding tables in practice often contain some additional information related to the\nnext hop.) Normally, there is also a default router that is used if none of the entries in the table matches the\ndestination's network number. For a host, it may be quite acceptable to have a default router and nothing\nelse—this means that all datagrams destined for hosts not on the physical network to which the sending host\nis attached will be sent out through the default router.\nWe can describe the datagram forwarding algorithm in the following way:\n3.3. Internet (IP) 135\nComputer Networks: A Systems Approach, Release Version 6.1\nif (NetworkNum of destination = NetworkNum of one of my interfaces) then\ndeliver packet to destination over that interface\nelse\nif (NetworkNum of destination is in my forwarding table) then\ndeliver packet to NextHop router\nelse\ndeliver packet to default router\nFor a host with only one interface and only a default router in its forwarding table, this simplifies to\nif (NetworkNum of destination = my NetworkNum) then\ndeliver packet to destination directly\nelse\ndeliver packet to default router\nLet's see how this works in the example internetwork of Figure 3.15. First, suppose that H1 wants to send\na datagram to H2. Since they are on the same physical network, H1 and H2 have the same network number\nin their IP address. Thus, H1 deduces that it can deliver the datagram directly to H2 over the Ethernet. The\none issue that needs to be resolved is how H1 finds out the correct Ethernet address for H2—the resolution\nmechanism described in a later section addresses this issue.\nNow suppose H5 wants to send a datagram to H8. Since these hosts are on different physical networks, they\nhave different network numbers, so H5 deduces that it needs to send the datagram to a router. R1 is the only\nchoice—the default router—so H1 sends the datagram over the wireless network to R1. Similarly, R1 knows\nthat it cannot deliver a datagram directly to H8 because neither of R1's interfaces are on the same network as\nH8. Suppose R1's default router is R2; R1 then sends the datagram to R2 over the Ethernet. Assuming R2\nhas the forwarding table shown in Table 3.6, it looks up H8's network number (network 4) and forwards the\ndatagram over the point-to-point network to R3. Finally, R3, since it is on the same network as H8, forwards\nthe datagram directly to H8.\nTable 3.6.: Forwarding table for Router R2.\nNetworkNum NextHop\n1 R1\n4 R3\nNote that it is possible to include the information about directly connected networks in the forwarding table.\nFor example, we could label the network interfaces of router R2 as interface 0 for the point-to-point link\n(network 3) and interface 1 for the Ethernet (network 2). Then R2 would have the forwarding table shown\nin Table 3.7.\nTable 3.7.: Complete Forwarding table for Router R2.\nNetworkNum NextHop\n1 R1\n2 Interface 1\n3 Interface 0\n4 R3\nThus, for any network number that R2 encounters in a packet, it knows pwhat to do. Either that network is\n136 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\ndirectly connected to R2, in which case the packet can be delivered to its destination over that network, or\nthe network is reachable via some next hop router that R2 can reach over a network to which it is connected.\nIn either case, R2 will use ARP, described below, to find the MAC address of the node to which the packet\nis to be sent next.\nThe forwarding table used by R2 is simple enough that it could be manually configured. Usually, however,\nthese tables are more complex and would be built up by running a routing protocol such as one of those\ndescribed in a later section. Also note that, in practice, the network numbers are usually longer (e.g., 128.96).\nWe can now see how hierarchical addressing—splitting the address into network and host parts—has im-\nproved the scalability of a large network. Routers now contain forwarding tables that list only a set of\nnetwork numbers rather than all the nodes in the network. In our simple example, that meant that R2 could\nstore the information needed to reach all the hosts in the network (of which there were eight) in a four-entry\ntable. Even if there were 100 hosts on each physical network, R2 would still only need those same four\nentries. This is a good first step (although by no means the last) in achieving scalability.\nKey Takeaway\nThis illustrates one of the most important principles of building scalable networks: To achieve scalability,\nyou need to reduce the amount of information that is stored in each node and that is exchanged between\nnodes. The most common way to do that is hierarchical aggregation. IP introduces a two-level hierarchy,\nwith networks at the top level and nodes at the bottom level. We have aggregated information by letting\nrouters deal only with reaching the right network; the information that a router needs to deliver a datagram\nto any node on a given network is represented by a single aggregated piece of information. [Next]",
+      "source_section": "3.3.4",
+      "source_title": "Datagram Forwarding in IP",
+      "source_pages": [
+        139,
+        140,
+        141
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3.4",
+    "section_title": "Datagram Forwarding in IP",
+    "pages": [
+      139,
+      140,
+      141
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

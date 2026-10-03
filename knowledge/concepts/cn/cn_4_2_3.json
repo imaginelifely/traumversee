@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_4_2_3",
+  "subject": "computer_networks",
+  "name": "Packet Format",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_2_3_source",
+      "statement": "Despite the fact that IPv6 extends IPv4 in several ways, its header format is actually simpler. This simplicity\nis due to a concerted effort to remove unnecessary functionality from the protocol. Figure 4.12 shows the\nresult.\nAs with many headers, this one starts with aVersion field, which is set to 6 for IPv6. TheVersion field\nis in the same place relative to the start of the header as IPv4's Version field so that header-processing\nsoftware can immediately decide which header format to look for. TheTrafficClass andFlowLabel\nfields both relate to quality of service issues.\nThePayloadLen field gives the length of the packet, excluding the IPv6 header, measured in bytes. The\nNextHeader field cleverly replaces both the IP options and the Protocol field of IPv4. If options are\nrequired, then they are carried in one or more special headers following the IP header, and this is indicated by\nthe value of the NextHeader field. If there are no special headers, the NextHeader field is the demux\nkey identifying the higher-level protocol running over IP (e.g., TCP or UDP); that is, it serves the same\npurpose as the IPv4 Protocol field. Also, fragmentation is now handled as an optional header, which\nmeans that the fragmentation-related fields of IPv4 are not included in the IPv6 header. The HopLimit\nfield is simply the TTL of IPv4, renamed to reflect the way it is actually used.\nFinally, the bulk of the header is taken up with the source and destination addresses, each of which is 16 bytes\n(128 bits) long. Thus, the IPv6 header is always 40 bytes long. Considering that IPv6 addresses are four\ntimes longer than those of IPv4, this compares quite well with the IPv4 header, which is 20 bytes long in the\nabsence of options.\nThe way that IPv6 handles options is quite an improvement over IPv4. In IPv4, if any options were present,\nevery router had to parse the entire options field to see if any of the options were relevant. This is because\nthe options were all buried at the end of the IP header, as an unordered collection of '(type, length, value)'\ntuples. In contrast, IPv6 treats options as extension headers that must, if present, appear in a specific order.\nThis means that each router can quickly determine if any of the options are relevant to it; in most cases, they\nwill not be. Usually this can be determined by just looking at the NextHeader field. The end result is\nthat option processing is much more efficient in IPv6, which is an important factor in router performance.\nIn addition, the new formatting of options as extension headers means that they can be of arbitrary length,\nwhereas in IPv4 they were limited to 44 bytes at most. We will see how some of the options are used below.\nEach option has its own type of extension header. The type of each extension header is identified by the value\nof theNextHeader field in the header that precedes it, and each extension header contains aNextHeader\nfield to identify the header following it. The last extension header will be followed by a transport-layer\nheader (e.g., TCP) and in this case the value of the NextHeader field is the same as the value of the\nProtocol field would be in an IPv4 header. Thus, theNextHeader field does double duty; it may either\nidentify the type of extension header to follow, or, in the last extension header, it serves as a demux key to\nidentify the higher-layer protocol running over IPv6.\nConsider the example of the fragmentation header, shown in Figure 4.13. This header provides functionality\nsimilar to the fragmentation fields in the IPv4 header, but it is only present if fragmentation is necessary.\nAssuming it is the only extension header present, then the NextHeader field of the IPv6 header would\ncontain the value44, which is the value assigned to indicate the fragmentation header. The NextHeader\nfield of the fragmentation header itself contains a value describing the header that follows it. Again, assum-\ning no other extension headers are present, then the next header might be the TCP header, which results\ninNextHeader containing the value 6, just as the Protocol field would in IPv4. If the fragmentation\n4.2. IP Version 6 197\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.12.: IPv6 packet header.\nFigure 4.13.: IPv6 fragmentation extension header.\n198 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nheader were followed by, say, an authentication header, then the fragmentation header'sNextHeader field\nwould contain the value51.",
+      "source_section": "4.2.3",
+      "source_title": "Packet Format",
+      "source_pages": [
+        201,
+        202,
+        203
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.2.3",
+    "section_title": "Packet Format",
+    "pages": [
+      201,
+      202,
+      203
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

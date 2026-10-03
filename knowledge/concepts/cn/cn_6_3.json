@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_6_3",
+  "subject": "computer_networks",
+  "name": "TCP Congestion Control",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_3_source",
+      "statement": "This section describes the predominant example of end-to-end congestion control in use today, that imple-\nmented by TCP. The essential strategy of TCP is to send packets into the network without a reservation and\nthen to react to observable events that occur. TCP assumes only FIFO queuing in the network's routers, but\nalso works with fair queuing.\nTCP congestion control was introduced into the Internet in the late 1980s by Van Jacobson, roughly eight\nyears after the TCP/IP protocol stack had become operational. Immediately preceding this time, the Internet\nwas suffering from congestion collapse—hosts would send their packets into the Internet as fast as the\nadvertised window would allow, congestion would occur at some router (causing packets to be dropped),\nand the hosts would time out and retransmit their packets, resulting in even more congestion.\nBroadly speaking, the idea of TCP congestion control is for each source to determine how much capacity\nis available in the network, so that it knows how many packets it can safely have in transit. Once a given\nsource has this many packets in transit, it uses the arrival of an ACK as a signal that one of its packets has\nleft the network and that it is therefore safe to insert a new packet into the network without adding to the\nlevel of congestion. By using ACKs to pace the transmission of packets, TCP is said to be self-clocking. Of\ncourse, determining the available capacity in the first place is no easy task. To make matters worse, because\nother connections come and go, the available bandwidth changes over time, meaning that any given source\nmust be able to adjust the number of packets it has in transit. This section describes the algorithms used by\nTCP to address these and other problems.\nNote that, although we describe the TCP congestion-control mechanisms one at a time, thereby giving the\nimpression that we are talking about three independent mechanisms, it is only when they are taken as a\nwhole that we have TCP congestion control. Also, while we are going to begin here with the variant of\nTCP congestion control most often referred to as standard TCP, we will see that there are actually quite a\nfew variants of TCP congestion control in use today, and researchers continue to explore new approaches to\naddressing this problem. Some of these new approaches are discussed below.",
+      "source_section": "6.3",
+      "source_title": "TCP Congestion Control",
+      "source_pages": [
+        305
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.3",
+    "section_title": "TCP Congestion Control",
+    "pages": [
+      305
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

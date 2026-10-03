@@ -1,0 +1,48 @@
+{
+  "id": "candidate_cn_18_1_1",
+  "subject": "computer_networks",
+  "name": "in its forwarding table and that this entry contains both an outgoing interface and a remote label",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_18_1_1_source",
+      "statement": "value. R1 therefore attaches the remote label15 to the packet before sending it.\nWhen the packet arrives at R2, R2 looks only at the label in the packet, not the IP address. The forwarding\ntable at R2 indicates that packets arriving with a label value of 15 should be sent out interface 1 and that\nthey should carry the label value 24, as advertised by router R3. R2 therefore rewrites, or swaps, the label\nand forwards it on to R3.\nWhat has been accomplished by all this application and swapping of labels? Observe that when R2 for-\nwarded the packet in this example it never actually needed to examine the IP address. Instead, R2 looked\nonly at the incoming label. Thus, we have replaced the normal IP destination address lookup with a label\nlookup. To understand why this is significant, it helps to recall that, although IP addresses are always the\nsame length, IP prefixes are of variable length, and the IP destination address lookup algorithm needs to find\nthe longest match—the longest prefix that matches the high order bits in the IP address of the packet being\nforwarded. By contrast, the label forwarding mechanism just described is an exact match algorithm. It is\npossible to implement a very simple exact match algorithm, for example, by using the label as an index into\nan array, where each element in the array is one line in the forwarding table.\nNote that, while the forwarding algorithm has been changed from longest match to exact match, the routing\nalgorithm can be any standard IP routing algorithm (e.g., OSPF). The path that a packet will follow in this\nenvironment is the exact same path that it would have followed if MPLS were not involved: the path chosen\nby the IP routing algorithms. All that has changed is the forwarding algorithm.\nAn important fundamental concept of MPLS is illustrated by this example. Every MPLS label is associated\nwith a forwarding equivalence class (FEC)—a set of packets that are to receive the same forwarding treat-\nment in a particular router. In this example, each prefix in the routing table is an FEC; that is, all packets\nthat match the prefix 18.1.1—no matter what the low order bits of the IP address are—get forwarded along\nthe same path. Thus, each router can allocate one label that maps to 18.1.1, and any packet that contains an\nIP address whose high order bits match that prefix can be forwarded using that label.\nAs we will see in the subsequent examples, FECs are a very powerful and flexible concept. FECs can be\nformed using almost any criteria; for example, all the packets corresponding to a particular customer could\nbe considered to be in the same FEC.\nReturning to the example at hand, we observe that changing the forwarding algorithm from normal IP\nforwarding to label swapping has an important consequence: Devices that previously didn't know how to\n4.4. Multiprotocol Label Switching 213\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.19.: (a) R2 allocates labels and advertises bindings to R1. (b) R1 stores the received labels in a\ntable. (c) R3 advertises another binding, and R2 stores the received label in a table.\n214 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nforward IP packets can be used to forward IP traffic in an MPLS network. The most notable early application\nof this result was to ATM switches, which can support MPLS without any changes to their forwarding\nhardware. ATM switches support the label-swapping forwarding algorithm just described, and by providing\nthese switches with IP routing protocols and a method to distribute label bindings they could be turned\ninto Label Switching Routers (LSRs)—devices that run IP control protocols but use the label switching\nforwarding algorithm. More recently, the same idea has been applied to optical switches.\nBefore we consider the purported benefits of turning an ATM switch into an LSR, we should tie up some\nloose ends. We have said that labels are \"attached\" to packets, but where exactly are they attached? The\nanswer depends on the type of link on which packets are carried. Two common methods for carrying labels\non packets are shown in Figure 4.20. When IP packets are carried as complete frames, as they are on most\nlink types including Ethernet and PPP, the label is inserted as a \"shim\" between the layer 2 header and the IP\n(or other layer 3) header, as shown in the lower part of the figure. However, if an ATM switch is to function\nas an MPLS LSR, then the label needs to be in a place where the switch can use it, and that means it needs\nto be in the ATM cell header, exactly where one would normally find the virtual circuit identifier (VCI) and\nvirtual path identifier (VPI) fields.\nFigure 4.20.: (a) Label on an ATM-encapsulated packet; (b) label on a frame-encapsulated packet.\nHaving now devised a scheme by which an ATM switch can function as an LSR, what have we gained?\nOne thing to note is that we could now build a network that uses a mixture of conventional IP routers, label\nedge routers, and ATM switches functioning as LSRs, and they would all use the same routing protocols.\nTo understand the benefits of using the same protocols, consider the alternative. In Figure 4.21(a), we see\na set of routers interconnected by virtual circuits over an ATM network, a configuration called an overlay\nnetwork. At one point in time, networks of this type were often built because commercially available ATM\nswitches supported higher total throughput than routers. Today, networks like this are less common because\nrouters have caught up with and even surpassed ATM switches. However, these networks still exist because\nof the significant installed base of ATM switches in network backbones, which in turn is partly a result of\nATM's ability to support a range of capabilities such as circuit emulation and virtual circuit services.\nIn an overlay network, each router would potentially be connected to each of the other routers by a virtual\ncircuit, but in this case for clarity we have just shown the circuits from R1 to all of its peer routers. R1\nhas five routing neighbors and needs to exchange routing protocol messages with all of them—we say that\nR1 has five routing adjacencies. By contrast, in Figure 4.21(b), the ATM switches have been replaced with\nLSRs. There are no longer virtual circuits interconnecting the routers. Thus, R1 has only one adjacency,\nwith LSR1. In large networks, running MPLS on the switches leads to a significant reduction in the number\nof adjacencies that each router must maintain and can greatly reduce the amount of work that the routers\nhave to do to keep each other informed of topology changes.\n4.4. Multiprotocol Label Switching 215\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.21.: (a) Routers connect to each other using an overlay of virtual circuits. (b) Routers peer directly\nwith LSRs.\n216 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nA second benefit of running the same routing protocols on edge routers and on the LSRs is that the edge\nrouters now have a full view of the topology of the network. This means that if some link or node fails inside\nthe network, the edge routers will have a better chance of picking a good new path than if the ATM switches\nrerouted the affected VCs without the knowledge of the edge routers.\nNote that the step of \"replacing\" ATM switches with LSRs is actually achieved by changing the protocols\nrunning on the switches, but typically no change to the forwarding hardware is needed; that is, an ATM\nswitch can often be converted to an MPLS LSR by upgrading only its software. Furthermore, an MPLS\nLSR might continue to support standard ATM capabilities at the same time as it runs the MPLS control\nprotocols, in what is referred to as \"ships in the night\" mode.\nThe idea of running IP control protocols on devices that are unable to forward IP packets natively has been\nextended to Wavelength Division Multiplexing (WDM) and Time Division Multiplexing (TDM) networks\n(e.g., SONET). This is known as Generalized MPLS (GMPLS). Part of the motivation for GMPLS was\nto provide routers with topological knowledge of an optical network, just as in the ATM case. Even more\nimportant was the fact that there were no standard protocols for controlling optical devices, so MPLS proved\nto be a natural fit for that job.",
+      "source_section": "18.1.1",
+      "source_title": "in its forwarding table and that this entry contains both an outgoing interface and a remote label",
+      "source_pages": [
+        217,
+        218,
+        219,
+        220,
+        221
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "18.1.1",
+    "section_title": "in its forwarding table and that this entry contains both an outgoing interface and a remote label",
+    "pages": [
+      217,
+      218,
+      219,
+      220,
+      221
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

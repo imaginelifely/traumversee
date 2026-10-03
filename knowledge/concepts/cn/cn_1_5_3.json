@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_1_5_3",
+  "subject": "computer_networks",
+  "name": "High-Speed Networks",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_5_3_source",
+      "statement": "The seeming continual increase in bandwidth causes network designers to start thinking about what happens\nin the limit or, stated another way, what is the impact on network design of having infinite bandwidth\navailable.\nAlthough high-speed networks bring a dramatic change in the bandwidth available to applications, in many\nrespects their impact on how we think about networking comes in what does not change as bandwidth in-\ncreases: the speed of light. To quote Scotty fromStar Trek,\"Ye cannae change the laws of physics.\" In other\nwords, \"high speed\" does not mean that latency improves at the same rate as bandwidth; the transcontinental\nRTT of a 1-Gbps link is the same 100 ms as it is for a 1-Mbps link.\nTo appreciate the significance of ever-increasing bandwidth in the face of fixed latency, consider what is\nrequired to transmit a 1-MB file over a 1-Mbps network versus over a 1-Gbps network, both of which have\nan RTT of 100 ms. In the case of the 1-Mbps network, it takes 80 round-trip times to transmit the file;\nduring each RTT, 1.25% of the file is sent. In contrast, the same 1-MB file doesn't even come close to filling\n1 RTT's worth of the 1-Gbps link, which has a delay × bandwidth product of 12.5 MB.\nFigure 1.19 illustrates the difference between the two networks. In effect, the 1-MB file looks like a stream\nof data that needs to be transmitted across a 1-Mbps network, while it looks like a single packet on a 1-Gbps\nnetwork. To help drive this point home, consider that a 1-MB file is to a 1-Gbps network what a 1-KBpacket\nis to a 1-Mbps network.\nFigure 1.19.: Relationship between bandwidth and latency. A 1-MB file would fill the 1-Mbps link 80 times\nbut only fill 1/12th of a 1-Gbps link.\nAnother way to think about the situation is that more data can be transmitted during each RTT on a high-\nspeed network, so much so that a single RTT becomes a significant amount of time. Thus, while you\nwouldn't think twice about the difference between a file transfer taking 101 RTTs rather than 100 RTTs (a\nrelative difference of only 1%), suddenly the difference between 1 RTT and 2 RTTs is significant—a 100%\nincrease. In other words, latency, rather than throughput, starts to dominate our thinking about network\ndesign.\nPerhaps the best way to understand the relationship between throughput and latency is to return to basics.\n42 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\nThe effective end-to-end throughput that can be achieved over a network is given by the simple relationship\nThroughput = TransferSize / TransferTime\nwhere TransferTime includes not only the elements of one-way identified earlier in this section, but also any\nadditional time spent requesting or setting up the transfer. Generally, we represent this relationship as\nTransferTime = RTT + 1/Bandwidth x TransferSize\nWe use in this calculation to account for a request message being sent across the network and the data being\nsent back. For example, consider a situation where a user wants to fetch a 1-MB file across a 1-Gbps with a\nround-trip time of 100 ms. This includes both the transmit time for 1 MB (1 / 1 Gbps × 1 MB = 8 ms) and\nthe 100-ms RTT, for a total transfer time of 108 ms. This means that the effective throughput will be\n1 MB / 108 ms = 74.1 Mbps\nnot 1 Gbps. Clearly, transferring a larger amount of data will help improve the effective throughput, where\nin the limit an infinitely large transfer size will cause the effective throughput to approach the network\nbandwidth. On the other hand, having to endure more than 1 RTT—for example, to retransmit missing\npackets—will hurt the effective throughput for any transfer of finite size and will be most noticeable for\nsmall transfers.",
+      "source_section": "1.5.3",
+      "source_title": "High-Speed Networks",
+      "source_pages": [
+        46,
+        47
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.5.3",
+    "section_title": "High-Speed Networks",
+    "pages": [
+      46,
+      47
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_4_1",
+  "subject": "computer_networks",
+  "name": "Internet Checksum Algorithm",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_4_1_source",
+      "statement": "Our first approach to error detection is exemplified by the Internet checksum. Although it is not used at the\nlink level, it nevertheless provides the same sort of functionality as CRCs, so we discuss it here.\nThe idea behind the Internet checksum is very simple—you add up all the words that are transmitted and\nthen transmit the result of that sum. The result is the checksum. The receiver performs the same calculation\non the received data and compares the result with the received checksum. If any transmitted data, including\nthe checksum itself, is corrupted, then the results will not match, so the receiver knows that an error occurred.\nYou can imagine many different variations on the basic idea of a checksum. The exact scheme used by the\nInternet protocols works as follows. Consider the data being checksummed as a sequence of 16-bit integers.\nAdd them together using 16-bit ones' complement arithmetic (explained below) and then take the ones'\ncomplement of the result. That 16-bit number is the checksum.\nIn ones' complement arithmetic, a negative integer (-x) is represented as the complement of x; that is,\neach bit of x is inverted. When adding numbers in ones' complement arithmetic, a carryout from the most\nsignificant bit needs to be added to the result. Consider, for example, the addition of -5 and -3 in ones'\ncomplement arithmetic on 4-bit integers: +5 is 0101, so -5 is 1010; +3 is 0011, so -3 is 1100. If we add\n1010 and 1100, ignoring the carry, we get 0110. In ones' complement arithmetic, the fact that this operation\ncaused a carry from the most significant bit causes us to increment the result, giving 0111, which is the ones'\ncomplement representation of -8 (obtained by inverting the bits in 1000), as we would expect.\nThe following routine gives a straightforward implementation of the Internet's checksum algorithm. The\ncount argument gives the length of buf measured in 16-bit units. The routine assumes that buf has\nalready been padded with 0s to a 16-bit boundary.\nu_short\ncksum(u_short *buf, int count)\n{\nregister u_long sum = 0;\nwhile (count--)\n{\nsum += *buf++;\nif (sum & 0xFFFF0000)\n{\n/* carry occurred, so wrap around */\nsum &= 0xFFFF;\nsum++;\n}\n}\nreturn ~(sum & 0xFFFF);\n}\nThis code ensures that the calculation uses ones' complement arithmetic rather than the twos' complement\nthat is used in most machines. Note the if statement inside thewhile loop. If there is a carry into the top\n16 bits ofsum, then we incrementsum just as in the previous example.\n2.4. Error Detection 61\nComputer Networks: A Systems Approach, Release Version 6.1\nCompared to our repetition code, this algorithm scores well for using a small number of redundant\nbits—only 16 for a message of any length—but it does not score extremely well for strength of error detec-\ntion. For example, a pair of single-bit errors, one of which increments a word and one of which decrements\nanother word by the same amount, will go undetected. The reason for using an algorithm like this in spite of\nits relatively weak protection against errors (compared to a CRC, for example) is simple: This algorithm is\nmuch easier to implement in software. Experience has suggested that a checksum of this form was adequate,\nbut one reason it is adequate is that this checksum is the last line of defense in an end-to-end protocol. The\nmajority of errors are picked up by stronger error detection algorithms, such as CRCs, at the link level.",
+      "source_section": "2.4.1",
+      "source_title": "Internet Checksum Algorithm",
+      "source_pages": [
+        65,
+        66
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.4.1",
+    "section_title": "Internet Checksum Algorithm",
+    "pages": [
+      65,
+      66
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

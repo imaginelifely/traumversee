@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_7_2",
+  "subject": "computer_networks",
+  "name": "Multimedia Data",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_7_2_source",
+      "statement": "Multimedia data, comprised of audio, video, and still images, now makes up the majority of traffic on the\nInternet. Part of what has made the widespread transmission of multimedia across networks possible is\nadvances in compression technology. Because multimedia data is consumed mostly by humans using their\nsenses—vision and hearing—and processed by the human brain, there are unique challenges to compressing\nit. You want to try to keep the information that is most important to a human, while getting rid of anything\nthat doesn't improve the human's perception of the visual or auditory experience. Hence, both computer\nscience and the study of human perception come into play. In this section, we'll look at some of the major\nefforts in representing and compressing multimedia data.\nThe uses of compression are not limited to multimedia data of course—for example, you may well have used\na utility likezip orcompress to compress files before sending them over a network, or to uncompress a\ndata file after downloading. It turns out that the techniques used for compressing data—which are typically\nlossless, because most people don't like to lose data from a file—also show up as part of the solution\nfor multimedia compression. In contrast, lossy compression, commonly used for multimedia data, does not\npromise that the data received is exactly the same as the data sent. As noted above, this is because multimedia\ndata often contains information that is of little utility to the human who receives it. Our senses and brains\ncan only perceive so much detail. They are also very good at filling in missing pieces and even correcting\nsome errors in what we see or hear. And, lossy algorithms typically achieve much better compression ratios\nthan do their lossless counterparts; they can be an order of magnitude better or more.\nTo get a sense of how important compression has been to the spread of networked multimedia, consider the\nfollowing example. A high-definition TV screen has something like 1080 × 1920 pixels, each of which has\n24 bits of color information, so each frame is\n1080× 1920× 24 = 50Mb\nso if you want to send 24 frames per second, that would be over 1 Gbps. That's more than most Internet\nusers have access to. By contrast, modern compression techniques can get a reasonably high-quality HDTV\nsignal down to the range of 10 Mbps, a two order of magnitude reduction and well within the reach of most\nbroadband users. Similar compression gains apply to lower quality video such as YouTube clips—Web\n7.2. Multimedia Data 355\nComputer Networks: A Systems Approach, Release Version 6.1\nvideo could never have reached its current popularity without compression to make all those entertaining\nvideos fit within the bandwidth of today's networks.\nCompression techniques as applied to multimedia have been an area of great innovation, particularly lossy\ncompression. Lossless techniques also have an important role to play, however. Indeed, most of the lossy\ntechniques include some steps that are lossless, so we begin our discussion with an overview of lossless\ncompression.",
+      "source_section": "7.2",
+      "source_title": "Multimedia Data",
+      "source_pages": [
+        359,
+        360
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "7.2",
+    "section_title": "Multimedia Data",
+    "pages": [
+      359,
+      360
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

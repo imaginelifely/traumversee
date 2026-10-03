@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_3_1",
+  "subject": "computer_networks",
+  "name": "Byte-Oriented Protocols (PPP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_3_1_source",
+      "statement": "One of the oldest approaches to framing—it has its roots in connecting terminals to mainframes—is to view\neach frame as a collection of bytes (characters) rather than a collection of bits. Early examples of suchbyte-\noriented protocols are the Binary Synchronous Communication (BISYNC) protocol developed by IBM in\nthe late 1960s, and the Digital Data Communication Message Protocol (DDCMP) used in Digital Equipment\nCorporation's DECNET. (Once upon a time, large computer companies like IBM and DEC also built private\nnetworks for their customers.) The widely used Point-to-Point Protocol (PPP) is a recent example of this\napproach.\nAt a high level, there are two approaches to byte-oriented framing. The first is to use special characters\nknown as sentinel characters to indicate where frames start and end. The idea is to denote the beginning\nof a frame by sending a special SYN (synchronization) character. The data portion of the frame is then\nsometimes contained between two more special characters: STX (start of text) and ETX (end of text).\nBISYNC used this approach. The problem with the sentinel approach, of course, is that one of the special\ncharacters might appear in the data portion of the frame. The standard way to overcome this problem by\n\"escaping\" the character by preceding it with a DLE (data-link-escape) character whenever it appears in the\nbody of a frame; the DLE character is also escaped (by preceding it with an extra DLE) in the frame body.\n(C programmers may notice that this is analogous to the way a quotation mark is escaped by the backslash\nwhen it occurs inside a string.) This approach is often called character stuffing because extra characters are\ninserted in the data portion of the frame.\nThe alternative to detecting the end of a frame with a sentinel value is to include the number of bytes in the\nframe at the beginning of the frame, in the frame header. DDCMP used this approach. One danger with\nthis approach is that a transmission error could corrupt the count field, in which case the end of the frame\nwould not be correctly detected. (A similar problem exists with the sentinel-based approach if the ETX field\nbecomes corrupted.) Should this happen, the receiver will accumulate as many bytes as the bad count field\nindicates and then use the error detection field to determine that the frame is bad. This is sometimes called\na framing error. The receiver will then wait until it sees the next SYN character to start collecting the bytes\nthat make up the next frame. It is therefore possible that a framing error will cause back-to-back frames to\nbe incorrectly received.\nThe Point-to-Point Protocol (PPP), which is commonly used to carry Internet Protocol packets over various\nsorts of point-to-point links, uses sentinels and character stuffing. The format for a PPP frame is given in\nFigure 2.7.\nThis figure is the first of many that you will see in this book that are used to illustrate frame or packet\n2.3. Framing 55\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.7.: PPP frame format.\nformats, so a few words of explanation are in order. We show a packet as a sequence of labeled fields.\nAbove each field is a number indicating the length of that field in bits. Note that the packets are transmitted\nbeginning with the leftmost field.\nThe special start-of-text character, denoted as theFlag field is01111110. The Address andControl\nfields usually contain default values and so are uninteresting. The (Protocol) field is used for demultiplexing;\nit identifies the high-level protocol, such as IP. The frame payload size can be negotiated, but it is 1500 bytes\nby default. TheChecksum field is either 2 (by default) or 4 bytes long. Note that despite its common name,\nthis field is actually a CRC and not a checksum (as described in the next section).\nThe PPP frame format is unusual in that several of the field sizes are negotiated rather than fixed. This\nnegotiation is conducted by a protocol called the Link Control Protocol (LCP). PPP and LCP work in\ntandem: LCP sends control messages encapsulated in PPP frames—such messages are denoted by an LCP\nidentifier in the PPP (Protocol) field—and then turns around and changes PPP's frame format based on the\ninformation contained in those control messages. LCP is also involved in establishing a link between two\npeers when both sides detect that communication over the link is possible (e.g., when each optical receiver\ndetects an incoming signal from the fiber to which it connects).",
+      "source_section": "2.3.1",
+      "source_title": "Byte-Oriented Protocols (PPP)",
+      "source_pages": [
+        59,
+        60
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.3.1",
+    "section_title": "Byte-Oriented Protocols (PPP)",
+    "pages": [
+      59,
+      60
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

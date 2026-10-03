@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_3_1",
+  "subject": "computer_networks",
+  "name": "What Is an Internetwork?",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_1_source",
+      "statement": "We use the terminternetwork, or sometimes justinternet with a lowercasei, to refer to an arbitrary collection\nof networks interconnected to provide some sort of host-to-host packet delivery service. For example, a\ncorporation with many sites might construct a private internetwork by interconnecting the LANs at their\ndifferent sites with point-to-point links leased from the phone company. When we are talking about the\nwidely used global internetwork to which a large percentage of networks are now connected, we call it the\nInternet with a capital I. In keeping with the first-principles approach of this book, we mainly want you\nto learn about the principles of \"lowercase i\" internetworking, but we illustrate these ideas with real-world\nexamples from the \"big I\" Internet.\n3.3. Internet (IP) 125\nComputer Networks: A Systems Approach, Release Version 6.1\nAnother piece of terminology that can be confusing is the difference between networks, subnetworks, and\ninternetworks. We are going to avoid subnetworks (or subnets) altogether until a later section. For now,\nwe use network to mean either a directly connected or a switched network of the kind described in the\nprevious section and the previous chapter. Such a network uses one technology, such as 802.11 or Ethernet.\nAn internetwork is an interconnected collection of such networks. Sometimes, to avoid ambiguity, we refer\nto the underlying networks that we are interconnecting asphysical networks. An internet is alogical network\nbuilt out of a collection of physical networks. In this context, a collection of Ethernet segments connected\nby bridges or switches would still be viewed as a single network.\nFigure 3.15.: A simple internetwork. H denotes a host and R denotes a router.\nFigure 3.15 shows an example internetwork. An internetwork is often referred to as a \"network of networks\"\nbecause it is made up of lots of smaller networks. In this figure, we see Ethernets, a wireless network,\nand a point-to-point link. Each of these is a single-technology network. The nodes that interconnect the\nnetworks are called routers. They are also sometimes called gateways, but since this term has several other\nconnotations, we restrict our usage to router.\nThe Internet Protocol is the key tool used today to build scalable, heterogeneous internetworks. It was\noriginally known as the Kahn-Cerf protocol after its inventors. One way to think of IP is that it runs on\nall the nodes (both hosts and routers) in a collection of networks and defines the infrastructure that allows\nthese nodes and networks to function as a single logical internetwork. For example, Figure 3.16 shows how\nhosts H5 and H8 are logically connected by the internet in Figure 3.15, including the protocol graph running\non each node. Note that higher-level protocols, such as TCP and UDP, typically run on top of IP on the\nhosts.\n126 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 3.16.: A simple internetwork, showing the protocol layers used to connect H5 to H8 in the above\nfigure. ETH is the protocol that runs over the Ethernet.\nThe rest of this and the next chapter are about various aspects of IP. While it is certainly possible to build\nan internetwork that does not use IP—and in fact, in the early days of the Internet there were alternative\nsolutions—IP is the most interesting case to study simply because of the size of the Internet. Said another\nway, it is only the IP Internet that has really faced the issue of scale. Thus, it provides the best case study of\na scalable internetworking protocol.\nL2 vs L3 Networks\nAs seen in the previous section, an Ethernet can be treated as a point-to-point link interconnecting a pair\nof switches, with a mesh of interconnected switches forming a Switched Ethernet. This configuration is\nalso known as an L2 Network.\nBut as we'll discover in this section, an Ethernet (even when arranged in a point-to-point configuration\nrather than a shared CSMA/CD network) can be treated as a network interconnecting a pair of routers,\nwith a mesh of such routers forming an Internet. This configuration is also known as an L3 Network.\nConfusingly, this is because a point-to-point Ethernet is both a link and a network (albeit a trivial two-\nnode network in the second case), depending on whether it's connected to a pair of L2 switches running\nthe spanning tree algorithm, or to a pair of L3 routers running IP (plus the routing protocols described\nlater in this chapter). Why pick one configuration over the other? It partly depends on whether you want\nthe network to be a single broadcast domain (if yes, pick L2), and whether you want the hosts connected\nto the network to be on different networks (if yes, select L3).\nThe good news is that when you fully understand the implications of this duality, you will have cleared a\nmajor hurdle in mastering modern packet-switched networks.",
+      "source_section": "3.3.1",
+      "source_title": "What Is an Internetwork?",
+      "source_pages": [
+        129,
+        130,
+        131
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3.1",
+    "section_title": "What Is an Internetwork?",
+    "pages": [
+      129,
+      130,
+      131
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

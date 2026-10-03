@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_32",
+  "subject": "computer_networks",
+  "name": "also includes two other details about how the PON is connected to the ISP's backbone (and hence, to",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_32_source",
+      "statement": "the rest of the Internet). The Agg Switch aggregates traffic from a set of OLTs, and the BNG (Broadband\nNetwork Gateway) is a piece of Telco equipment that, among many other things, meters Internet traffic for\nthe sake of billing. As its name implies, the BNG is effectively the gateway between the access network\n(everything to the left of the BNG) and the Internet (everything to the right of the BNG).\nBecause the splitters are passive, PON has to implement some form of multi-access protocol. The approach\nit adopts can be summarized as follows. First, upstream and downstream traffic are transmitted on two\ndifferent optical wavelengths, so they are completely independent of each other. Downstream traffic starts\nat the OLT and the signal is propagated down every link in the PON. As a consequence, every frame reaches\nevery ONU. This device then looks at a unique identifier in the individual frames sent over the wavelength,\nand either keeps the frame (if the identifier is for it) or drops it (if not). Encryption is used to keep ONUs\nfrom eavesdropping on their neighbors' traffic.\nUpstream traffic is then time-division multiplexed on the upstream wavelength, with each ONU periodically\ngetting a turn to transmit. Because the ONUs are distributed over a fairly wide area (measured in kilometers)\nand at different distances from the OLT, it is not practical for them to transmit based on synchronized clocks,\n1 DSL is the legacy, copper-based counterpart to PON. DSL links are also terminated in Telco Central Offices, but we do not\ndescribe this technology since it is being phased out.\n2.8. Access Networks 95\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 2.32.: An example PON that connects OLTs in the Central Office to ONUs in homes and businesses.\nas in SONET. Instead, the ONT transmitsgrants to the individual ONUs, giving them a time interval during\nwhich they can transmit. In other words, the single OLT is responsible for centrally implementing the round-\nrobin sharing of the shared PON. This includes the possibility that the OLT can grant each ONU a different\nshare of time, effectively implementing different levels of service.\nPON is similar to Ethernet in the sense that it defines a sharing algorithm that has evolved over time to\naccommodate higher and higher bandwidths. G-PON (Gigabit-PON) is the most widely deployed today,\nsupporting a bandwidth of 2.25-Gbps. XGS-PON (10 Gigabit-PON) is just now starting to be deployed.",
+      "source_section": "2.32",
+      "source_title": "also includes two other details about how the PON is connected to the ISP's backbone (and hence, to",
+      "source_pages": [
+        99,
+        100
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.32",
+    "section_title": "also includes two other details about how the PON is connected to the ISP's backbone (and hence, to",
+    "pages": [
+      99,
+      100
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_6_2_1",
+  "subject": "computer_networks",
+  "name": "FIFO",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_2_1_source",
+      "statement": "The idea of FIFO queuing, also called first-come, first-served (FCFS) queuing, is simple: The first packet\nthat arrives at a router is the first packet to be transmitted. This is illustrated in Figure 6.5(a), which shows a\nFIFO with \"slots\" to hold up to eight packets. Given that the amount of buffer space at each router is finite, if\na packet arrives and the queue (buffer space) is full, then the router discards that packet, as shown in Figure\n6.5(b). This is done without regard to which flow the packet belongs to or how important the packet is. This\nis sometimes called tail drop, since packets that arrive at the tail end of the FIFO are dropped.\nNote that tail drop and FIFO are two separable ideas. FIFO is a scheduling discipline—it determines the\norder in which packets are transmitted. Tail drop is adrop policy—it determines which packets get dropped.\nBecause FIFO and tail drop are the simplest instances of scheduling discipline and drop policy, respectively,\nthey are sometimes viewed as a bundle—the vanilla queuing implementation. Unfortunately, the bundle is\noften referred to simply as FIFO queuing, when it should more precisely be called FIFO with tail drop. A\nlater section provides an example of another drop policy, which uses a more complex algorithm than \"Is\nthere a free buffer?\" to decide when to drop packets. Such a drop policy may be used with FIFO, or with\nmore complex scheduling disciplines.\nFIFO with tail drop, as the simplest of all queuing algorithms, is the most widely used in Internet routers\nat the time of writing. This simple approach to queuing pushes all responsibility for congestion control and\nresource allocation out to the edges of the network. Thus, the prevalent form of congestion control in the\nInternet currently assumes no help from the routers: TCP takes responsibility for detecting and responding\nto congestion. We will see how this works in the next section.\nA simple variation on basic FIFO queuing is priority queuing. The idea is to mark each packet with a\npriority; the mark could be carried, for example, in the IP header, as we'll discuss in a later section. The\nrouters then implement multiple FIFO queues, one for each priority class. The router always transmits\npackets out of the highest-priority queue if that queue is nonempty before moving on to the next priority\nqueue. Within each priority, packets are still managed in a FIFO manner. This idea is a small departure from\nthe best-effort delivery model, but it does not go so far as to make guarantees to any particular priority class.\nIt just allows high-priority packets to cut to the front of the line.\n296 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 6.5.: FIFO queuing (a), and tail drop at a FIFO queue (b).\nThe problem with priority queuing, of course, is that the high-priority queue can starve out all the other\nqueues; that is, as long as there is at least one high-priority packet in the high-priority queue, lower-priority\nqueues do not get served. For this to be viable, there needs to be hard limits on how much high-priority\ntraffic is inserted in the queue. It should be immediately clear that we can't allow users to set their own\npackets to high priority in an uncontrolled way; we must either prevent them from doing this altogether or\nprovide some form of \"pushback\" on users. One obvious way to do this is to use economics—the network\ncould charge more to deliver high-priority packets than low-priority packets. However, there are significant\nchallenges to implementing such a scheme in a decentralized environment such as the Internet.\nOne situation in which priority queuing is used in the Internet is to protect the most important pack-\nets—typically, the routing updates that are necessary to stabilize the routing tables after a topology change.\nOften there is a special queue for such packets, which can be identified by the Differentiated Services Code\nPoint (formerly the TOS field) in the IP header. This is in fact a simple case of the idea of \"Differentiated\nServices.\"",
+      "source_section": "6.2.1",
+      "source_title": "FIFO",
+      "source_pages": [
+        300,
+        301
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.2.1",
+    "section_title": "FIFO",
+    "pages": [
+      300,
+      301
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

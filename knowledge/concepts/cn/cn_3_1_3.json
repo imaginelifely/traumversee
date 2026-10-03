@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_1_3",
+  "subject": "computer_networks",
+  "name": "Source Routing",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_1_3_source",
+      "statement": "A third approach to switching that uses neither virtual circuits nor conventional datagrams is known as\nsource routing. The name derives from the fact that all the information about network topology that is\nrequired to switch a packet across the network is provided by the source host.\nThere are various ways to implement source routing. One would be to assign a number to each output of\neach switch and to place that number in the header of the packet. The switching function is then very simple:\nFor each packet that arrives on an input, the switch would read the port number in the header and transmit\nthe packet on that output. However, since there will in general be more than one switch in the path between\nthe sending and the receiving host, the header for the packet needs to contain enough information to allow\nevery switch in the path to determine which output the packet needs to be placed on. One way to do this\nwould be to put an ordered list of switch ports in the header and to rotate the list so that the next switch in\nthe path is always at the front of the list. Figure 3.7 illustrates this idea.\nFigure 3.7.: Source routing in a switched network (where the switch reads the rightmost number).\nIn this example, the packet needs to traverse three switches to get from host A to host B. At switch 1, it\nneeds to exit on port 1, at the next switch it needs to exit at port 0, and at the third switch it needs to exit at\nport 3. Thus, the original header when the packet leaves host A contains the list of ports (3, 0, 1), where we\nassume that each switch reads the rightmost element of the list. To make sure that the next switch gets the\nappropriate information, each switch rotates the list after it has read its own entry. Thus, the packet header\nas it leaves switch 1 enroute to switch 2 is now (1, 3, 0); switch 2 performs another rotation and sends out\na packet with (0, 1, 3) in the header. Although not shown, switch 3 performs yet another rotation, restoring\nthe header to what it was when host A sent it.\nThere are several things to note about this approach. First, it assumes that host A knows enough about\nthe topology of the network to form a header that has all the right directions in it for every switch in the\n114 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\npath. This is somewhat analogous to the problem of building the forwarding tables in a datagram network\nor figuring out where to send a setup packet in a virtual circuit network. In practice, however, it is the first\nswitch at the ingress to the network (as opposed to the end host connected to that switch) that appends the\nsource route.\nSecond, observe that we cannot predict how big the header needs to be, since it must be able to hold one word\nof information for every switch on the path. This implies that headers are probably of variable length with\nno upper bound, unless we can predict with absolute certainty the maximum number of switches through\nwhich a packet will ever need to pass.\nThird, there are some variations on this approach. For example, rather than rotate the header, each switch\ncould just strip the first element as it uses it. Rotation has an advantage over stripping, however: Host B\ngets a copy of the complete header, which may help it figure out how to get back to host A. Yet another\nalternative is to have the header carry a pointer to the current \"next port\" entry, so that each switch just\nupdates the pointer rather than rotating the header; this may be more efficient to implement. We show these\nthree approaches in Figure 3.8. In each case, the entry that this switch needs to read is A, and the entry that\nthe next switch needs to read isB.\nFigure 3.8.: Three ways to handle headers for source routing: (a) rotation; (b) stripping; (c) pointer. The\nlabels are read right to left.\nSource routing can be used in both datagram networks and virtual circuit networks. For example, the Internet\nProtocol, which is a datagram protocol, includes a source route option that allows selected packets to be\nsource routed, while the majority are switched as conventional datagrams. Source routing is also used in\nsome virtual circuit networks as the means to get the initial setup request along the path from source to\ndestination.\nSource routes are sometimes categorized as strict or loose. In a strict source route, every node along the\npath must be specified, whereas a loose source route only specifies a set of nodes to be traversed, without\nsaying exactly how to get from one node to the next. A loose source route can be thought of as a set of\nwaypoints rather than a completely specified route. The loose option can be helpful to limit the amount of\ninformation that a source must obtain to create a source route. In any reasonably large network, it is likely\nto be hard for a host to get the complete path information it needs to construct correct a strict source route\nto any destination. But both types of source routes do find application in certain scenarios, as we will see in\nlater chapters.\n3.1. Switching Basics 115\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "3.1.3",
+      "source_title": "Source Routing",
+      "source_pages": [
+        118,
+        119,
+        120
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.1.3",
+    "section_title": "Source Routing",
+    "pages": [
+      118,
+      119,
+      120
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

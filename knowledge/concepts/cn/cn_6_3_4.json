@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_6_3_4",
+  "subject": "computer_networks",
+  "name": "TCP CUBIC",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_3_4_source",
+      "statement": "A variant of the standard TCP algorithm just described, called CUBIC, is the default congestion control\nalgorithm distributed with Linux. CUBIC's primary goal is to support networks with large delay × band-\nwidth products, which are sometimes called long-fat networks. Such networks suffer from the original TCP\nalgorithm requiring too many round-trips to reach the available capacity of the end-to-end path. CUBIC\ndoes this by being more aggressive in how it increases the window size, but of course the trick is to be more\naggressive without being so aggressive as to adversely affect other flows.\nOne important aspect of CUBIC's approach is to adjust its congestion window at regular intervals, based on\nthe amount of time that has elapsed since the last congestion event (e.g., the arrival of a duplicate ACK),\nrather than only when ACKs arrive (the latter being a function of RTT). This allows CUBIC to behave fairly\nwhen competing with short-RTT flows, which will have ACKs arriving more frequently.\nThe second important aspect of CUBIC is its use of a cubic function to adjust the congestion window. The\nbasic idea is easiest to understand by looking at the general shape of a cubic function, which has three phases:\nslowing growth, flatten plateau, increasing growth. A generic example is shown in Figure 6.14, which we\nhave annotated with one extra piece of information: the maximum congestion window size achieved just\nbefore the last congestion event as a target (denotedWmax). The idea is to start fast but slow the growth rate\nas you get close to Wmax, be cautious and have near-zero growth when close to Wmax, and then increase\nthe growth rate as you move away fromWmax. The latter phase is essentially probing for a new achievable\nWmax.\nSpecifically, CUBIC computes the congestion window as a function of time (t) since the last congestion\nevent\nCWND(t) = C× (t− K)3 + Wmax\n310 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 6.14.: Generic cubic function illustrsting the change in the congestion window as a function of time.\nwhere\nK = 3\n√︀\nWmax× (1−β)/C\nC is a scaling constant and β is the multiplicative decrease factor. CUBIC sets the latter to 0.7 rather than\nthe 0.5 that standard TCP uses. Looking back at Figure 6.14, CUBIC is often described as shifting between\na concave function to being convex (whereas standard TCP's additive function is only convex).",
+      "source_section": "6.3.4",
+      "source_title": "TCP CUBIC",
+      "source_pages": [
+        314,
+        315
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.3.4",
+    "section_title": "TCP CUBIC",
+    "pages": [
+      314,
+      315
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

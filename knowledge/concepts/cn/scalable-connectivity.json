@@ -1,0 +1,148 @@
+{
+  "id": "cn_concept_scalable_connectivity",
+  "subject": "computer_networks",
+  "name": "Scalable Connectivity",
+  "type": "concept",
+
+  "source_claims": [
+    {
+      "id": "claim_1",
+      "statement": "A network must provide connectivity among a set of computers.",
+      "source_section": "1.2.2",
+      "source_pages": [14]
+    },
+    {
+      "id": "claim_2",
+      "statement": "A system designed to support growth to an arbitrarily large size is said to scale.",
+      "source_section": "1.2.2",
+      "source_pages": [14]
+    },
+    {
+      "id": "claim_3",
+      "statement": "A physical medium connecting computers is called a link, and the computers it connects are called nodes.",
+      "source_section": "1.2.2",
+      "source_pages": [14]
+    },
+    {
+      "id": "claim_4",
+      "statement": "Physical links may be point-to-point or multiple-access.",
+      "source_section": "1.2.2",
+      "source_pages": [14, 15]
+    },
+    {
+      "id": "claim_5",
+      "statement": "Indirect connectivity can be achieved through cooperating nodes that forward data.",
+      "source_section": "1.2.2",
+      "source_pages": [15]
+    },
+    {
+      "id": "claim_6",
+      "statement": "Nodes that systematically forward data between links form a switched network.",
+      "source_section": "1.2.2",
+      "source_pages": [15]
+    },
+    {
+      "id": "claim_7",
+      "statement": "Packet-switched networks typically use store-and-forward, where a node receives a complete packet, stores it, and then forwards it.",
+      "source_section": "1.2.2",
+      "source_pages": [15, 16]
+    },
+    {
+      "id": "claim_8",
+      "statement": "Independent networks can be interconnected to form an internetwork.",
+      "source_section": "1.2.2",
+      "source_pages": [16, 17]
+    },
+    {
+      "id": "claim_9",
+      "statement": "An address identifies a node so that the network can distinguish it from other nodes.",
+      "source_section": "1.2.2",
+      "source_pages": [17]
+    },
+    {
+      "id": "claim_10",
+      "statement": "Routing is the process of determining how to forward messages toward a destination based on its address.",
+      "source_section": "1.2.2",
+      "source_pages": [17]
+    }
+  ],
+
+  "inferences": [
+    {
+      "id": "inference_1",
+      "type": "prerequisite",
+      "concept": "network",
+      "basis": "Understanding scalable connectivity requires understanding what a network is."
+    },
+    {
+      "id": "inference_2",
+      "type": "prerequisite",
+      "concept": "node",
+      "basis": "The source describes connectivity in terms of nodes."
+    },
+    {
+      "id": "inference_3",
+      "type": "prerequisite",
+      "concept": "link",
+      "basis": "The source introduces links as the physical medium connecting nodes."
+    },
+    {
+      "id": "inference_4",
+      "type": "related_concept",
+      "concept": "packet_switching",
+      "basis": "Packet switching is presented as a major form of switched networking."
+    },
+    {
+      "id": "inference_5",
+      "type": "related_concept",
+      "concept": "routing",
+      "basis": "Routing is introduced as a mechanism for forwarding messages toward destinations."
+    }
+  ],
+
+  "experience": {
+    "hooks": [
+      "You need to connect thousands of computers. How would you design the network?",
+      "What happens when two computers are not directly connected?",
+      "How can a message reach a destination when several intermediate nodes are involved?"
+    ],
+
+    "scenarios": [
+      "Design a network that can grow from a few computers to a very large number of computers.",
+      "Trace how a packet could move through intermediate nodes toward its destination."
+    ],
+
+    "practical_extension": {
+      "tool": "Wireshark",
+      "purpose": "Observe packets and connect the conceptual model to real network traffic."
+    }
+  },
+
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+
+  "source": {
+    "book": "Computer Networks: A Systems Approach",
+    "authors": [
+      "Larry Peterson",
+      "Bruce Davie"
+    ],
+    "release": "6.1",
+    "section": "1.2.2",
+    "section_title": "Scalable Connectivity",
+    "pages": [14, 15, 16, 17, 18]
+  },
+
+  "traceability": {
+    "source_verified": true,
+    "source_location": "knowledge/sources/cn/computer-networks-a-systems-approach.pdf",
+    "generated_content": [
+      "inferences",
+      "experience"
+    ]
+  }
+}

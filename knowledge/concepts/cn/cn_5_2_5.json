@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_5_2_5",
+  "subject": "computer_networks",
+  "name": "Triggering Transmission",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_2_5_source",
+      "statement": "We next consider a surprisingly subtle issue: how TCP decides to transmit a segment. As described earlier,\nTCP supports a byte-stream abstraction; that is, application programs write bytes into the stream, and it is\nup to TCP to decide that it has enough bytes to send a segment. What factors govern this decision?\nIf we ignore the possibility of flow control—that is, we assume the window is wide open, as would be\nthe case when a connection first starts—then TCP has three mechanisms to trigger the transmission of a\nsegment. First, TCP maintains a variable, typically called the maximum segment size (MSS), and it sends a\nsegment as soon as it has collectedMSS bytes from the sending process.MSS is usually set to the size of the\nlargest segment TCP can send without causing the local IP to fragment. That is,MSS is set to the maximum\ntransmission unit (MTU) of the directly connected network, minus the size of the TCP and IP headers. The\nsecond thing that triggers TCP to transmit a segment is that the sending process has explicitly asked it to do\nso. Specifically, TCP supports a push operation, and the sending process invokes this operation to effectively\nflush the buffer of unsent bytes. The final trigger for transmitting a segment is that a timer fires; the resulting\nsegment contains as many bytes as are currently buffered for transmission. However, as we will soon see,\nthis \"timer\" isn't exactly what you expect.\nSilly Window Syndrome\nOf course, we can't just ignore flow control, which plays an obvious role in throttling the sender. If the\nsender hasMSS bytes of data to send and the window is open at least that much, then the sender transmits a\nfull segment. Suppose, however, that the sender is accumulating bytes to send, but the window is currently\nclosed. Now suppose an ACK arrives that effectively opens the window enough for the sender to transmit,\nsay,MSS/2 bytes. Should the sender transmit a half-full segment or wait for the window to open to a full\nMSS? The original specification was silent on this point, and early implementations of TCP decided to go\nahead and transmit a half-full segment. After all, there is no telling how long it will be before the window\nopens further.\nIt turns out that the strategy of aggressively taking advantage of any available window leads to a situation\nnow known as the silly window syndrome. Figure 5.9 helps visualize what happens. If you think of a TCP\nstream as a conveyor belt with \"full\" containers (data segments) going in one direction and empty containers\n(ACKs) going in the reverse direction, then MSS-sized segments correspond to large containers and 1-byte\nsegments correspond to very small containers. As long as the sender is sending MSS-sized segments and\nthe receiver ACKs at least one MSS of data at a time, everything is good (Figure 5.9(a)). But, what if the\nreceiver has to reduce the window, so that at some time the sender can't send a full MSS of data? If the\nsender aggressively fills a smaller-than- MSS empty container as soon as it arrives, then the receiver will\nACK that smaller number of bytes, and hence the small container introduced into the system remains in the\nsystem indefinitely. That is, it is immediately filled and emptied at each end and is never coalesced with\nadjacent containers to create larger containers, as in Figure 5.9(b). This scenario was discovered when early\nimplementations of TCP regularly found themselves filling the network with tiny segments.\nNote that the silly window syndrome is only a problem when either the sender transmits a small segment or\nthe receiver opens the window a small amount. If neither of these happens, then the small container is never\nintroduced into the stream. It's not possible to outlaw sending small segments; for example, the application\nmight do a push after sending a single byte. It is possible, however, to keep the receiver from introducing\na small container (i.e., a small open window). The rule is that after advertising a zero window the receiver\nmust wait for space equal to anMSS before it advertises an open window.\n5.2. Reliable Byte Stream (TCP) 247\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 5.9.: Silly window syndrome. (a) As long as the sender sends MSS-sized segments and the receiver\nACKs one MSS at a time, the system works smoothly. (b) As soon as the sender sends less than one MSS,\nor the receiver ACKs less than one MSS, a small \"container\" enters the system and continues to circulate.\nSince we can't eliminate the possibility of a small container being introduced into the stream, we also need\nmechanisms to coalesce them. The receiver can do this by delaying ACKs—sending one combined ACK\nrather than multiple smaller ones—but this is only a partial solution because the receiver has no way of\nknowing how long it is safe to delay waiting either for another segment to arrive or for the application to\nread more data (thus opening the window). The ultimate solution falls to the sender, which brings us back\nto our original issue: When does the TCP sender decide to transmit a segment?\nNagle's Algorithm\nReturning to the TCP sender, if there is data to send but the window is open less than MSS, then we may\nwant to wait some amount of time before sending the available data, but the question is how long? If we\nwait too long, then we hurt interactive applications like Telnet. If we don't wait long enough, then we risk\nsending a bunch of tiny packets and falling into the silly window syndrome. The answer is to introduce a\ntimer and to transmit when the timer expires.\nWhile we could use a clock-based timer—for example, one that fires every 100 ms—Nagle introduced\nan elegant self-clocking solution. The idea is that as long as TCP has any data in flight, the sender will\neventually receive an ACK. This ACK can be treated like a timer firing, triggering the transmission of more\ndata. Nagle's algorithm provides a simple, unified rule for deciding when to transmit:\nWhen the application produces data to send\nif both the available data and the window >= MSS\nsend a full segment\nelse\nif there is unACKed data in flight\nbuffer the new data until an ACK arrives\n(continues on next page)\n248 Chapter 5. End-to-End Protocols\nComputer Networks: A Systems Approach, Release Version 6.1\n(continued from previous page)\nelse\nsend all the new data now\nIn other words, it's always OK to send a full segment if the window allows. It's also all right to immediately\nsend a small amount of data if there are currently no segments in transit, but if there is anything in flight\nthe sender must wait for an ACK before transmitting the next segment. Thus, an interactive application\nlike Telnet that continually writes one byte at a time will send data at a rate of one segment per RTT. Some\nsegments will contain a single byte, while others will contain as many bytes as the user was able to type\nin one round-trip time. Because some applications cannot afford such a delay for each write it does to\na TCP connection, the socket interface allows the application to turn off Nagel's algorithm by setting the\nTCP_NODELAY option. Setting this option means that data is transmitted as soon as possible.",
+      "source_section": "5.2.5",
+      "source_title": "Triggering Transmission",
+      "source_pages": [
+        251,
+        252,
+        253
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.2.5",
+    "section_title": "Triggering Transmission",
+    "pages": [
+      251,
+      252,
+      253
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

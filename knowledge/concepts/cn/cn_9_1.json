@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_9_1",
+  "subject": "computer_networks",
+  "name": "Traditional Applications",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_9_1_source",
+      "statement": "We begin our discussion of applications by focusing on two of the most popular—the World Wide Web and\nemail. Broadly speaking, both of these applications use the request/reply paradigm—users send requests to\nservers, which then respond accordingly. We refer to these as \"traditional\" applications because they typify\nthe sort of applications that have existed since the early days of computer networks (although the Web is a\nlot newer than email but has its roots in file transfers that predated it). By contrast, later sections will look\nat a class of applications that have become popular more recently: streaming applications (e.g., multimedia\napplications like video and audio) and various overlay-based applications. (Note that there is a bit of a\nblurring between these classes, as you can of course get access to streaming multimedia data over the Web,\nbut for now we'll focus on the general usage of the Web to request pages, images, etc.)\nBefore taking a close look at each of these applications, there are three general points that we need to make.\nThe first is that it is important to distinguish between application programs and application protocols. For\nexample, the HyperText Transport Protocol (HTTP) is an application protocol that is used to retrieve Web\npages from remote servers. Many different application programs—that is, web clients like Internet Explorer,\nChrome, Firefox, and Safari—provide users with a different look and feel, but all of them use the same\nHTTP protocol to communicate with web servers over the Internet. Indeed, it is the fact that the protocol is\npublished and standardized that enables application programs developed by many different companies and\nindividuals to interoperate. That is how so many browsers are able to interoperate with all the web servers\n(of which there are also many varieties).\nThis section looks at two very widely used, standardized application protocols:\n• Simple Mail Transfer Protocol (SMTP) is used to exchange electronic mail.\n• HyperText Transport Protocol (HTTP) is used to communicate between web browsers and web\nservers.\nSecond, we observe that many application layer protocols, including HTTP and SMTP, have a companion\nprotocol that specifies the format of the data that can be exchanged. This is one reason WHY these protocols\nare relatively simple: Much of the complexity is managed in this companion standard. For example, SMTP is\na protocol for exchanging electronic mail messages, but RFC 822 and Multipurpose Internet Mail Extensions\n(MIME) define the format of email messages. Similarly, HTTP is a protocol for fetching Web pages, but\nHyperText Markup Language (HTML) is a companion specification that defines the basic form of those\npages.\nFinally, since the application protocols described in this section follow the same request/reply communica-\ntion pattern, you might expect that they would be built on top of a Remote Procedure Call (RPC) transport\nprotocol. This is not the case, however, as they are instead implemented on top of TCP. In effect, each proto-\ncol reinvents a simple RPC-like mechanism on top of a reliable transport protocol (TCP). We say \"simple\"\nbecause each protocol is not designed to support arbitrary remote procedure calls of the sort discussed in an\nearlier chapter, but is instead designed to send and respond to a specific set of request messages. Interest-\ningly, the approach taken by HTTP has proven quite powerful, which has led to it being adopted widely by\nthe Web Servicesarchitecture, with general RPC mechanisms builton top of HTTP rather than the other way\naround. More on this topic at the end of this section.\n416 Chapter 9. Applications\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "9.1",
+      "source_title": "Traditional Applications",
+      "source_pages": [
+        420,
+        421
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "9.1",
+    "section_title": "Traditional Applications",
+    "pages": [
+      420,
+      421
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

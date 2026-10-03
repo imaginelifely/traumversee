@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_3_8",
+  "subject": "computer_networks",
+  "name": "Error Reporting (ICMP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_8_source",
+      "statement": "The next issue is how the Internet treats errors. While IP is perfectly willing to drop datagrams when\nthe going gets tough—for example, when a router does not know how to forward the datagram or when\none fragment of a datagram fails to arrive at the destination—it does not necessarily fail silently. IP is\nalways configured with a companion protocol, known as the Internet Control Message Protocol (ICMP),\nthat defines a collection of error messages that are sent back to the source host whenever a router or host is\nunable to process an IP datagram successfully. For example, ICMP defines error messages indicating that\nthe destination host is unreachable (perhaps due to a link failure), that the reassembly process failed, that\nthe TTL had reached 0, that the IP header checksum failed, and so on.\nICMP also defines a handful of control messages that a router can send back to a source host. One of the\nmost useful control messages, called anICMP-Redirect, tells the source host that there is a better route to the\ndestination. ICMP-Redirects are used in the following situation. Suppose a host is connected to a network\nthat has two routers attached to it, called R1 and R2, where the host uses R1 as its default router. Should R1\never receive a datagram from the host, where based on its forwarding table it knows that R2 would have been\na better choice for a particular destination address, it sends an ICMP-Redirect back to the host, instructing\nit to use R2 for all future datagrams addressed to that destination. The host then adds this new route to its\nforwarding table.\nICMP also provides the basis for two widely used debugging tools, ping andtraceroute. ping uses\nICMP echo messages to determine if a node is reachable and alive. traceroute uses a slightly non-\nintuitive technique to determine the set of routers along the path to a destination, which is the topic for one\nof the exercises at the end of this chapter.\n3.3. Internet (IP) 147\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "3.3.8",
+      "source_title": "Error Reporting (ICMP)",
+      "source_pages": [
+        151,
+        152
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3.8",
+    "section_title": "Error Reporting (ICMP)",
+    "pages": [
+      151,
+      152
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_8_5_5",
+  "subject": "computer_networks",
+  "name": "Wireless Security (802.11i)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_5_5_source",
+      "statement": "Wireless links are particularly exposed to security threats due to the lack of any physical security on the\nmedium. While the convenience of 802.11 has prompted widespread acceptance of the technology, lack of\nsecurity has been a recurring problem. For example, it is all too easy for an employee of a corporation to\nconnect an 802.11 access point to the corporate network. Since radio waves pass through most walls, if the\naccess point lacks the correct security measures, an attacker can now gain access to the corporate network\nfrom outside the building. Similarly, a computer with a wireless network adaptor inside the building could\nconnect to an access point outside the building, potentially exposing it to attack, not to mention the rest of\nthe corporate network if that same computer has, say, an Ethernet connection as well.\nConsequently, there has been considerable work on securing Wi-Fi links. Somewhat surprisingly, one of the\nearly security techniques developed for 802.11, known as Wired Equivalent Privacy (WEP), turned out to\nbe seriously flawed and quite easily breakable.\nThe IEEE 802.11i standard provides authentication, message integrity, and confidentiality to 802.11 (Wi-Fi)\nat the link layer. WPA3 (Wi-Fi Protected Access 3) is often used as a synonym for 802.11i, although it is\ntechnically a trademark of the Wi-Fi Alliance that certifies product compliance with 802.11i.\nFor backward compatibility, 802.11i includes definitions of first-generation security algorithms—including\nWEP—that are now known to have major security flaws. We will focus here on 802.11i's newer, stronger\nalgorithms.\n8.5. Example Systems 407\nComputer Networks: A Systems Approach, Release Version 6.1\n802.11i authentication supports two modes. In either mode, the end result of successful authentication is a\nshared Pairwise Master Key. Personal mode, also known as Pre-Shared Key (PSK) mode, provides weaker\nsecurity but is more convenient and economical for situations like a home 802.11 network. The wireless\ndevice and the Access Point (AP) are preconfigured with a shared passphrase—essentially a very long\npassword—from which the Pairwise Master Key is cryptographically derived.\n802.11i's stronger authentication mode is based on the IEEE 802.1X framework for controlling access to a\nLAN, which uses an Authentication Server (AS) as in Figure 8.19. The AS and AP must be connected by a\nsecure channel and could even be implemented as a single box, but they are logically separate. The AP for-\nwards authentication messages between the wireless device and the AS. The protocol used for authentication\nis called the Extensible Authentication Protocol (EAP). EAP is designed to support multiple authentication\nmethods—smart cards, Kerberos, one-time passwords, public key authentication, and so on—as well as both\none-sided and mutual authentication. So EAP is better thought of as an authentication framework than a pro-\ntocol. Specific EAP-compliant protocols, of which there are many, are called EAP methods. For example,\nEAP-TLS is an EAP method based on TLS authentication.\nFigure 8.19.: Use of an Authentication Server in 802.11i.\n802.11i does not place any restrictions on what the EAP method can use as a basis for authentication. It\ndoes, however, require an EAP method that performs mutual authentication, because not only do we want\nto prevent an adversary from accessing the network via our AP, we also want to prevent an adversary from\nfooling our wireless devices with a bogus, malicious AP. The end result of a successful authentication is a\nPairwise Master Key shared between the wireless device and the AS, which the AS then conveys to the AP.\nOne of the main differences between the stronger AS-based mode and the weaker personal mode is that the\nformer readily supports a unique key per client. This in turn makes it easier to change the set of clients that\ncan authenticate themselves (e.g., to revoke access to one client) without needing to change the secret stored\nin every client.\n408 Chapter 8. Network Security\nComputer Networks: A Systems Approach, Release Version 6.1\nWith a Pairwise Master Key in hand, the wireless device and the AP execute a session key establishment\nprotocol called the 4-way handshake to establish a Pairwise Transient Key. This Pairwise Transient Key is\nreally a collection of keys that includes a session key called aTemporal Key. This session key is used by the\nprotocol, called CCMP, that provides 802.11i's data confidentiality and integrity.\nCCMP stands for CTR (Counter Mode) with CBC-MAC (Cipher-Block Chaining with Message Authentica-\ntion Code) Protocol. CCMP uses AES in counter mode to encrypt for confidentiality. Recall that in counter\nmode encryption successive values of a counter are incorporated into the encryption of successive blocks of\nplaintext.\nCCMP uses a Message Authentication Code (MAC) as an authenticator. The MAC algorithm is based on\nCBC, even though CCMP doesn't use CBC in the confidentiality encryption. In effect, CBC is performed\nwithout transmitting any of the CBC-encrypted blocks, solely so that the last CBC-encrypted block can be\nused as a MAC (only its first 8 bytes are actually used). The role of initialization vector is played by a\nspecially constructed first block that includes a 48-bit packet number—a sequence number. (The packet\nnumber is also incorporated in the confidentiality encryption and serves to expose replay attacks.) The\nMAC is subsequently encrypted along with the plaintext in order to prevent birthday attacks, which depend\non finding different messages with the same authenticator.",
+      "source_section": "8.5.5",
+      "source_title": "Wireless Security (802.11i)",
+      "source_pages": [
+        411,
+        412,
+        413
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.5.5",
+    "section_title": "Wireless Security (802.11i)",
+    "pages": [
+      411,
+      412,
+      413
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

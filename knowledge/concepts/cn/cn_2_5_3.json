@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_2_5_3",
+  "subject": "computer_networks",
+  "name": "Concurrent Logical Channels",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_5_3_source",
+      "statement": "The data link protocol used in the original ARPANET provides an interesting alternative to the sliding\nwindow protocol, in that it is able to keep the pipe full while still using the simple stop-and-wait algorithm.\nOne important consequence of this approach is that the frames sent over a given link are not kept in any\nparticular order. The protocol also implies nothing about flow control.\nThe idea underlying the ARPANET protocol, which we refer to as concurrent logical channels, is to multi-\nplex several logical channels onto a single point-to-point link and to run the stop-and-wait algorithm on each\nof these logical channels. There is no relationship maintained among the frames sent on any of the logical\nchannels, yet because a different frame can be outstanding on each of the several logical channels the sender\ncan keep the link full.\nMore precisely, the sender keeps 3 bits of state for each channel: a boolean, saying whether the channel is\ncurrently busy; the 1-bit sequence number to use the next time a frame is sent on this logical channel; and\nthe next sequence number to expect on a frame that arrives on this channel. When the node has a frame to\nsend, it uses the lowest idle channel, and otherwise it behaves just like stop-and-wait.\n76 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\nIn practice, the ARPANET supported 8 logical channels over each ground link and 16 over each satellite\nlink. In the ground-link case, the header for each frame included a 3-bit channel number and a 1-bit sequence\nnumber, for a total of 4 bits. This is exactly the number of bits the sliding window protocol requires to\nsupport up to 8 outstanding frames on the link whenRWS = SWS.",
+      "source_section": "2.5.3",
+      "source_title": "Concurrent Logical Channels",
+      "source_pages": [
+        80,
+        81
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.5.3",
+    "section_title": "Concurrent Logical Channels",
+    "pages": [
+      80,
+      81
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

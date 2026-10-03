@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_4_2_4",
+  "subject": "computer_networks",
+  "name": "Advanced Capabilities",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_2_4_source",
+      "statement": "As mentioned at the beginning of this section, the primary motivation behind the development of IPv6 was\nto support the continued growth of the Internet. Once the IP header had to be changed for the sake of\nthe addresses, however, the door was open for a wide variety of other changes, two of which we describe\nbelow. But IPv6 includes several additional features, most of which are covered elsewhere in this book; e.g.,\nmobility, security, quality-of-service. It is interesting to note that, in most of these areas, the IPv4 and IPv6\ncapabilities have become virtually indistinguishable, so that the main driver for IPv6 remains the need for\nlarger addresses.\nAutoconfiguration\nWhile the Internet's growth has been impressive, one factor that has inhibited faster acceptance of the tech-\nnology is the fact that getting connected to the Internet has typically required a fair amount of system\nadministration expertise. In particular, every host that is connected to the Internet needs to be configured\nwith a certain minimum amount of information, such as a valid IP address, a subnet mask for the link to\nwhich it attaches, and the address of a name server. Thus, it has not been possible to unpack a new computer\nand connect it to the Internet without some preconfiguration. One goal of IPv6, therefore, is to provide\nsupport for autoconfiguration, sometimes referred to as plug-and-play operation.\nAs we saw in the previous chapter, autoconfiguration is possible for IPv4, but it depends on the existence\nof a server that is configured to hand out addresses and other configuration information to Dynamic Host\nConfiguration Protocol (DHCP) clients. The longer address format in IPv6 helps provide a useful, new form\nof autoconfiguration called stateless autoconfiguration, which does not require a server.\nRecall that IPv6 unicast addresses are hierarchical, and that the least significant portion is the interface ID.\nThus, we can subdivide the autoconfiguration problem into two parts:\n1. Obtain an interface ID that is unique on the link to which the host is attached.\n2. Obtain the correct address prefix for this subnet.\nThe first part turns out to be rather easy, since every host on a link must have a unique link-level address.\nFor example, all hosts on an Ethernet have a unique 48-bit Ethernet address. This can be turned into a valid\nlink-local use address by adding the appropriate prefix from :numref\" Table %s <fig-v6tab> (1111 1110\n10) followed by enough 0s to make up 128 bits. For some devices—for example, printers or hosts on a\nsmall routerless network that do not connect to any other networks—this address may be perfectly adequate.\nThose devices that need a globally valid address depend on a router on the same link to periodically advertise\nthe appropriate prefix for the link. Clearly, this requires that the router be configured with the correct address\nprefix, and that this prefix be chosen in such a way that there is enough space at the end (e.g., 48 bits) to\nattach an appropriate link-level address.\nThe ability to embed link-level addresses as long as 48 bits into IPv6 addresses was one of the reasons for\nchoosing such a large address size. Not only does 128 bits allow the embedding, but it leaves plenty of space\nfor the multilevel hierarchy of addressing that we discussed above.\n4.2. IP Version 6 199\nComputer Networks: A Systems Approach, Release Version 6.1\nSource-Directed Routing\nAnother of IPv6's extension headers is the routing header. In the absence of this header, routing for IPv6\ndiffers very little from that of IPv4 under CIDR. The routing header contains a list of IPv6 addresses that\nrepresent nodes or topological areas that the packet should visit en route to its destination. A topological\narea may be, for example, a backbone provider's network. Specifying that packets must visit this network\nwould be a way of implementing provider selection on a packet-by-packet basis. Thus, a host could say that\nit wants some packets to go through a provider that is cheap, others through a provider that provides high\nreliability, and still others through a provider that the host trusts to provide security.\nTo provide the ability to specify topological entities rather than individual nodes, IPv6 defines an anycast\naddress. An anycast address is assigned to a set of interfaces, and packets sent to that address will go to\nthe \"nearest\" of those interfaces, with nearest being determined by the routing protocols. For example, all\nthe routers of a backbone provider could be assigned a single anycast address, which would be used in the\nrouting header.",
+      "source_section": "4.2.4",
+      "source_title": "Advanced Capabilities",
+      "source_pages": [
+        203,
+        204
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.2.4",
+    "section_title": "Advanced Capabilities",
+    "pages": [
+      203,
+      204
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_1_4_2",
+  "subject": "computer_networks",
+  "name": "Example Application",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_1_4_2_source",
+      "statement": "We now show the implementation of a simple client/server program that uses the socket interface to send\nmessages over a TCP connection. The program also uses other Linux networking utilities, which we intro-\nduce as we go. Our application allows a user on one machine to type in and send text to a user on another\nmachine. It is a simplified version of the Linux talk program, which is similar to the program at the core\nof instant messaging applications.\nClient\nWe start with the client side, which takes the name of the remote machine as an argument. It calls the Linux\nutility to translate this name into the remote host's IP address. The next step is to construct the address data\nstructure (sin) expected by the socket interface. Notice that this data structure specifies that we'll be using\nthe socket to connect to the Internet (AF_INET). In our example, we use TCP port 5432 as the well-known\nserver port; this happens to be a port that has not been assigned to any other Internet service. The final step\nin setting up the connection is to call socket andconnect. Once the operation returns, the connection\nis established and the client program enters its main loop, which reads text from standard input and sends it\nover the socket.\n34 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\n#include <stdio.h>\n#include <sys/types.h>\n#include <sys/socket.h>\n#include <netinet/in.h>\n#include <netdb.h>\n#define SERVER_PORT 5432\n#define MAX_LINE 256\nint\nmain(int argc, char * argv[])\n{\nFILE *fp;\nstruct hostent *hp;\nstruct sockaddr_in sin;\nchar *host;\nchar buf[MAX_LINE];\nint s;\nint len;\nif (argc==2) {\nhost = argv[1];\n}\nelse {\nfprintf(stderr, \"usage: simplex-talk host\\n\");\nexit(1);\n}\n/* translate host name into peer's IP address */\nhp = gethostbyname(host);\nif (!hp) {\nfprintf(stderr, \"simplex-talk: unknown host: %s\\n\", host);\nexit(1);\n}\n/* build address data structure */\nbzero((char *)&sin, sizeof(sin));\nsin.sin_family = AF_INET;\nbcopy(hp->h_addr, (char *)&sin.sin_addr, hp->h_length);\nsin.sin_port = htons(SERVER_PORT);\n/* active open */\nif ((s = socket(PF_INET, SOCK_STREAM, 0)) < 0) {\nperror(\"simplex-talk: socket\");\nexit(1);\n}\nif (connect(s, (struct sockaddr *)&sin, sizeof(sin)) < 0)\n{\nperror(\"simplex-talk: connect\");\nclose(s);\nexit(1);\n}\n(continues on next page)\n1.4. Software 35\nComputer Networks: A Systems Approach, Release Version 6.1\n(continued from previous page)\n/* main loop: get and send lines of text */\nwhile (fgets(buf, sizeof(buf), stdin)) {\nbuf[MAX_LINE-1] = '\\0';\nlen = strlen(buf) + 1;\nsend(s, buf, len, 0);\n}\n}\nServer\nThe server is equally simple. It first constructs the address data structure by filling in its own port number\n(SERVER_PORT). By not specifying an IP address, the application program is willing to accept connections\non any of the local host's IP addresses. Next, the server performs the preliminary steps involved in a\npassive open; it creates the socket, binds it to the local address, and sets the maximum number of pending\nconnections to be allowed. Finally, the main loop waits for a remote host to try to connect, and when one\ndoes, it receives and prints out the characters that arrive on the connection.\n#include <stdio.h>\n#include <sys/types.h>\n#include <sys/socket.h>\n#include <netinet/in.h>\n#include <netdb.h>\n#define SERVER_PORT 5432\n#define MAX_PENDING 5\n#define MAX_LINE 256\nint\nmain()\n{\nstruct sockaddr_in sin;\nchar buf[MAX_LINE];\nint buf_len, addr_len;\nint s, new_s;\n/* build address data structure */\nbzero((char *)&sin, sizeof(sin));\nsin.sin_family = AF_INET;\nsin.sin_addr.s_addr = INADDR_ANY;\nsin.sin_port = htons(SERVER_PORT);\n/* setup passive open */\nif ((s = socket(PF_INET, SOCK_STREAM, 0)) < 0) {\nperror(\"simplex-talk: socket\");\nexit(1);\n}\nif ((bind(s, (struct sockaddr *)&sin, sizeof(sin))) < 0) {\nperror(\"simplex-talk: bind\");\nexit(1);\n(continues on next page)\n36 Chapter 1. Foundation\nComputer Networks: A Systems Approach, Release Version 6.1\n(continued from previous page)\n}\nlisten(s, MAX_PENDING);\n/* wait for connection, then receive and print text */\nwhile(1) {\nif ((new_s = accept(s, (struct sockaddr *)&sin, &addr_len)) < 0) {\nperror(\"simplex-talk: accept\");\nexit(1);\n}\nwhile (buf_len = recv(new_s, buf, sizeof(buf), 0))\nfputs(buf, stdout);\nclose(new_s);\n}\n}",
+      "source_section": "1.4.2",
+      "source_title": "Example Application",
+      "source_pages": [
+        38,
+        39,
+        40,
+        41
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "1.4.2",
+    "section_title": "Example Application",
+    "pages": [
+      38,
+      39,
+      40,
+      41
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

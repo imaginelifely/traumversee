@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_5_2",
+  "subject": "computer_networks",
+  "name": "Reliable Byte Stream (TCP)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_5_2_source",
+      "statement": "In contrast to a simple demultiplexing protocol like UDP, a more sophisticated transport protocol is one\nthat offers a reliable, connection-oriented, byte-stream service. Such a service has proven useful to a wide\nassortment of applications because it frees the application from having to worry about missing or reordered\ndata. The Internet's Transmission Control Protocol is probably the most widely used protocol of this type;\nit is also the most carefully tuned. It is for these two reasons that this section studies TCP in detail, although\nwe identify and discuss alternative design choices at the end of the section.\nIn terms of the properties of transport protocols given in the problem statement at the start of this chapter,\nTCP guarantees the reliable, in-order delivery of a stream of bytes. It is a full-duplex protocol, meaning\nthat each TCP connection supports a pair of byte streams, one flowing in each direction. It also includes\na flow-control mechanism for each of these byte streams that allows the receiver to limit how much data\nthe sender can transmit at a given time. Finally, like UDP, TCP supports a demultiplexing mechanism that\nallows multiple application programs on any given host to simultaneously carry on a conversation with their\npeers.\nIn addition to the above features, TCP also implements a highly tuned congestion-control mechanism. The\nidea of this mechanism is to throttle how fast TCP sends data, not for the sake of keeping the sender from\nover-running the receiver, but so as to keep the sender from overloading the network. A description of TCP's\ncongestion-control mechanism is postponed until the next chapter, where we discuss it in the larger context\nof how network resources are fairly allocated.\nSince many people confuse congestion control and flow control, we restate the difference. Flow control\ninvolves preventing senders from over-running the capacity of receivers. Congestion control involves pre-\nventing too much data from being injected into the network, thereby causing switches or links to become\noverloaded. Thus, flow control is an end-to-end issue, while congestion control is concerned with how hosts\nand networks interact.",
+      "source_section": "5.2",
+      "source_title": "Reliable Byte Stream (TCP)",
+      "source_pages": [
+        237
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "5.2",
+    "section_title": "Reliable Byte Stream (TCP)",
+    "pages": [
+      237
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

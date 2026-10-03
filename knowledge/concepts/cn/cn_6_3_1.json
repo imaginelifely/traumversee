@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_6_3_1",
+  "subject": "computer_networks",
+  "name": "Additive Increase/Multiplicative Decrease",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_3_1_source",
+      "statement": "TCP maintains a new state variable for each connection, called CongestionWindow, which is used by\nthe source to limit how much data it is allowed to have in transit at a given time. The congestion window is\ncongestion control's counterpart to flow control's advertised window. TCP is modified such that the maxi-\nmum number of bytes of unacknow- ledged data allowed is now the minimum of the congestion window and\n6.3. TCP Congestion Control 301\nComputer Networks: A Systems Approach, Release Version 6.1\nthe advertised window. Thus, using the variables defined in the previous chapter, TCP's effective window is\nrevised as follows:\nMaxWindow = MIN(CongestionWindow, AdvertisedWindow)\nEffectiveWindow = MaxWindow - (LastByteSent - LastByteAcked)\nThat is, MaxWindow replacesAdvertisedWindow in the calculation of EffectiveWindow. Thus,\na TCP source is allowed to send no faster than the slowest component—the network or the destination\nhost—can accommodate.\nThe problem, of course, is how TCP comes to learn an appropriate value forCongestionWindow. Unlike\nthe AdvertisedWindow, which is sent by the receiving side of the connection, there is no one to send\na suitable CongestionWindow to the sending side of TCP. The answer is that the TCP source sets the\nCongestionWindow based on the level of congestion it perceives to exist in the network. This involves\ndecreasing the congestion window when the level of congestion goes up and increasing the congestion\nwindow when the level of congestion goes down. Taken together, the mechanism is commonly called\nadditive increase/multiplicative decrease (AIMD); the reason for this mouthful of a name will become\napparent below.\nThe key question, then, is how does the source determine that the network is congested and that it should\ndecrease the congestion window? The answer is based on the observation that the main reason packets are\nnot delivered, and a timeout results, is that a packet was dropped due to congestion. It is rare that a packet is\ndropped because of an error during transmission. Therefore, TCP interprets timeouts as a sign of congestion\nand reduces the rate at which it is transmitting. Specifically, each time a timeout occurs, the source sets\nCongestionWindow to half of its previous value. This halving of the CongestionWindow for each\ntimeout corresponds to the \"multiplicative decrease\" part of AIMD.\nAlthough CongestionWindow is defined in terms of bytes, it is easiest to understand multiplicative\ndecrease if we think in terms of whole packets. For example, suppose the CongestionWindow is cur-\nrently set to 16 packets. If a loss is detected, CongestionWindow is set to 8. (Normally, a loss is\ndetected when a timeout occurs, but as we see below, TCP has another mechanism to detect dropped pack-\nets.) Additional losses cause CongestionWindow to be reduced to 4, then 2, and finally to 1 packet.\nCongestionWindow is not allowed to fall below the size of a single packet, or in TCP terminology, the\nmaximum segment size .\nA congestion-control strategy that only decreases the window size is obviously too conservative. We also\nneed to be able to increase the congestion window to take advantage of newly available capacity in the net-\nwork. This is the \"additive increase\" part of AIMD, and it works as follows. Every time the source success-\nfully sends aCongestionWindow's worth of packets—that is, each packet sent out during the last round-\ntrip time (RTT) has been ACKed—it adds the equivalent of 1 packet to CongestionWindow. This linear\nincrease is illustrated in Figure 6.8. Note that, in practice, TCP does not wait for an entire window's worth\nof ACKs to add 1 packet's worth to the congestion window, but instead incrementsCongestionWindow\nby a little for each ACK that arrives. Specifically, the congestion window is incremented as follows each\ntime an ACK arrives:\nIncrement = MSS x (MSS/CongestionWindow)\nCongestionWindow += Increment\nThat is, rather than incrementingCongestionWindow by an entireMSS bytes each RTT, we increment it\nby a fraction ofMSS every time an ACK is received. Assuming that each ACK acknowledges the receipt of\nMSS bytes, then that fraction is .\n302 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 6.8.: Packets in transit during additive increase, with one packet being added each RTT.\nFigure 6.9.: Typical TCP sawtooth pattern.\n6.3. TCP Congestion Control 303\nComputer Networks: A Systems Approach, Release Version 6.1\nThis pattern of continually increasing and decreasing the congestion window continues throughout the life-\ntime of the connection. In fact, if you plot the current value ofCongestionWindow as a function of time,\nyou get a sawtooth pattern, as illustrated in Figure 6.9. The important concept to understand about AIMD is\nthat the source is willing to reduce its congestion window at a much faster rate than it is willing to increase\nits congestion window. This is in contrast to an additive increase/additive decrease strategy in which the\nwindow would be increased by 1 packet when an ACK arrives and decreased by 1 when a timeout occurs.\nIt has been shown that AIMD is a necessary condition for a congestion-control mechanism to be stable (see\nthe Further Reading section). One intuitive reason to decrease the window aggressively and increase it con-\nservatively is that the consequences of having too large a window are much worse than those of it being too\nsmall. For example, when the window is too large, packets that are dropped will be retransmitted, making\ncongestion even worse; thus, it is important to get out of this state quickly.\nFinally, since a timeout is an indication of congestion that triggers multiplicative decrease, TCP needs the\nmost accurate timeout mechanism it can afford. We already covered TCP's timeout mechanism in an earlier\nchapter, so we do not repeat it here. The two main things to remember about that mechanism are that\n(1) timeouts are set as a function of both the average RTT and the standard deviation in that average, and\n(2) due to the cost of measuring each transmission with an accurate clock, TCP only samples the round-trip\ntime once per RTT (rather than once per packet) using a coarse-grained (500-ms) clock.",
+      "source_section": "6.3.1",
+      "source_title": "Additive Increase/Multiplicative Decrease",
+      "source_pages": [
+        305,
+        306,
+        307,
+        308
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.3.1",
+    "section_title": "Additive Increase/Multiplicative Decrease",
+    "pages": [
+      305,
+      306,
+      307,
+      308
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

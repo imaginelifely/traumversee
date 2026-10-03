@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_4_4",
+  "subject": "computer_networks",
+  "name": "Multiprotocol Label Switching",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_4_4_source",
+      "statement": "We continue our discussion of enhancements to IP by describing an addition to the Internet architecture\nthat is very widely used but largely hidden from end users. The enhancement, called Multiprotocol Label\nSwitching (MPLS), combines some of the properties of virtual circuits with the flexibility and robustness\nof datagrams. On the one hand, MPLS is very much associated with the Internet Protocol's datagram-\nbased architecture—it relies on IP addresses and IP routing protocols to do its job. On the other hand,\nMPLS-enabled routers also forward packets by examining relatively short, fixed-length labels, and these\n210 Chapter 4. Advanced Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 4.17.: BIDIR-PIM operation: (a) R2 and R3 send Join messages toward the RP address that terminate\nwhen they reach a router on the RP address's link. (b) A multicast packet from R1 is forwarded upstream to\nthe RP address's link and downstream wherever it intersects a group member branch.\n4.4. Multiprotocol Label Switching 211\nComputer Networks: A Systems Approach, Release Version 6.1\nlabels have local scope, just like in a virtual circuit network. It is perhaps this marriage of two seemingly\nopposed technologies that has caused MPLS to have a somewhat mixed reception in the Internet engineering\ncommunity.\nBefore looking at how MPLS works, it is reasonable to ask \"what is it good for?\" Many claims have been\nmade for MPLS, but there are three main things that it is used for today:\n• To enable IP capabilities on devices that do not have the capability to forward IP datagrams in the\nnormal manner\n• To forward IP packets along explicit routes—precalculated routes that don't necessarily match those\nthat normal IP routing protocols would select\n• To support certain types of virtual private network services\nIt is worth noting that one of the original goals—improving performance—is not on the list. This has a lot to\ndo with the advances that have been made in forwarding algorithms for IP routers in recent years and with\nthe complex set of factors beyond header processing that determine performance.\nThe best way to understand how MPLS works is to look at some examples of its use. In the next three\nsections, we will look at examples to illustrate the three applications of MPLS mentioned above.",
+      "source_section": "4.4",
+      "source_title": "Multiprotocol Label Switching",
+      "source_pages": [
+        214,
+        215,
+        216
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "4.4",
+    "section_title": "Multiprotocol Label Switching",
+    "pages": [
+      214,
+      215,
+      216
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

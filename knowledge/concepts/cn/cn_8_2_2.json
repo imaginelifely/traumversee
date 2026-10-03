@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_8_2_2",
+  "subject": "computer_networks",
+  "name": "Secret-Key Ciphers",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_8_2_2_source",
+      "statement": "In a secret-key cipher, both participants in a communication share the same key. 1 In other words, if a\nmessage is encrypted using a particular key, the same key is required for decrypting the message. If the\ncipher illustrated in Figure 8.1 were a secret-key cipher, then the encryption and decryption keys would be\nidentical. Secret-key ciphers are also known as symmetric-key ciphers since the secret is shared with both\n1 We use the term participant for the parties involved in a secure communication since that is the term we have been using\nthroughout the book to identify the two endpoints of a channel. In the security world, they are typically called principals.\n8.2. Cryptographic Building Blocks 377\nComputer Networks: A Systems Approach, Release Version 6.1\nparticipants. We'll take a look at the alternative, public-key ciphers, shortly. (Public-key cipers are known\nas also asymmetric-key ciphers, since as we'll soon se, the two participants use different keys.)\nThe U.S. National Institute of Standards and Technology (NIST) has issued standards for a series of secret-\nkey ciphers. Data Encryption Standard (DES) was the first, and it has stood the test of time in that no\ncryptanalytic attack better than brute force search has been discovered. Brute force search, however, has\ngotten faster. DES's keys (56 independent bits) are now too small given current processor speeds. DES keys\nhave 56 independent bits (although they have 64 bits in total; the last bit of every byte is a parity bit). As\nnoted above, you would, on average, have to search half of the space of 2 56 possible keys to find the right\none, giving 255 = 3.6 × 10 16 keys. That may sound like a lot, but such a search is highly parallelizable, so\nit's possible to throw as many computers at the task as you can get your hands on—and these days it's easy\nto lay your hands on thousands of computers. (Amazon will rent them to you for a few cents an hour.) By\nthe late 1990s, it was already possible to recover a DES key after a few hours. Consequently, NIST updated\nthe DES standard in 1999 to indicate that DES should only be used for legacy systems.\nNIST also standardized the cipher Triple DES (3DES), which leverages the cryptanalysis resistance of DES\nwhile in effect increasing the key size. A 3DES key has 168 (= 3 × 56) independent bits, and is used as three\nDES keys; let's call them DES-key1, DES-key2, and DES-key3. 3DES encryption of a block is performed\nby first DES encrypting the block using DES-key1, then DES decrypting the result using DES-key2, and\nfinally DES encrypting that result using DES-key3. Decryption involves decrypting using DES-key3, then\nencrypting using DES-key2, then decrypting using DES-key1.\nThe reason 3DES encryption uses DES decryption with DES-key2 is to interoperate with legacy DES sys-\ntems. If a legacy DES system uses a single key, then a 3DES system can perform the same encryption\nfunction by using that key for each of DES-key1, DES-key2, and DES-key3; in the first two steps, we\nencrypt and then decrypt with the same key, producing the original plaintext, which we then encrypt again.\nAlthough 3DES solves DES's key-length problem, it inherits some other shortcomings. Software implemen-\ntations of DES/3DES are slow because it was originally designed by IBM for implementation in hardware.\nAlso, DES/3DES uses a 64-bit block size; a larger block size is more efficient and more secure.\n3DES is now being superseded by the Advanced Encryption Standard (AES) standard issued by NIST.\nThe cipher underlying AES (with a few minor modifications) was originally named Rijndael (pronounced\nroughly like \"Rhine dahl\") based on the names of its inventors, Daemen and Rijmen. AES supports key\nlengths of 128, 192, or 256 bits, and the block length is 128 bits. AES permits fast implementations in both\nsoftware and hardware. It doesn't require much memory, which makes it suitable for small mobile devices.\nAES has some mathematically proven security properties and, as of the time of writing, has not suffered\nfrom any significant successful attacks.",
+      "source_section": "8.2.2",
+      "source_title": "Secret-Key Ciphers",
+      "source_pages": [
+        381,
+        382
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "8.2.2",
+    "section_title": "Secret-Key Ciphers",
+    "pages": [
+      381,
+      382
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

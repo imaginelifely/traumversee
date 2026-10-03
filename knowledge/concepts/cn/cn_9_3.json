@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_9_3",
+  "subject": "computer_networks",
+  "name": "Infrastructure Applications",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_9_3_source",
+      "statement": "There are some protocols that are essential to the smooth running of the Internet but that don't fit neatly into\nthe strictly layered model. One of these is the Domain Name System (DNS)—not an application that users\nnormally invoke directly, but rather a service that almost all other applications depend upon. This is because\nthe name service is used to translate host names into host addresses; the existence of such an application\nallows the users of other applications to refer to remote hosts by name rather than by address. In other\nwords, a name service is usually used by other applications, rather than by humans.\nA second critical function is network management, which although not so familiar to the average user, is\nperformed most often by the people that operate the network on behalf of users. Network management is\nwidely considered one of the hard problems of networking and continues to be the focus of much innovation.\nWe'll look at some of the issues and approaches to the problem below.",
+      "source_section": "9.3",
+      "source_title": "Infrastructure Applications",
+      "source_pages": [
+        453
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "9.3",
+    "section_title": "Infrastructure Applications",
+    "pages": [
+      453
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

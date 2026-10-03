@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_2_1",
+  "subject": "computer_networks",
+  "name": "Learning Bridges",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_2_1_source",
+      "statement": "The first optimization we can make to a bridge is to observe that it need not forward all frames that it\nreceives. Consider the bridge in Figure 3.9. Whenever a frame from host A that is addressed to host B\narrives on port 1, there is no need for the bridge to forward the frame out over port 2. The question, then, is\nhow does a bridge come to learn on which port the various hosts reside?\nOne option would be to have a human download a table into the bridge similar to the one given in Table 3.5.\nThen, whenever the bridge receives a frame on port 1 that is addressed to host A, it would not forward the\nframe out on port 2; there would be no need because host A would have already directly received the frame\non the LAN connected to port 1. Anytime a frame addressed to host A was received on port 2, the bridge\nwould forward the frame out on port 1.\n116 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nFigure 3.9.: Illustration of a learning bridge.\nTable 3.5.: Forwarding Table Maintained by a Bridge.\nHost Port\nA 1\nB 1\nC 1\nX 2\nY 2\nZ 2\nHaving a human maintain this table is too burdensome, and there is a simple trick by which a bridge can\nlearn this information for itself. The idea is for each bridge to inspect the source address in all the frames\nit receives. Thus, when host A sends a frame to a host on either side of the bridge, the bridge receives this\nframe and records the fact that a frame from host A was just received on port 1. In this way, the bridge can\nbuild a table just like Table 3.5.\nNote that a bridge using such a table implements a version of the datagram (or connectionless) model of\nforwarding described earlier. Each packet carries a global address, and the bridge decides which output to\nsend a packet on by looking up that address in a table.\nWhen a bridge first boots, this table is empty; entries are added over time. Also, a timeout is associated with\neach entry, and the bridge discards the entry after a specified period of time. This is to protect against the\nsituation in which a host—and, as a consequence, its LAN address—is moved from one network to another.\nThus, this table is not necessarily complete. Should the bridge receive a frame that is addressed to a host not\ncurrently in the table, it goes ahead and forwards the frame out on all the other ports. In other words, this\ntable is simply an optimization that filters out some frames; it is not required for correctness.\n3.2. Switched Ethernet 117\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "3.2.1",
+      "source_title": "Learning Bridges",
+      "source_pages": [
+        120,
+        121,
+        122
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.2.1",
+    "section_title": "Learning Bridges",
+    "pages": [
+      120,
+      121,
+      122
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

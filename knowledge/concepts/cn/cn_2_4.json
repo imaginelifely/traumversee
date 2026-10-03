@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_2_4",
+  "subject": "computer_networks",
+  "name": "Error Detection",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_4_source",
+      "statement": "As discussed in Chapter 1, bit errors are sometimes introduced into frames. This happens, for example,\nbecause of electrical interference or thermal noise. Although errors are rare, especially on optical links,\nsome mechanism is needed to detect these errors so that corrective action can be taken. Otherwise, the end\n2.4. Error Detection 59\nComputer Networks: A Systems Approach, Release Version 6.1\nuser is left wondering why the C program that successfully compiled just a moment ago now suddenly has\na syntax error in it, when all that happened in the interim is that it was copied across a network file system.\nThere is a long history of techniques for dealing with bit errors in computer systems, dating back to at\nleast the 1940s. Hamming and Reed-Solomon codes are two notable examples that were developed for\nuse in punch card readers, when storing data on magnetic disks, and in early core memories. This section\ndescribes some of the error detection techniques most commonly used in networking.\nDetecting errors is only one part of the problem. The other part is correcting errors once detected. Two\nbasic approaches can be taken when the recipient of a message detects an error. One is to notify the sender\nthat the message was corrupted so that the sender can retransmit a copy of the message. If bit errors are\nrare, then in all probability the retransmitted copy will be error free. Alternatively, some types of error\ndetection algorithms allow the recipient to reconstruct the correct message even after it has been corrupted;\nsuch algorithms rely on error-correcting codes, discussed below.\nOne of the most common techniques for detecting transmission errors is a technique known as the cyclic\nredundancy check (CRC). It is used in nearly all the link-level protocols discussed in this chapter. This\nsection outlines the basic CRC algorithm, but before discussing that approach, we first describe the simpler\nchecksum scheme used by several Internet protocols.\nThe basic idea behind any error detection scheme is to add redundant information to a frame that can be used\nto determine if errors have been introduced. In the extreme, we could imagine transmitting two complete\ncopies of the data. If the two copies are identical at the receiver, then it is probably the case that both are\ncorrect. If they differ, then an error was introduced into one (or both) of them, and they must be discarded.\nThis is a rather poor error detection scheme for two reasons. First, it sends n redundant bits for an n-bit\nmessage. Second, many errors will go undetected—any error that happens to corrupt the same bit positions\nin the first and second copies of the message. In general, the goal of error detecting codes is to provide a\nhigh probability of detecting errors combined with a relatively low number of redundant bits.\nFortunately, we can do a lot better than this simple scheme. In general, we can provide quite strong error\ndetection capability while sending onlyk redundant bits for ann-bit message, wherek is much smaller than\nn. On an Ethernet, for example, a frame carrying up to 12,000 bits (1500 bytes) of data requires only a\n32-bit CRC code, or as it is commonly expressed, uses CRC-32. Such a code will catch the overwhelming\nmajority of errors, as we will see below.\nWe say that the extra bits we send are redundant because they add no new information to the message.\nInstead, they are derived directly from the original message using some well-defined algorithm. Both the\nsender and the receiver know exactly what that algorithm is. The sender applies the algorithm to the message\nto generate the redundant bits. It then transmits both the message and those few extra bits. When the receiver\napplies the same algorithm to the received message, it should (in the absence of errors) come up with the\nsame result as the sender. It compares the result with the one sent to it by the sender. If they match, it can\nconclude (with high likelihood) that no errors were introduced in the message during transmission. If they\ndo not match, it can be sure that either the message or the redundant bits were corrupted, and it must take\nappropriate action—that is, discarding the message or correcting it if that is possible.\nOne note on the terminology for these extra bits. In general, they are referred to aserror-detecting codes. In\nspecific cases, when the algorithm to create the code is based on addition, they may be called a checksum.\nWe will see that the Internet checksum is appropriately named: It is an error check that uses a summing\nalgorithm. Unfortunately, the word checksum is often used imprecisely to mean any form of error-detecting\ncode, including CRCs. This can be confusing, so we urge you to use the word checksum only to apply to\ncodes that actually do use addition and to use error-detecting code to refer to the general class of codes\n60 Chapter 2. Direct Links\nComputer Networks: A Systems Approach, Release Version 6.1\ndescribed in this section.",
+      "source_section": "2.4",
+      "source_title": "Error Detection",
+      "source_pages": [
+        63,
+        64,
+        65
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.4",
+    "section_title": "Error Detection",
+    "pages": [
+      63,
+      64,
+      65
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

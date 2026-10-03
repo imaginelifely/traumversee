@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_2_8_1",
+  "subject": "computer_networks",
+  "name": "Passive Optical Network",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_8_1_source",
+      "statement": "PON is the technology most commonly used to deliver fiber-based broadband to homes and businesses.\nPON adopts a point-to-multipoint design, which means the network is structured as a tree, with a single\npoint starting in the ISP's network and then fanning out to reach up to 1024 homes. PON gets its name\nfrom the fact that the splitters are passive: they forward optical signals downstream and upstream without\nactively storing-and-forwarding frames. In this way, they are the optical variant of repeaters used in the\nclassic Ethernet. Framing then happens at the source in the ISP's premises, in a device called an Optical\nLine Terminal (OLT), and at the end-points in individual homes, in a device called anOptical Network Unit\n(ONU).\nFigure 2.32 shows an example PON, simplified to depict just one ONU and one OLT. In practice, a Central\nOffice would include multiple OLTs connecting to thousands of customer homes. For completeness, Figure",
+      "source_section": "2.8.1",
+      "source_title": "Passive Optical Network",
+      "source_pages": [
+        99
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.8.1",
+    "section_title": "Passive Optical Network",
+    "pages": [
+      99
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

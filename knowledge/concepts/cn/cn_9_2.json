@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_9_2",
+  "subject": "computer_networks",
+  "name": "Multimedia Applications",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_9_2_source",
+      "statement": "Just like the traditional applications described in the previous section, multimedia applications such as tele-\nphony and videoconferencing need their own protocols. Much of the initial experience in designing proto-\ncols for multimedia applications came from the MBone tools—applications such as vat andvic that were\ndeveloped for use on the MBone, an overlay network that supports IP multicast to enable multiparty con-\nferencing. (More on overlay networks including the MBone in the next section.) Initially, each application\nimplemented its own protocol (or protocols), but it became apparent that many multimedia applications have\ncommon requirements. This ultimately led to the development of a number of general-purpose protocols for\nuse by multimedia applications.\nWe have already seen a number of protocols that multimedia applications use. The Real-Time Transport Pro-\ntocol (RTP) provides many of the functions that are common to multimedia applications such as conveying\ntiming information and identifying the coding schemes and media types of an application.\nThe Resource Reservation Protocol (RSVP) can be used to request the allocation of resources in the network\nso that the desired quality of service (QoS) can be provided to an application. We will see how resource\nallocation interacts with other aspects of multimedia applications later in this section.\nIn addition to these protocols for multimedia transport and resource allocation, many multimedia applica-\ntions also need a signalling or session control protocol. For example, suppose that we wanted to be able to\nmake telephone calls across the Internet (V oice over IP, or V oIP). We would need some mechanism to notify\nthe intended recipient of such a call that we wanted to talk to her, such as by sending a message to some\nmultimedia device that would cause it to make a ringing sound. We would also like to be able to support\nfeatures like call forwarding, three-way calling, etc. The Session Initiation Protocol (SIP) and H.323 are\nexamples of protocols that address the issues of session control; we begin our discussion of multimedia\napplications by examining these protocols.",
+      "source_section": "9.2",
+      "source_title": "Multimedia Applications",
+      "source_pages": [
+        441
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "9.2",
+    "section_title": "Multimedia Applications",
+    "pages": [
+      441
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

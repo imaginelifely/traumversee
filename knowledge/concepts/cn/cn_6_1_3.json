@@ -1,0 +1,46 @@
+{
+  "id": "candidate_cn_6_1_3",
+  "subject": "computer_networks",
+  "name": "Evaluation Criteria",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_6_1_3_source",
+      "statement": "The final issue is one of knowing whether a resource allocation mechanism is good or not. Recall that in the\nproblem statement at the start of this chapter we posed the question of how a network effectively and fairly\nallocates its resources. This suggests at least two broad measures by which a resource allocation scheme\ncan be evaluated. We consider each in turn.\nEffective Resource Allocation\nA good starting point for evaluating the effectiveness of a resource allocation scheme is to consider the two\nprincipal metrics of networking: throughput and delay. Clearly, we want as much throughput and as little\ndelay as possible. Unfortunately, these goals are often somewhat at odds with each other. One sure way\nfor a resource allocation algorithm to increase throughput is to allow as many packets into the network as\npossible, so as to drive the utilization of all the links up to 100%. We would do this to avoid the possibility\nof a link becoming idle because an idle link necessarily hurts throughput. The problem with this strategy is\nthat increasing the number of packets in the network also increases the length of the queues at each router.\nLonger queues, in turn, mean packets are delayed longer in the network.\nTo describe this relationship, some network designers have proposed using the ratio of throughput to delay\nas a metric for evaluating the effectiveness of a resource allocation scheme. This ratio is sometimes referred\n6.1. Issues in Resource Allocation 293\nComputer Networks: A Systems Approach, Release Version 6.1\nto as the power of the network:\nPower = Throughput / Delay\nNote that it is not obvious that power is the right metric for judging resource allocation effectiveness. For one\nthing, the theory behind power is based on an M/M/1 queuing network that assumes infinite queues; 1 real\nnetworks have finite buffers and sometimes have to drop packets. For another, power is typically defined\nrelative to a single connection (flow); it is not clear how it extends to multiple, competing connections.\nDespite these rather severe limitations, however, no alternatives have gained wide acceptance, and so power\ncontinues to be used.\nThe objective is to maximize this ratio, which is a function of how much load you place on the network. The\nload, in turn, is set by the resource allocation mechanism. Figure 6.3 gives a representative power curve,\nwhere, ideally, the resource allocation mechanism would operate at the peak of this curve. To the left of the\npeak, the mechanism is being too conservative; that is, it is not allowing enough packets to be sent to keep\nthe links busy. To the right of the peak, so many packets are being allowed into the network that increases\nin delay due to queuing are starting to dominate any small gains in throughput.\nInterestingly, this power curve looks very much like the system throughput curve in a timesharing computer\nsystem. System throughput improves as more jobs are admitted into the system, until it reaches a point when\nthere are so many jobs running that the system begins to thrash (spends all of its time swapping memory\npages) and the throughput begins to drop.\nFigure 6.3.: Ratio of throughput to delay as a function of load.\nAs we will see in later sections of this chapter, many congestion-control schemes are able to control load\nin only very crude ways; that is, it is simply not possible to turn the \"knob\" a little and allow only a\nsmall number of additional packets into the network. As a consequence, network designers need to be\nconcerned about what happens even when the system is operating under extremely heavy load—that is, at\nthe rightmost end of the curve in Figure 6.3. Ideally, we would like to avoid the situation in which the system\nthroughput goes to zero because the system is thrashing. In networking terminology, we want a system that\n1 Since this is not a queuing theory book, we provide only this brief description of an M/M/1 queue. The 1 means it has a single\nserver, and the Ms mean that the distribution of both packet arrival and service times isMarkovian, that is, exponential.\n294 Chapter 6. Congestion Control\nComputer Networks: A Systems Approach, Release Version 6.1\nis stable—where packets continue to get through the network even when the network is operating under\nheavy load. If a mechanism is not stable, the network may experience congestion collapse.\nFair Resource Allocation\nThe effective utilization of network resources is not the only criterion for judging a resource allocation\nscheme. We must also consider the issue of fairness. However, we quickly get into murky waters when\nwe try to define what exactly constitutes fair resource allocation. For example, a reservation-based resource\nallocation scheme provides an explicit way to create controlled unfairness. With such a scheme, we might\nuse reservations to enable a video stream to receive 1 Mbps across some link while a file transfer receives\nonly 10 kbps over the same link.\nIn the absence of explicit information to the contrary, when several flows share a particular link, we would\nlike for each flow to receive an equal share of the bandwidth. This definition presumes that a fair share of\nbandwidth means an equal share of bandwidth. But, even in the absence of reservations, equal shares may\nnot equate to fair shares. Should we also consider the length of the paths being compared? For example, as\nillustrated in Figure 6.4, what is fair when one four-hop flow is competing with three one-hop flows?\nFigure 6.4.: One four-hop flow competing with three one-hop flows.\nAssuming that fair implies equal and that all paths are of equal length, networking researcher Raj Jain\nproposed a metric that can be used to quantify the fairness of a congestion-control mechanism. Jain's\nfairness index is defined as follows. Given a set of flow throughputs\n(x1,x 2,...,x n)\n(measured in consistent units such as bits/second), the following function assigns a fairness index to the\nflows:\nf(x1,x 2,...,x n) = (∑︀n\ni=1xi)2\nn∑︀n\ni=1x2\ni\nThe fairness index always results in a number between 0 and 1, with 1 representing greatest fairness. To\nunderstand the intuition behind this metric, consider the case where alln flows receive a throughput of 1 unit\nof data per second. We can see that the fairness index in this case is\nn2\nn×n = 1\nNow, suppose one flow receives a throughput of 1 + ∆. Now the fairness index is\n((n− 1) + 1 + ∆)2\nn(n− 1 + (1 + ∆)2) = n2 + 2n∆ + ∆2\nn2 + 2n∆ +n∆2\n6.1. Issues in Resource Allocation 295\nComputer Networks: A Systems Approach, Release Version 6.1\nNote that the denominator exceeds the numerator by(n−1)∆2. Thus, whether the odd flow out was getting\nmore or less than all the other flows (positive or negative∆), the fairness index has now dropped below one.\nAnother simple case to consider is where only k of the n flows receive equal throughput, and the remaining\nn-k users receive zero throughput, in which case the fairness index drops to k/n.",
+      "source_section": "6.1.3",
+      "source_title": "Evaluation Criteria",
+      "source_pages": [
+        297,
+        298,
+        299,
+        300
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "6.1.3",
+    "section_title": "Evaluation Criteria",
+    "pages": [
+      297,
+      298,
+      299,
+      300
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

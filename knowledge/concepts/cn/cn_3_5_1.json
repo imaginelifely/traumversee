@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_5_1",
+  "subject": "computer_networks",
+  "name": "Software Switch",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_5_1_source",
+      "statement": "Figure 3.38 shows a software switch built using a general-purpose processor with four network interface\ncards (NICs). The path for a typical packet that arrives on, say, NIC 1 and is forwarded out on NIC 2 is\nstraightforward: as NIC 1 receives the packet it copies its bytes directly into the main memory over the\nI/O bus (PCIe in this example) using a technique called direct memory access (DMA). Once the packet is\nin memory, the CPU examines its header to determine which interface the packet should be sent out on,\nand instructs NIC 2 to transmit the packet, again directly out of main memory using DMA. The important\ntake-away is that the packet is buffered in main memory (this is the \"store\" half of store-and-forward), with\nthe CPU reading only the necessary header fields into its internal registers for processing.\nFigure 3.38.: A general-purpose processor used as a software switch.\nThere are two potential bottlenecks with this approach, one or both of which limits the aggregate packet\nforwarding capacity of the software switch.\nThe first problem is that performance is limited by the fact that all packets must pass into and out of main\n1 This is also how the very first Internet routers, often called gateways at the time, were implemented in the early days of the\nInternet.\n170 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nmemory. Your mileage will vary based on how much you are willing to pay for hardware, but as an example,\na machine limited by a 1333-MHz, 64-bit-wide memory bus can transmit data at a peak rate of a little over\n100 Gbps—enough to build a switch with a handful of 10-Gbps Ethernet ports, but hardly enough for a\nhigh-end router in the core of the Internet.\nMoreover, this upper bound assumes that moving data is the only problem. This is a fair approximation for\nlong packets but a bad one when packets are short, which is the worst-case situation switch designers have to\nplan for. With minimum-sized packets, the cost of processing each packet—parsing its header and deciding\nwhich output link to transmit it on—is likely to dominate, and potentially become a bottleneck. Suppose,\nfor example, that a processor can perform all the necessary processing to switch 40 million packets each\nsecond. This is sometimes called the packet per second (pps) rate. If the average packet is 64 bytes, this\nwould imply\nThroughput = pps x BitsPerPacket\n= 40× 106× 64× 8\n= 2048× 107\nthat is, a throughput of about 20 Gbps—fast, but substantially below the range users are demanding from\ntheir switches today. Bear in mind that this 20 Gbps would be shared by all users connected to the switch,\njust as the bandwidth of a single (unswitched) Ethernet segment is shared among all users connected to the\nshared medium. Thus, for example, a 16-port switch with this aggregate throughput would only be able to\ncope with an average data rate of about 1 Gbps on each port.2\nOne final consideration is important to understand when evaluating switch implementations. The non-trivial\nalgorithms discussed in this chapter—the spanning tree algorithm used by learning bridges, the distance-\nvector algorithm used by RIP, and the link-state algorithm used by OSPF—are not directly part of the per-\npacket forwarding decision. They run periodically in the background, but switches do not have to execute,\nsay, OSPF code for every packet it forwards. The most costly routine the CPU is likely to execute on a\nper-packet basis is a table lookup, for example, looking up a VCI number in a VC table, an IP address in an\nL3 forwarding table, or an Ethernet address in an L2 forwarding table.\nKey Takeaway\nThe distinction between these two kinds of processing is important enough to give it a name: the control\nplane corresponds to the background processing required to \"control\" the network (e.g., running OSPF,\nRIP, or the BGP protocol described in the next chapter) and the data plane corresponds to the per-packet\nprocessing required to move packets from input port to output port. For historical reasons, this distinction\nis called control plane and user plane in cellular access networks, but the idea is the same, and in fact, the\n3GPP standard defines CUPS (Control/User Plane Separation) as an architectural principle.\nThese two kinds of processing are easy to conflate when both run on the same CPU, as is the case in software\nswitch depicted in Figure 3.38, but performance can be dramatically improved by optimizing how the data\nplane is implemented, and correspondingly, specifying a well-defined interface between the control and data\nplanes. [Next]\n2 These example performance numbers do not represent the absolute maximum throughput rate that highly tuned software\nrunning on a high-end server could achieve, but they are indicative of limits one ultimately faces in pursuing this approach.\n3.5. Implementation 171\nComputer Networks: A Systems Approach, Release Version 6.1",
+      "source_section": "3.5.1",
+      "source_title": "Software Switch",
+      "source_pages": [
+        174,
+        175,
+        176
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.5.1",
+    "section_title": "Software Switch",
+    "pages": [
+      174,
+      175,
+      176
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "candidate_cn_3_2_5",
+  "subject": "computer_networks",
+  "name": "Virtual LANs (VLANs)",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_2_5_source",
+      "statement": "One limitation of switches is that they do not scale. It is not realistic to connect more than a few switches,\nwhere in practice few typically means \"tens of.\" One reason for this is that the spanning tree algorithm scales\nlinearly; that is, there is no provision for imposing a hierarchy on the set of switches. A second reason is\nthat switches forward all broadcast frames. While it is reasonable for all hosts within a limited setting (say,\na department) to see each other's broadcast messages, it is unlikely that all the hosts in a larger environment\n(say, a large company or university) would want to have to be bothered by each other's broadcast messages.\nSaid another way, broadcast does not scale, and as a consequence L2-based networks do not scale.\n3.2. Switched Ethernet 123\nComputer Networks: A Systems Approach, Release Version 6.1\nOne approach to increasing the scalability is the virtual LAN (VLAN). VLANs allow a single extended\nLAN to be partitioned into several seemingly separate LANs. Each virtual LAN is assigned an identifier\n(sometimes called a color), and packets can only travel from one segment to another if both segments have\nthe same identifier. This has the effect of limiting the number of segments in an extended LAN that will\nreceive any given broadcast packet.\nFigure 3.13.: Two virtual LANs share a common backbone.\nWe can see how VLANs work with an example. Figure 3.13 shows four hosts and two switches. In the\nabsence of VLANs, any broadcast packet from any host will reach all the other hosts. Now let's suppose\nthat we define the segments connected to hosts W and X as being in one VLAN, which we'll call VLAN\n100. We also define the segments that connect to hosts Y and Z as being in VLAN 200. To do this, we need\nto configure a VLAN ID on each port of switches S1 and S2. The link between S1 and S2 is considered to\nbe in both VLANs.\nWhen a packet sent by host X arrives at switch S2, the switch observes that it came in a port that was\nconfigured as being in VLAN 100. It inserts a VLAN header between the Ethernet header and its payload.\nThe interesting part of the VLAN header is the VLAN ID; in this case, that ID is set to 100. The switch\nnow applies its normal rules for forwarding to the packet, with the extra restriction that the packet may not\nbe sent out an interface that is not part of VLAN 100. Thus, under no circumstances will the packet—even\na broadcast packet—be sent out the interface to host Z, which is in VLAN 200. The packet, however, is\nforwarded on to switch S1, which follows the same rules and thus may forward the packet to host W but not\nto host Y .\nAn attractive feature of VLANs is that it is possible to change the logical topology without moving any\nwires or changing any addresses. For example, if we wanted to make the link that connects to host Z be\npart of VLAN 100 and thus enable X, W, and Z to be on the same virtual LAN, then we would just need to\nchange one piece of configuration on switch S2.\nSupporting VLANs requires a fairly simple extension to the original 802.1 header specification, inserting\na 12-bit VLAN ID ( VID) field between the SrcAddr and Type fields, as shown in Figure 3.14. (This\nVID is typically referred to as a VLAN Tag.) There are actually 32-bits inserted in the middle of the header,\nbut the first 16-bits are used to preserve backwards compatibility with the original specification (they use\n124 Chapter 3. Internetworking\nComputer Networks: A Systems Approach, Release Version 6.1\nType = 0x8100 to indicate that this frame includes the VLAN extension); the other four bits hold control\ninformation used to prioritize frames. This means it is possible to map 212 = 4096 virtual networks onto a\nsingle physical LAN.\nFigure 3.14.: 802.1Q VLAN tag embedded within an Ethernet (802.1) header.\nWe conclude this discussion by observing there is another limitation of networks built by interconnecting\nL2 switches: lack of support for heterogeneity. That is, switches are limited in the kinds of networks they\ncan interconnect. In particular, switches make use of the network's frame header and so can support only\nnetworks that have exactly the same format for addresses. For example, switches can be used to connect\nEthernet and 802.11 based networks to another, since they share a common header format, but switches do\nnot readily generalize to other kinds of networks with different addressing formats, such as ATM, SONET,\nPON, or the cellular network. The next section explains how to address this limitation, as well as to scale\nswitched networks to even larger sizes.",
+      "source_section": "3.2.5",
+      "source_title": "Virtual LANs (VLANs)",
+      "source_pages": [
+        127,
+        128,
+        129
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.2.5",
+    "section_title": "Virtual LANs (VLANs)",
+    "pages": [
+      127,
+      128,
+      129
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_3_5",
+  "subject": "computer_networks",
+  "name": "Subnetting and Classless Addressing",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_3_5_source",
+      "statement": "The original intent of IP addresses was that the network part would uniquely identify exactly one physical\nnetwork. It turns out that this approach has a couple of drawbacks. Imagine a large campus that has lots\nof internal networks and decides to connect to the Internet. For every network, no matter how small, the\nsite needs at least a class C network address. Even worse, for any network with more than 255 hosts, they\nneed a class B address. This may not seem like a big deal, and indeed it wasn't when the Internet was first\nenvisioned, but there are only a finite number of network numbers, and there are far fewer class B addresses\nthan class Cs. Class B addresses tend to be in particularly high demand because you never know if your\nnetwork might expand beyond 255 nodes, so it is easier to use a class B address from the start than to have\nto renumber every host when you run out of room on a class C network. The problem we observe here is\naddress assignment inefficiency: A network with two nodes uses an entire class C network address, thereby\nwasting 253 perfectly useful addresses; a class B network with slightly more than 255 hosts wastes over\n64,000 addresses.\nAssigning one network number per physical network, therefore, uses up the IP address space potentially\nmuch faster than we would like. While we would need to connect over 4 billion hosts to use up all the valid\naddresses, we only need to connect 214 (about 16,000) class B networks before that part of the address space\nruns out. Therefore, we would like to find some way to use the network numbers more efficiently.\nAssigning many network numbers has another drawback that becomes apparent when you think about rout-\ning. Recall that the amount of state that is stored in a node participating in a routing protocol is proportional\nto the number of other nodes, and that routing in an internet consists of building up forwarding tables that\n3.3. Internet (IP) 137\nComputer Networks: A Systems Approach, Release Version 6.1\ntell a router how to reach different networks. Thus, the more network numbers there are in use, the big-\nger the forwarding tables get. Big forwarding tables add costs to routers, and they are potentially slower to\nsearch than smaller tables for a given technology, so they degrade router performance. This provides another\nmotivation for assigning network numbers carefully.\nSubnetting provides a first step to reducing total number of network numbers that are assigned. The idea\nis to take a single IP network number and allocate the IP addresses with that network number to several\nphysical networks, which are now referred to as subnets. Several things need to be done to make this work.\nFirst, the subnets should be close to each other. This is because from a distant point in the Internet, they\nwill all look like a single network, having only one network number between them. This means that a router\nwill only be able to select one route to reach any of the subnets, so they had better all be in the same general\ndirection. A perfect situation in which to use subnetting is a large campus or corporation that has many\nphysical networks. From outside the campus, all you need to know to reach any subnet inside the campus\nis where the campus connects to the rest of the Internet. This is often at a single point, so one entry in your\nforwarding table will suffice. Even if there are multiple points at which the campus is connected to the rest\nof the Internet, knowing how to get to one point in the campus network is still a good start.\nThe mechanism by which a single network number can be shared among multiple networks involves con-\nfiguring all the nodes on each subnet with a subnet mask. With simple IP addresses, all hosts on the same\nnetwork must have the same network number. The subnet mask enables us to introduce a subnet number;\nall hosts on the same physical network will have the same subnet number, which means that hosts may be\non different physical networks but share a single network number. This concept is illustrated in Figure 3.21.\nFigure 3.21.: Subnet addressing.\nWhat subnetting means to a host is that it is now configured with both an IP address and a subnet mask for\nthe subnet to which it is attached. For example, host H1 in Figure 3.22 is configured with an address of",
+      "source_section": "3.3.5",
+      "source_title": "Subnetting and Classless Addressing",
+      "source_pages": [
+        141,
+        142
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.3.5",
+    "section_title": "Subnetting and Classless Addressing",
+    "pages": [
+      141,
+      142
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

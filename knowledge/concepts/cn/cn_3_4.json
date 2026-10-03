@@ -1,0 +1,42 @@
+{
+  "id": "candidate_cn_3_4",
+  "subject": "computer_networks",
+  "name": "Routing",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_3_4_source",
+      "statement": "So far in this chapter we have assumed that the switches and routers have enough knowledge of the network\ntopology so they can choose the right port onto which each packet should be output. In the case of virtual\ncircuits, routing is an issue only for the connection request packet; all subsequent packets follow the same\npath as the request. In datagram networks, including IP networks, routing is an issue for every packet. In\neither case, a switch or router needs to be able to look at a destination address and then to determine which\nof the output ports is the best choice to get a packet to that address. As we saw in an earlier section, the\nswitch makes this decision by consulting a forwarding table. The fundamental problem of routing is how\nswitches and routers acquire the information in their forwarding tables.\nKey Takeaway\nWe restate an important distinction, which is often neglected, between forwarding and routing. Forwarding\nconsists of receiving a packet, looking up its destination address in a table, and sending the packet in a\ndirection determined by that table. We saw several examples of forwarding in the preceding section. It is\na simple and well-defined process performed locally at each node, and is often referred to as the network's\ndata plane. Routing is the process by which forwarding tables are built. It depends on complex distributed\nalgorithms, and is often referred to as the network'scontrol plane. [Next]\nWhile the terms forwarding table and routing table are sometimes used interchangeably, we will make a\ndistinction between them here. The forwarding table is used when a packet is being forwarded and so must\ncontain enough information to accomplish the forwarding function. This means that a row in the forwarding\ntable contains the mapping from a network prefix to an outgoing interface and some MAC information, such\nas the Ethernet address of the next hop. The routing table, on the other hand, is the table that is built up by\nthe routing algorithms as a precursor to building the forwarding table. It generally contains mappings from\nnetwork prefixes to next hops. It may also contain information about how this information was learned, so\nthat the router will be able to decide when it should discard some information.\nWhether the routing table and forwarding table are actually separate data structures is something of an\nimplementation choice, but there are numerous reasons to keep them separate. For example, the forwarding\ntable needs to be structured to optimize the process of looking up an address when forwarding a packet,\nwhile the routing table needs to be optimized for the purpose of calculating changes in topology. In many\ncases, the forwarding table may even be implemented in specialized hardware, whereas this is rarely if ever\ndone for the routing table.\n3.4. Routing 151\nComputer Networks: A Systems Approach, Release Version 6.1\nTable 3.10 gives an example of a row from a routing table, which tells us that network prefix 18/8 is to be\nreached by a next hop router with the IP address 171.69.245.10\nTable 3.10.: Example row from a routing table.\nPrefix/Length Next Hop\n18/8 171.69.245.10\nIn contrast, Table 3.11 gives an example of a row from a forwarding table, which contains the information\nabout exactly how to forward a packet to that next hop: Send it out interface number 0 with a MAC address\nof 8:0:2b:e4:b:1:2. Note that the last piece of information is provided by the Address Resolution Protocol.\nTable 3.11.: Example row from a forwarding table.\nPrefix/Length Interface MAC Address\n18/8 if0 8:0:2b:e4:b:1:2\nBefore getting into the details of routing, we need to remind ourselves of the key question we should be\nasking anytime we try to build a mechanism for the Internet: \"Does this solution scale?\" The answer for\nthe algorithms and protocols described in this section is \"not so much.\" They are designed for networks of\nfairly modest size—up to a few hundred nodes, in practice. However, the solutions we describe do serve\nas a building block for a hierarchical routing infrastructure that is used in the Internet today. Specifically,\nthe protocols described in this section are collectively known as intradomain routing protocols, or interior\ngateway protocols (IGPs). To understand these terms, we need to define a routing domain. A good working\ndefinition is an internetwork in which all the routers are under the same administrative control (e.g., a single\nuniversity campus, or the network of a single Internet Service Provider). The relevance of this definition will\nbecome apparent in the next chapter when we look atinterdomain routing protocols. For now, the important\nthing to keep in mind is that we are considering the problem of routing in the context of small to midsized\nnetworks, not for a network the size of the Internet.",
+      "source_section": "3.4",
+      "source_title": "Routing",
+      "source_pages": [
+        155,
+        156
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "3.4",
+    "section_title": "Routing",
+    "pages": [
+      155,
+      156
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}

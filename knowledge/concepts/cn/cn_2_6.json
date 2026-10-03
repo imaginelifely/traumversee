@@ -1,0 +1,40 @@
+{
+  "id": "candidate_cn_2_6",
+  "subject": "computer_networks",
+  "name": "Multi-Access Networks",
+  "type": "concept_candidate",
+  "source_claims": [
+    {
+      "id": "cn_2_6_source",
+      "statement": "Developed in the mid-1970s by researchers at the Xerox Palo Alto Research Center (PARC), the Ethernet\neventually became the dominant local area networking technology, emerging from a pack of competing\ntechnologies. Today, it competes mainly with 802.11 wireless networks but remains extremely popular in\ncampus networks and data centers. The more general name for the technology behind the Ethernet is Carrier\nSense, Multiple Access with Collision Detect (CSMA/CD).\nAs indicated by the CSMA name, the Ethernet is a multiple-access network, meaning that a set of nodes\nsends and receives frames over a shared link. You can, therefore, think of an Ethernet as being like a bus\nthat has multiple stations plugged into it. The \"carrier sense\" in CSMA/CD means that all the nodes can\ndistinguish between an idle and a busy link, and \"collision detect\" means that a node listens as it transmits\nand can therefore detect when a frame it is transmitting has interfered (collided) with a frame transmitted by\nanother node.\nThe Ethernet has its roots in an early packet radio network, called Aloha, developed at the University of\nHawaii to support computer communication across the Hawaiian Islands. Like the Aloha network, the fun-\ndamental problem faced by the Ethernet is how to mediate access to a shared medium fairly and efficiently\n(in Aloha, the medium was the atmosphere, while in the Ethernet the medium was originally a coax cable).\nThe core idea in both Aloha and the Ethernet is an algorithm that controls when each node can transmit.\nModern Ethernet links are now largely point to point; that is, they connect one host to an Ethernetswitch, or\nthey interconnect switches. As a consequence, the \"multiple access\" algorithm is not used much in today's\nwired Ethernets, but a variant is now used in wireless networks, such as 802.11 networks (also known as\nWi-Fi). Due to the enormous influence of Ethernet, we chose to describe its classic algorithm here, and\nthen explain how it has been adapted to Wi-Fi in the next section. We will also discuss Ethernet switches\nelsewhere. For now, we'll focus on how a single Ethernet link works.\nDigital Equipment Corporation and Intel Corporation joined Xerox to define a 10-Mbps Ethernet standard in\n1978. This standard then formed the basis for IEEE standard 802.3, which additionally defines a much wider\ncollection of physical media over which an Ethernet can operate, including 100-Mbps, 1-Gbps, 10-Gbps,\n40-Gbps, and 100-Gbps versions.",
+      "source_section": "2.6",
+      "source_title": "Multi-Access Networks",
+      "source_pages": [
+        81
+      ]
+    }
+  ],
+  "inferences": [],
+  "experience": {
+    "hooks": [],
+    "scenarios": [],
+    "practical_extension": null
+  },
+  "learner_model": {
+    "mastery": null,
+    "confidence": null,
+    "misconceptions": [],
+    "evidence": []
+  },
+  "source": {
+    "section": "2.6",
+    "section_title": "Multi-Access Networks",
+    "pages": [
+      81
+    ]
+  },
+  "traceability": {
+    "source_verified": true,
+    "generated_content": []
+  }
+}
