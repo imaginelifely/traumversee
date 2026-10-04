@@ -1,0 +1,83 @@
+{
+  "experience_id": "exp_cn_packet_switching_002",
+  "concept_id": "cn_packet_switching",
+  "concept": "Packet Switching",
+
+  "learning_objective": {
+    "statement": "Apply the store-and-forward idea to a packet moving through intermediate nodes.",
+    "source_section": "1.2.2"
+  },
+
+  "prerequisites": [
+    "cn_network",
+    "cn_node",
+    "cn_link",
+    "cn_connectivity"
+  ],
+
+  "experience": {
+    "type": "scenario",
+    "title": "The Packet's Journey",
+    "scenario": "A packet needs to travel from Computer A to Computer B. There is no direct physical link between them, so the packet must pass through an intermediate node.",
+    "challenge": "You are observing the intermediate node as the packet travels through the network. Decide what happens at that node.",
+    "learner_action": "Choose the sequence that correctly describes how the intermediate node handles the packet."
+  },
+
+  "feedback": {
+    "correct": "Exactly. The intermediate node receives the complete packet, stores it, and then forwards it toward the destination.",
+    "explanation": "In the source's description of packet-switched networks, an intermediate node uses store-and-forward: it receives a complete packet, stores it, and then forwards it.",
+    "source_section": "1.2.2"
+  },
+
+  "assessment": {
+    "type": "decision",
+    "question": "Which sequence best represents store-and-forward at an intermediate node?",
+
+    "options": [
+      {
+        "id": "option_1",
+        "text": "Forward → receive → store"
+      },
+      {
+        "id": "option_2",
+        "text": "Receive complete packet → store → forward"
+      },
+      {
+        "id": "option_3",
+        "text": "Store → create a new link → forward"
+      },
+      {
+        "id": "option_4",
+        "text": "Receive part of packet → immediately forward part"
+      }
+    ],
+
+    "correct_answer": "option_2",
+    "expected_concept": "cn_store_forward"
+  },
+
+  "mastery_evidence": {
+    "concept": "cn_packet_switching",
+    "evidence_type": "application_decision",
+    "mastery_signal": "correctly applies the store-and-forward sequence to an intermediate node"
+  },
+
+  "traceability": {
+    "source_verified": true,
+    "source": {
+      "book": "Computer Networks: A Systems Approach",
+      "release": "6.1",
+      "section": "1.2.2",
+      "section_title": "Scalable Connectivity",
+      "pages": [
+        15,
+        16
+      ]
+    },
+    "generated_fields": [
+      "experience",
+      "assessment",
+      "mastery_evidence"
+    ]
+  }
+}

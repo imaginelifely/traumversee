@@ -2,6 +2,11 @@ from pathlib import Path
 import json
 import sys
 
+from learner_model import (
+    determine_status,
+    get_concept_mastery
+)
+
 
 MODEL_PATH = Path(
     "knowledge/processed/learner_model.json"
@@ -47,33 +52,17 @@ def get_recommendation(
         concept_id
     ]
 
-    mastery = concept[
-        "mastery"
-    ]
-
-    if mastery < 0.5:
-
-        status = "needs_reinforcement"
-
-        recommendation = (
-            "reinforce"
-        )
-
-    elif mastery < 0.8:
-
-        status = "developing"
-
-        recommendation = (
-            "practice"
-        )
-
-    else:
-
-        status = "mastered"
-
-        recommendation = (
-            "progress"
-        )
+    mastery = get_concept_mastery(
+        concept
+    )
+    status = determine_status(
+        concept
+    )
+    recommendation = {
+        "needs_reinforcement": "reinforce",
+        "developing": "practice",
+        "mastered": "progress"
+    }[status]
 
     return {
         "concept_id": concept_id,

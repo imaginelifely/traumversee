@@ -2,20 +2,22 @@ from pathlib import Path
 import json
 import sys
 
+from learner_model import (
+    load_model,
+    update_model,
+    save_model
+)
+
 
 EXPERIENCE_DIR = Path(
     "knowledge/concepts/cn/experience_specs"
 )
 
-MODEL_PATH = Path(
-    "knowledge/processed/learner_model.json"
-)
 
-
-def load_json(path):
+def load_experience_file(path):
     if not path.exists():
         raise FileNotFoundError(
-            f"File not found: {path}"
+            f"Experience file not found: {path}"
         )
 
     return json.loads(
@@ -23,26 +25,6 @@ def load_json(path):
             encoding="utf-8"
         )
     )
-
-
-def save_json(path, data):
-    path.parent.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    path.write_text(
-        json.dumps(
-            data,
-            indent=2,
-            ensure_ascii=False
-        ),
-        encoding="utf-8"
-    )
-
-
-def load_experience_file(path):
-    return load_json(path)
 
 
 def find_experience_by_concept(
@@ -67,58 +49,26 @@ def find_experience_by_concept(
     return None
 
 
-def load_learner_model():
-
-    if not MODEL_PATH.exists():
-
-        return {
-            "learner_id": "local_user",
-            "concepts": {}
-        }
-
-    return load_json(MODEL_PATH)
-
-
-def update_learner_model(
-    model,
-    learning_event
+def find_experience_by_id(
+    experience_id
 ):
-
-    concept_id = learning_event[
-        "concept_id"
-    ]
-
-    if concept_id not in model["concepts"]:
-
-        model["concepts"][concept_id] = {
-            "attempts": 0,
-            "correct": 0,
-            "incorrect": 0,
-            "mastery": 0.0,
-            "evidence": []
-        }
-
-    concept = model["concepts"][
-        concept_id
-    ]
-
-    concept["attempts"] += 1
-
-    if learning_event["correct"]:
-        concept["correct"] += 1
-    else:
-        concept["incorrect"] += 1
-
-    concept["mastery"] = (
-        concept["correct"]
-        / concept["attempts"]
+    experience_files = sorted(
+        EXPERIENCE_DIR.glob("*.json")
     )
 
-    concept["evidence"].append(
-        learning_event
-    )
+    for experience_path in experience_files:
 
-    return model
+        experience = load_experience_file(
+            experience_path
+        )
+
+        if experience.get(
+            "experience_id"
+        ) == experience_id:
+
+            return experience
+
+    return None
 
 
 def create_learning_event(
@@ -126,7 +76,6 @@ def create_learning_event(
     selected_option,
     correct
 ):
-
     mastery = experience[
         "mastery_evidence"
     ]
@@ -151,8 +100,9 @@ def create_learning_event(
     }
 
 
-def present_experience(experience):
-
+def present_experience(
+    experience
+):
     learning_objective = experience[
         "learning_objective"
     ]
@@ -173,7 +123,6 @@ def present_experience(experience):
     )
 
     print("=" * 60)
-
     print()
 
     print(
@@ -236,7 +185,6 @@ def present_experience(experience):
         options,
         start=1
     ):
-
         print(
             f"[{index}] {option['text']}"
         )
@@ -251,7 +199,8 @@ def present_experience(experience):
 
         if (
             choice.isdigit()
-            and 1 <= int(choice) <= len(options)
+            and
+            1 <= int(choice) <= len(options)
         ):
             break
 
@@ -282,13 +231,17 @@ def present_experience(experience):
         print()
 
         print(
-            experience["feedback"]["correct"]
+            experience[
+                "feedback"
+            ]["correct"]
         )
 
         print()
 
         print(
-            experience["feedback"]["explanation"]
+            experience[
+                "feedback"
+            ]["explanation"]
         )
 
         print()
@@ -310,20 +263,16 @@ def present_experience(experience):
         print()
 
         print(
-            experience["feedback"]["explanation"]
+            experience[
+                "feedback"
+            ]["explanation"]
         )
 
         print()
 
         print(
-            "💡 Think about what "
-            "store-and-forward means:"
-        )
-
-        print(
-            "The intermediate node first "
-            "receives the complete packet, "
-            "stores it, and then forwards it."
+            "💡 Think about the sequence "
+            "described in the feedback."
         )
 
     # -----------------------------------------
@@ -334,22 +283,6 @@ def present_experience(experience):
         experience,
         selected_option,
         correct
-    )
-
-    # -----------------------------------------
-    # Update learner model
-    # -----------------------------------------
-
-    learner_model = load_learner_model()
-
-    update_learner_model(
-        learner_model,
-        learning_event
-    )
-
-    save_json(
-        MODEL_PATH,
-        learner_model
     )
 
     print()
@@ -367,10 +300,25 @@ def present_experience(experience):
     )
 
     # -----------------------------------------
-    # Show current learner state
+    # Update learner model
     # -----------------------------------------
 
-    concept_state = learner_model[
+    model = load_model()
+
+    model = update_model(
+        model,
+        learning_event
+    )
+
+    save_model(
+        model
+    )
+
+    # -----------------------------------------
+    # Show updated learner model
+    # -----------------------------------------
+
+    concept_state = model[
         "concepts"
     ][
         experience["concept_id"]
@@ -412,35 +360,37 @@ def main():
     if len(sys.argv) < 2:
 
         print(
-            "Usage: "
-            "python scripts\\experience_presenter.py "
-            "<concept_id>"
-        )
-
-        print()
-
-        print(
-            "Example:"
+            "Usage:"
         )
 
         print(
             "python scripts\\experience_presenter.py "
-            "cn_packet_switching"
+            "<concept_id_or_experience_id>"
         )
 
         return
 
-    concept_id = sys.argv[1]
-
-    experience = find_experience_by_concept(
-        concept_id
+    identifier = " ".join(
+        sys.argv[1:]
     )
+
+    # Try concept ID first
+    experience = find_experience_by_concept(
+        identifier
+    )
+
+    # If not found, try experience ID
+    if not experience:
+
+        experience = find_experience_by_id(
+            identifier
+        )
 
     if not experience:
 
         print(
-            f"No experience found for concept: "
-            f"{concept_id}"
+            f"No experience found for: "
+            f"{identifier}"
         )
 
         return
